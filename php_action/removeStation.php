@@ -9,7 +9,7 @@ $stationID = $_POST['stationID'];
 
 if($stationID) { 
 
- $sql = "UPDATE Station SET visible = 2 WHERE sta_id = {$stationID}";
+ $sql = "UPDATE Station SET visible = 0 WHERE sta_id = {$stationID}";
 
  if($connect->query($sql) === TRUE) {
  	$valid['success'] = true;

@@ -13,10 +13,8 @@ if($result->num_rows > 0) {
  $activeBrands = ""; 
 
  while($row = $result->fetch_array()) {
-	 $sta_id = $row[0];
-	 $sta_name = $row[1];
-	 $address = $row[2];
-	 $telephone = $row[3];
+	 $stationID = $row[0];
+	 
  	// active 
  	if($row[4] == 1) {
  		// activate member
@@ -32,16 +30,16 @@ if($result->num_rows > 0) {
 	    Action <span class="caret"></span>
 	  </button>
 	  <ul class="dropdown-menu">
-	    <li><a type="button" data-toggle="modal" data-target="#editStationModel" onclick="editStations ('.$sta_id.')"> <i class="glyphicon glyphicon-edit"></i> Edit</a></li>
-	    <li><a type="button" data-toggle="modal" data-target="#removeMemberModal" onclick="removeStations('.$sta_id.')"> <i class="glyphicon glyphicon-trash"></i> Remove</a></li>       
+	    <li><a type="button" data-toggle="modal" data-target="#editStationModel" onclick="editStations ('.$stationID.')"> <i class="glyphicon glyphicon-edit"></i> Edit</a></li>
+	    <li><a type="button" data-toggle="modal" data-target="#removeMemberModal" onclick="removeStations('.$stationID.')"> <i class="glyphicon glyphicon-trash"></i> Remove</a></li>       
 	  </ul>
 	</div>';
 
  	$output['data'][] = array( 		
- 		$sta_id,
-		$sta_name,
-		$address,
-		$telephone,
+ 		$stationID,
+		$row[1],
+		$row[2],
+		$row[3],
  		$activeStation,
  		$button
  		); 	

@@ -72,7 +72,7 @@
 	        	<label for="address" class="col-sm-3 control-label">Address: </label>
 	        	<label class="col-sm-1 control-label">: </label>
 				    <div class="col-sm-8">
-				      <input type="text" class="form-control" id="stationID" placeholder="Address" name="address" autocomplete="off">
+				      <input type="text" class="form-control" id="address" placeholder="Address" name="address" autocomplete="off">
 				    </div>
 	        </div> <!-- /form-group-->
 			
@@ -101,7 +101,7 @@
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 	        
-	        <button type="submit" class="btn btn-primary" id="createBrandBtn" data-loading-text="Loading..." autocomplete="off">Save Changes</button>
+	        <button type="submit" class="btn btn-primary" id="createStationBtn" data-loading-text="Loading..." autocomplete="off">Save Changes</button>
 	      </div>
 	      <!-- /modal-footer -->
      	</form>
@@ -178,14 +178,14 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title"><i class="glyphicon glyphicon-trash"></i> Remove Brand</h4>
+        <h4 class="modal-title"><i class="glyphicon glyphicon-trash"></i> Remove Station</h4>
       </div>
       <div class="modal-body">
         <p>Do you really want to remove ?</p>
       </div>
-      <div class="modal-footer removeBrandFooter">
+      <div class="modal-footer removeStationFooter">
         <button type="button" class="btn btn-default" data-dismiss="modal"> <i class="glyphicon glyphicon-remove-sign"></i> Close</button>
-        <button type="button" class="btn btn-primary" id="removeBrandBtn" data-loading-text="Loading..."> <i class="glyphicon glyphicon-ok-sign"></i> Save changes</button>
+        <button type="button" class="btn btn-primary" id="removeStationBtn" data-loading-text="Loading..."> <i class="glyphicon glyphicon-ok-sign"></i> Save changes</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

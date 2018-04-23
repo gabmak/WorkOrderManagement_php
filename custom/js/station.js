@@ -4,47 +4,80 @@ $(document).ready(function() {
 	// top bar active
 	$('#navBrand').addClass('active');
 	
-	// manage brand table
+	// manage station table
 	manageStationTable = $("#manageStationTable").DataTable({
 		'ajax': 'php_action/fetchStation.php',
 		'order': []		
 	});
 
-	// submit brand form function
+	// submit station form function
 	$("#submitStationForm").unbind('submit').bind('submit', function() {
 		// remove the error text
 		$(".text-danger").remove();
 		// remove the form error
 		$('.form-group').removeClass('has-error').removeClass('has-success');			
 
-		var brandName = $("#brandName").val();
-		var brandStatus = $("#brandStatus").val();
+		var stationID = $("#stationID").val();
+		var stationName = $("#stationName").val();
+		var addressField = $("#address").val();
+		var telephone = $("#telephone").val();
+		var stationStatus = $("#stationStatus").val();
 
-		if(brandName == "") {
-			$("#brandName").after('<p class="text-danger">Brand Name field is required</p>');
-			$('#brandName').closest('.form-group').addClass('has-error');
+		if(stationID == "") {
+			$("#stationID").after('<p class="text-danger">Station ID field is required</p>');
+			$('#stationID').closest('.form-group').addClass('has-error');
 		} else {
 			// remov error text field
-			$("#brandName").find('.text-danger').remove();
+			$("#stationID").find('.text-danger').remove();
 			// success out for form 
-			$("#brandName").closest('.form-group').addClass('has-success');	  	
+			$("#stationID").closest('.form-group').addClass('has-success');	  	
 		}
-
-		if(brandStatus == "") {
+		
+		if(stationName == "") {
+			$("#stationName").after('<p class="text-danger">Station Name field is required</p>');
+			$('#stationName').closest('.form-group').addClass('has-error');
+		} else {
+			// remov error text field
+			$("#stationName").find('.text-danger').remove();
+			// success out for form 
+			$("#stationName").closest('.form-group').addClass('has-success');	  	
+		}
+		
+		if(addressField == "") {
+			$("#address").after('<p class="text-danger">Address field is required</p>');
+			$('#address').closest('.form-group').addClass('has-error');
+		} else {
+			// remov error text field
+			$("#address").find('.text-danger').remove();
+			// success out for form 
+			$("#address").closest('.form-group').addClass('has-success');	  	
+		}
+		
+		if(telephone == "") {
+			$("#telephone").after('<p class="text-danger">Telephone field is required</p>');
+			$('#telephone').closest('.form-group').addClass('has-error');
+		} else {
+			// remov error text field
+			$("#telephone").find('.text-danger').remove();
+			// success out for form 
+			$("#telephone").closest('.form-group').addClass('has-success');	  	
+		}
+		
+		if(stationStatus == "") {
 			$("#brandStatus").after('<p class="text-danger">Brand Name field is required</p>');
 
 			$('#brandStatus').closest('.form-group').addClass('has-error');
 		} else {
 			// remov error text field
-			$("#brandStatus").find('.text-danger').remove();
+			$("#stationStatus").find('.text-danger').remove();
 			// success out for form 
-			$("#brandStatus").closest('.form-group').addClass('has-success');	  	
+			$("#stationStatus").closest('.form-group').addClass('has-success');	  	
 		}
 
-		if(brandName && brandStatus) {
+		if(stationID && stationName && address && telephone && stationStatus) {
 			var form = $(this);
 			// button loading
-			$("#createBrandBtn").button('loading');
+			$("#createStationBtn").button('loading');
 
 			$.ajax({
 				url : form.attr('action'),
@@ -53,7 +86,7 @@ $(document).ready(function() {
 				dataType: 'json',
 				success:function(response) {
 					// button loading
-					$("#createBrandBtn").button('reset');
+					$("#createStationBtn").button('reset');
 
 					if(response.success == true) {
 						// reload the manage member table 

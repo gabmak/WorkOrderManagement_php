@@ -32,8 +32,8 @@ if($result->num_rows > 0) {
 	    Action <span class="caret"></span>
 	  </button>
 	  <ul class="dropdown-menu">
-	    <li><a type="button" data-toggle="modal" data-target="#editBrandModel" onclick="editBrands('.$sta_id.')"> <i class="glyphicon glyphicon-edit"></i> Edit</a></li>
-	    <li><a type="button" data-toggle="modal" data-target="#removeMemberModal" onclick="removeBrands('.$sta_id.')"> <i class="glyphicon glyphicon-trash"></i> Remove</a></li>       
+	    <li><a type="button" data-toggle="modal" data-target="#editStationModel" onclick="editStations ('.$sta_id.')"> <i class="glyphicon glyphicon-edit"></i> Edit</a></li>
+	    <li><a type="button" data-toggle="modal" data-target="#removeMemberModal" onclick="removeStations('.$sta_id.')"> <i class="glyphicon glyphicon-trash"></i> Remove</a></li>       
 	  </ul>
 	</div>';
 
@@ -42,7 +42,7 @@ if($result->num_rows > 0) {
 		$sta_name,
 		$address,
 		$telephone,
- 		$activeBrands,
+ 		$activeStation,
  		$button
  		); 	
  } // /while 

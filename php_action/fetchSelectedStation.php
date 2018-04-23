@@ -2,9 +2,9 @@
 
 require_once 'core.php';
 
-$brandId = $_POST['brandId'];
+$stationID = $_POST['stationID'];
 
-$sql = "SELECT brand_id, brand_name, brand_active, brand_status FROM brands WHERE brand_id = $brandId";
+$sql = "SELECT sta_id, sta_name, address, telephone, status, visible FROM Station WHERE sta_id = $stationID";
 $result = $connect->query($sql);
 
 if($result->num_rows > 0) { 

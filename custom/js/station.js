@@ -241,31 +241,31 @@ function editBrands(brandId = null) {
 	}
 } // /edit brands function
 
-function removeBrands(brandId = null) {
-	if(brandId) {
-		$('#removeBrandId').remove();
+function removeStations(stationID = null) {
+	if(stationID) {
+		$('#removeStationId').remove();
 		$.ajax({
-			url: 'php_action/fetchSelectedBrand.php',
+			url: 'php_action/fetchSelectedStation.php',
 			type: 'post',
-			data: {brandId : brandId},
+			data: {stationID : stationID},
 			dataType: 'json',
 			success:function(response) {
-				$('.removeBrandFooter').after('<input type="hidden" name="removeBrandId" id="removeBrandId" value="'+response.brand_id+'" /> ');
+				$('.removeStationFooter').after('<input type="hidden" name="removeStationId" id="removeStationId" value="'+response.sta_id+'" /> ');
 
 				// click on remove button to remove the brand
-				$("#removeBrandBtn").unbind('click').bind('click', function() {
+				$("#removeStationBtn").unbind('click').bind('click', function() {
 					// button loading
-					$("#removeBrandBtn").button('loading');
+					$("#removeStationBtn").button('loading');
 
 					$.ajax({
-						url: 'php_action/removeBrand.php',
+						url: 'php_action/removeStation.php',
 						type: 'post',
-						data: {brandId : brandId},
+						data: {stationID : stationID},
 						dataType: 'json',
 						success:function(response) {
 							console.log(response);
 							// button loading
-							$("#removeBrandBtn").button('reset');
+							$("#removeStationBtn").button('reset');
 							if(response.success == true) {
 
 								// hide the remove modal 
@@ -295,7 +295,7 @@ function removeBrands(brandId = null) {
 			} // /success
 		}); // /ajax
 
-		$('.removeBrandFooter').after();
+		$('.removeStationFooter').after();
 	} else {
 		alert('error!! Refresh the page again');
 	}

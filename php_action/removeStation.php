@@ -5,11 +5,11 @@ require_once 'core.php';
 
 $valid['success'] = array('success' => false, 'messages' => array());
 
-$brandId = $_POST['brandId'];
+$stationID = $_POST['stationID'];
 
-if($brandId) { 
+if($stationID) { 
 
- $sql = "UPDATE brands SET brand_status = 2 WHERE brand_id = {$brandId}";
+ $sql = "UPDATE Station SET visible = 2 WHERE sta_id = {$stationID}";
 
  if($connect->query($sql) === TRUE) {
  	$valid['success'] = true;

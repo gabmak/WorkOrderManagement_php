@@ -24,8 +24,7 @@
 				<table class="table" id="manageStationTable">
 					<thead>
 						<tr>							
-							<th>Station ID</th>
-							<th>Name</th>
+							<th>Station Name</th>
 							<th>Address</th>
 							<th>Telephone</th>
 							<th>Status</th>
@@ -53,21 +52,13 @@
 	      	<div id="add-brand-messages"></div>
 
 	        <div class="form-group">
-	        	<label for="stationID" class="col-sm-3 control-label">Station ID: </label>
-	        	<label class="col-sm-1 control-label">: </label>
-				    <div class="col-sm-8">
-				      <input type="text" class="form-control" id="stationID" placeholder="Station ID" name="stationID" autocomplete="off">
-				    </div>
-	        </div> <!-- /form-group-->
-			
-			<div class="form-group">
 	        	<label for="stationName" class="col-sm-3 control-label">Station Name: </label>
 	        	<label class="col-sm-1 control-label">: </label>
 				    <div class="col-sm-8">
 				      <input type="text" class="form-control" id="stationName" placeholder="Station Name" name="stationName" autocomplete="off">
 				    </div>
 	        </div> <!-- /form-group-->
-			  
+					  
 			<div class="form-group">
 	        	<label for="address" class="col-sm-3 control-label">Address: </label>
 	        	<label class="col-sm-1 control-label">: </label>
@@ -114,14 +105,14 @@
 <!-- / add modal -->
 
 <!-- edit brand -->
-<div class="modal fade" id="editBrandModel" tabindex="-1" role="dialog">
+<div class="modal fade" id="editStationModel" tabindex="-1" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
     	
     	<form class="form-horizontal" id="editBrandForm" action="php_action/editBrand.php" method="POST">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	        <h4 class="modal-title"><i class="fa fa-edit"></i> Edit Brand</h4>
+	        <h4 class="modal-title"><i class="fa fa-edit"></i> Edit Station</h4>
 	      </div>
 	      <div class="modal-body">
 
@@ -134,17 +125,17 @@
 
 		      <div class="edit-brand-result">
 		      	<div class="form-group">
-		        	<label for="editBrandName" class="col-sm-3 control-label">Brand Name: </label>
+		        	<label for="editBrandName" class="col-sm-3 control-label">Station Name: </label>
 		        	<label class="col-sm-1 control-label">: </label>
 					    <div class="col-sm-8">
-					      <input type="text" class="form-control" id="editBrandName" placeholder="Brand Name" name="editBrandName" autocomplete="off">
+					      <input type="text" class="form-control" id="editBrandName" placeholder="Station Name" name="editStationName" autocomplete="off">
 					    </div>
 		        </div> <!-- /form-group-->	         	        
 		        <div class="form-group">
-		        	<label for="editBrandStatus" class="col-sm-3 control-label">Status: </label>
+		        	<label for="editStatusStatus" class="col-sm-3 control-label">Status: </label>
 		        	<label class="col-sm-1 control-label">: </label>
 					    <div class="col-sm-8">
-					      <select class="form-control" id="editBrandStatus" name="editBrandStatus">
+					      <select class="form-control" id="editBrandStatus" name="editStationStatus">
 					      	<option value="">~~SELECT~~</option>
 					      	<option value="1">Available</option>
 					      	<option value="2">Not Available</option>
@@ -156,7 +147,7 @@
 
 	      </div> <!-- /modal-body -->
 	      
-	      <div class="modal-footer editBrandFooter">
+	      <div class="modal-footer editStationFooter">
 	        <button type="button" class="btn btn-default" data-dismiss="modal"> <i class="glyphicon glyphicon-remove-sign"></i> Close</button>
 	        
 	        <button type="submit" class="btn btn-success" id="editBrandBtn" data-loading-text="Loading..." autocomplete="off"> <i class="glyphicon glyphicon-ok-sign"></i> Save Changes</button>
@@ -181,11 +172,11 @@
         <h4 class="modal-title"><i class="glyphicon glyphicon-trash"></i> Remove Station</h4>
       </div>
       <div class="modal-body">
-        <p>Do you really want to remove ?</p>
+        <p>Do you really want to remove me?</p>
       </div>
       <div class="modal-footer removeStationFooter">
-        <button type="button" class="btn btn-default" data-dismiss="modal"> <i class="glyphicon glyphicon-remove-sign"></i> Close</button>
-        <button type="button" class="btn btn-primary" id="removeStationBtn" data-loading-text="Loading..."> <i class="glyphicon glyphicon-ok-sign"></i> Save changes</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal"> <i class="glyphicon glyphicon-remove-sign"></i> No</button>
+        <button type="button" class="btn btn-primary" id="removeStationBtn" data-loading-text="Loading..."> <i class="glyphicon glyphicon-ok-sign"></i> Yes</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

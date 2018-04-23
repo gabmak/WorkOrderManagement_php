@@ -6,13 +6,13 @@ $valid['success'] = array('success' => false, 'messages' => array());
 
 if($_POST) {	
 
-	$stationID = $_POST['stationID'];
 	$stationName = $_POST['stationName'];
 	$address = $_POST['address'];
 	$telephone = $_POST['telephone'];
-	$stationStatus = $_POST['stationStatus']; 
+	$stationStatus = $_POST['stationStatus'];
 
-	$sql = "INSERT INTO Station (sta_id, sta_name, address, telephone, status) VALUES ('$stationID','$stationName','$address','$telephone','$stationStatus')";
+	$sql = "INSERT INTO station (sta_name, address, telephone, status, visible) 
+	VALUES ('$stationName', '$address', '$telephone', '$stationStatus', 1)";
 
 	if($connect->query($sql) === TRUE) {
 	 	$valid['success'] = true;
@@ -21,7 +21,6 @@ if($_POST) {
 	 	$valid['success'] = false;
 	 	$valid['messages'] = "Error while adding the members";
 	}
-	 
 
 	$connect->close();
 

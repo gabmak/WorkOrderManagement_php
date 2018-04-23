@@ -7,7 +7,7 @@ $valid['success'] = array('success' => false, 'messages' => array());
 if($_POST) {	
 
 	$categoriesName = $_POST['categoriesName'];
-  $categoriesStatus = $_POST['categoriesStatus']; 
+	$categoriesStatus = $_POST['categoriesStatus']; 
 
 	$sql = "INSERT INTO categories (categories_name, categories_active, categories_status) 
 	VALUES ('$categoriesName', '$categoriesStatus', 1)";

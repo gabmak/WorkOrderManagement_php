@@ -2,7 +2,7 @@
 
 require_once 'core.php';
 
-$sql = "SELECT sta_id, sta_name, address, telephone, status FROM Station WHERE visible = 1";
+$sql = "SELECT sta_id, sta_name, address, telephone, status FROM station WHERE visible = 1";
 $result = $connect->query($sql);
 
 $output = array('data' => array());
@@ -10,10 +10,10 @@ $output = array('data' => array());
 if($result->num_rows > 0) { 
 
  // $row = $result->fetch_array();
- $activeBrands = ""; 
+ $activeStation = ""; 
 
  while($row = $result->fetch_array()) {
-	 $stationID = $row[0];
+	 $stationId = $row[0];
 	 
  	// active 
  	if($row[4] == 1) {
@@ -30,13 +30,12 @@ if($result->num_rows > 0) {
 	    Action <span class="caret"></span>
 	  </button>
 	  <ul class="dropdown-menu">
-	    <li><a type="button" data-toggle="modal" data-target="#editStationModel" onclick="editStations ('.$stationID.')"> <i class="glyphicon glyphicon-edit"></i> Edit</a></li>
-	    <li><a type="button" data-toggle="modal" data-target="#removeMemberModal" onclick="removeStations('.$stationID.')"> <i class="glyphicon glyphicon-trash"></i> Remove</a></li>       
+	    <li><a type="button" data-toggle="modal" data-target="#editStationModel" onclick="editStations ('.$stationId.')"> <i class="glyphicon glyphicon-edit"></i> Edit</a></li>
+	    <li><a type="button" data-toggle="modal" data-target="#removeMemberModal" onclick="removeStations ('.$stationId.')"> <i class="glyphicon glyphicon-trash"></i> Remove</a></li>    
 	  </ul>
 	</div>';
 
  	$output['data'][] = array( 		
- 		$stationID,
 		$row[1],
 		$row[2],
 		$row[3],

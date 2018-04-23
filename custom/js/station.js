@@ -2,7 +2,7 @@ var manageStationTable;
 
 $(document).ready(function() {
 	// top bar active
-	$('#navBrand').addClass('active');
+	$('#navStation').addClass('active');
 	
 	// manage station table
 	manageStationTable = $("#manageStationTable").DataTable({
@@ -17,22 +17,11 @@ $(document).ready(function() {
 		// remove the form error
 		$('.form-group').removeClass('has-error').removeClass('has-success');			
 
-		var stationID = $("#stationID").val();
 		var stationName = $("#stationName").val();
-		var addressField = $("#address").val();
-		var telephone = $("#telephone").val();
 		var stationStatus = $("#stationStatus").val();
+		var address = $("#address").val();
+		var telephone = $("#telephone").val();
 
-		if(stationID == "") {
-			$("#stationID").after('<p class="text-danger">Station ID field is required</p>');
-			$('#stationID').closest('.form-group').addClass('has-error');
-		} else {
-			// remov error text field
-			$("#stationID").find('.text-danger').remove();
-			// success out for form 
-			$("#stationID").closest('.form-group').addClass('has-success');	  	
-		}
-		
 		if(stationName == "") {
 			$("#stationName").after('<p class="text-danger">Station Name field is required</p>');
 			$('#stationName').closest('.form-group').addClass('has-error');
@@ -43,7 +32,7 @@ $(document).ready(function() {
 			$("#stationName").closest('.form-group').addClass('has-success');	  	
 		}
 		
-		if(addressField == "") {
+		if(address == "") {
 			$("#address").after('<p class="text-danger">Address field is required</p>');
 			$('#address').closest('.form-group').addClass('has-error');
 		} else {
@@ -62,11 +51,11 @@ $(document).ready(function() {
 			// success out for form 
 			$("#telephone").closest('.form-group').addClass('has-success');	  	
 		}
-		
-		if(stationStatus == "") {
-			$("#brandStatus").after('<p class="text-danger">Brand Name field is required</p>');
 
-			$('#brandStatus').closest('.form-group').addClass('has-error');
+		if(stationStatus == "") {
+			$("#stationStatus").after('<p class="text-danger">Station Name field is required</p>');
+
+			$('#stationStatus').closest('.form-group').addClass('has-error');
 		} else {
 			// remov error text field
 			$("#stationStatus").find('.text-danger').remove();
@@ -74,7 +63,7 @@ $(document).ready(function() {
 			$("#stationStatus").closest('.form-group').addClass('has-success');	  	
 		}
 
-		if(stationID && stationName && address && telephone && stationStatus) {
+		if(stationName && telephone && address && stationStatus) {
 			var form = $(this);
 			// button loading
 			$("#createStationBtn").button('loading');
@@ -208,7 +197,7 @@ function editBrands(brandId = null) {
 									$('#editBrandBtn').button('reset');
 
 									// reload the manage member table 
-									manageStationTable.ajax.reload(null, false);								  	  										
+									manageBrandTable.ajax.reload(null, false);								  	  										
 									// remove the error text
 									$(".text-danger").remove();
 									// remove the form error
@@ -241,18 +230,18 @@ function editBrands(brandId = null) {
 	}
 } // /edit brands function
 
-function removeStations(stationID = null) {
-	if(stationID) {
+function removeStations(stationId = null) {
+	if(stationId) {
 		$('#removeStationId').remove();
 		$.ajax({
 			url: 'php_action/fetchSelectedStation.php',
 			type: 'post',
-			data: {stationID : stationID},
+			data: {stationId : stationId},
 			dataType: 'json',
 			success:function(response) {
-				$('.removeStationFooter').after('<input type="hidden" name="removeStationId" id="removeStationId" value="'+response.sta_id+'" /> ');
+				$('.removeBrandFooter').after('<input type="hidden" name="removeBrandId" id="removeBrandId" value="'+response.sta_id+'" /> ');
 
-				// click on remove button to remove the brand
+				// click on remove button to remove the station
 				$("#removeStationBtn").unbind('click').bind('click', function() {
 					// button loading
 					$("#removeStationBtn").button('loading');
@@ -260,7 +249,7 @@ function removeStations(stationID = null) {
 					$.ajax({
 						url: 'php_action/removeStation.php',
 						type: 'post',
-						data: {stationID : stationID},
+						data: {stationId : stationId},
 						dataType: 'json',
 						success:function(response) {
 							console.log(response);
@@ -271,7 +260,7 @@ function removeStations(stationID = null) {
 								// hide the remove modal 
 								$('#removeMemberModal').modal('hide');
 
-								// reload the brand table 
+								// reload the station table 
 								manageStationTable.ajax.reload(null, false);
 								
 								$('.remove-messages').html('<div class="alert alert-success">'+
@@ -299,4 +288,4 @@ function removeStations(stationID = null) {
 	} else {
 		alert('error!! Refresh the page again');
 	}
-} // /remove brands function
+} // /remove station function

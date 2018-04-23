@@ -2,9 +2,9 @@
 
 require_once 'core.php';
 
-$stationID = $_POST['stationID'];
+$stationId = $_POST['stationId'];
 
-$sql = "SELECT sta_id, sta_name, address, telephone, status, visible FROM Station WHERE sta_id = $stationID";
+$sql = "SELECT sta_id, sta_name, address, telephone, status, visible FROM station WHERE sta_id = $stationId";
 $result = $connect->query($sql);
 
 if($result->num_rows > 0) { 

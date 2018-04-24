@@ -49,7 +49,7 @@
 	        <h4 class="modal-title"><i class="fa fa-plus"></i> Add Station</h4>
 	      </div>
 	      <div class="modal-body">
-	      	<div id="add-brand-messages"></div>
+	      	<div id="add-station-messages"></div>
 
 	        <div class="form-group">
 	        	<label for="stationName" class="col-sm-3 control-label">Station Name: </label>
@@ -104,38 +104,52 @@
 </div>
 <!-- / add modal -->
 
-<!-- edit brand -->
+<!-- edit station -->
 <div class="modal fade" id="editStationModel" tabindex="-1" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
     	
-    	<form class="form-horizontal" id="editBrandForm" action="php_action/editBrand.php" method="POST">
+    	<form class="form-horizontal" id="editStationForm" action="php_action/editStation.php" method="POST">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 	        <h4 class="modal-title"><i class="fa fa-edit"></i> Edit Station</h4>
 	      </div>
 	      <div class="modal-body">
 
-	      	<div id="edit-brand-messages"></div>
+	      	<div id="edit-station-messages"></div>
 
 	      	<div class="modal-loading div-hide" style="width:50px; margin:auto;padding-top:50px; padding-bottom:50px;">
 						<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
 						<span class="sr-only">Loading...</span>
 					</div>
 
-		      <div class="edit-brand-result">
+		      <div class="edit-station-result">
 		      	<div class="form-group">
-		        	<label for="editBrandName" class="col-sm-3 control-label">Station Name: </label>
+		        	<label for="editStationName" class="col-sm-3 control-label">Station Name: </label>
 		        	<label class="col-sm-1 control-label">: </label>
 					    <div class="col-sm-8">
-					      <input type="text" class="form-control" id="editBrandName" placeholder="Station Name" name="editStationName" autocomplete="off">
+					      <input type="text" class="form-control" id="editStationName" placeholder="Station Name" name="editStationName" autocomplete="off">
 					    </div>
-		        </div> <!-- /form-group-->	         	        
-		        <div class="form-group">
-		        	<label for="editStatusStatus" class="col-sm-3 control-label">Status: </label>
+		        </div> <!-- /form-group--> 
+				<div class="form-group">
+		        	<label for="editStationAddress" class="col-sm-3 control-label">Address: </label>
 		        	<label class="col-sm-1 control-label">: </label>
 					    <div class="col-sm-8">
-					      <select class="form-control" id="editBrandStatus" name="editStationStatus">
+					      <input type="text" class="form-control" id="editStationAddress" placeholder="Station Name" name="editStationAddress" autocomplete="off">
+					    </div>
+		        </div> <!-- /form-group-->
+				<div class="form-group">
+		        	<label for="editStationTelephone" class="col-sm-3 control-label">Telephone: </label>
+		        	<label class="col-sm-1 control-label">: </label>
+					    <div class="col-sm-8">
+					      <input type="text" class="form-control" id="editStationTelephone" placeholder="Station Name" name="editStationTelephone" autocomplete="off">
+					    </div>
+		        </div> <!-- /form-group-->
+		        <div class="form-group">
+		        	<label for="editStationStatus" class="col-sm-3 control-label">Status: </label>
+		        	<label class="col-sm-1 control-label">: </label>
+					    <div class="col-sm-8">
+					      <select class="form-control" id="editStationStatus" name="editStationStatus">
 					      	<option value="">~~SELECT~~</option>
 					      	<option value="1">Available</option>
 					      	<option value="2">Not Available</option>
@@ -143,14 +157,14 @@
 					    </div>
 		        </div> <!-- /form-group-->	
 		      </div>         	        
-		      <!-- /edit brand result -->
+		      <!-- /edit station result -->
 
 	      </div> <!-- /modal-body -->
 	      
 	      <div class="modal-footer editStationFooter">
 	        <button type="button" class="btn btn-default" data-dismiss="modal"> <i class="glyphicon glyphicon-remove-sign"></i> Close</button>
 	        
-	        <button type="submit" class="btn btn-success" id="editBrandBtn" data-loading-text="Loading..." autocomplete="off"> <i class="glyphicon glyphicon-ok-sign"></i> Save Changes</button>
+	        <button type="submit" class="btn btn-success" id="editStationBtn" data-loading-text="Loading..." autocomplete="off"> <i class="glyphicon glyphicon-ok-sign"></i> Save Changes</button>
 	      </div>
 	      <!-- /modal-footer -->
      	</form>
@@ -161,9 +175,9 @@
   <!-- /modal-dailog -->
 </div>
 <!-- / add modal -->
-<!-- /edit brand -->
+<!-- /edit station -->
 
-<!-- remove brand -->
+<!-- remove station -->
 <div class="modal fade" tabindex="-1" role="dialog" id="removeMemberModal">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -181,7 +195,7 @@
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-<!-- /remove brand -->
+<!-- /remove station -->
 
 <script src="custom/js/station.js"></script>
 

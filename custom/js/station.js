@@ -88,7 +88,7 @@ $(document).ready(function() {
 						// remove the form error
 						$('.form-group').removeClass('has-error').removeClass('has-success');
   	  			
-  	  			$('#add-brand-messages').html('<div class="alert alert-success">'+
+  	  			$('#add-station-messages').html('<div class="alert alert-success">'+
             '<button type="button" class="close" data-dismiss="alert">&times;</button>'+
             '<strong><i class="glyphicon glyphicon-ok-sign"></i></strong> '+ response.messages +
           '</div>');
@@ -105,14 +105,14 @@ $(document).ready(function() {
 		} // if
 
 		return false;
-	}); // /submit brand form function
+	}); // /submit station form function
 
 });
 
-function editBrands(brandId = null) {
-	if(brandId) {
-		// remove hidden brand id text
-		$('#brandId').remove();
+function editStations(stationId = null) {
+	if(stationId) {
+		// remove hidden station id text
+		$('#stationId').remove();
 
 		// remove the error 
 		$('.text-danger').remove();
@@ -122,67 +122,93 @@ function editBrands(brandId = null) {
 		// modal loading
 		$('.modal-loading').removeClass('div-hide');
 		// modal result
-		$('.edit-brand-result').addClass('div-hide');
+		$('.edit-station-result').addClass('div-hide');
 		// modal footer
-		$('.editBrandFooter').addClass('div-hide');
+		$('.editStationFooter').addClass('div-hide');
 
 		$.ajax({
-			url: 'php_action/fetchSelectedBrand.php',
+			url: 'php_action/fetchSelectedStation.php',
 			type: 'post',
-			data: {brandId : brandId},
+			data: {stationId : stationId},
 			dataType: 'json',
 			success:function(response) {
 				// modal loading
 				$('.modal-loading').addClass('div-hide');
 				// modal result
-				$('.edit-brand-result').removeClass('div-hide');
+				$('.edit-station-result').removeClass('div-hide');
 				// modal footer
-				$('.editBrandFooter').removeClass('div-hide');
+				$('.editStationFooter').removeClass('div-hide');
 
-				// setting the brand name value 
-				$('#editBrandName').val(response.brand_name);
-				// setting the brand status value
-				$('#editBrandStatus').val(response.brand_active);
-				// brand id 
-				$(".editBrandFooter").after('<input type="hidden" name="brandId" id="brandId" value="'+response.brand_id+'" />');
+				// setting the station name value 
+				$('#editStationName').val(response.sta_name);
+				// setting the station address value 
+				$('#editStationAddress').val(response.address);
+				// setting the station telephone value 
+				$('#editStationTelephone').val(response.telephone);
+				// setting the station status value
+				$('#editStationStatus').val(response.status);
+				// station id 
+				$(".editStationFooter").after('<input type="hidden" name="stationId" id="stationId" value="'+response.sta_id+'" />');
 
-				// update brand form 
-				$('#editBrandForm').unbind('submit').bind('submit', function() {
+				// update station form 
+				$('#editStationForm').unbind('submit').bind('submit', function() {
 
 					// remove the error text
 					$(".text-danger").remove();
 					// remove the form error
 					$('.form-group').removeClass('has-error').removeClass('has-success');			
 
-					var brandName = $('#editBrandName').val();
-					var brandStatus = $('#editBrandStatus').val();
+					var stationName = $('#editStationName').val();
+					var stationAddress = $('#editStationAddress').val();
+					var stationTelephone = $('#editStationTelephone').val();
+					var stationStatus = $('#editStationStatus').val();
 
-					if(brandName == "") {
-						$("#editBrandName").after('<p class="text-danger">Brand Name field is required</p>');
-						$('#editBrandName').closest('.form-group').addClass('has-error');
+					if(stationName == "") {
+						$("#editStationName").after('<p class="text-danger">Station Name field is required</p>');
+						$('#editStationName').closest('.form-group').addClass('has-error');
 					} else {
 						// remov error text field
-						$("#editBrandName").find('.text-danger').remove();
+						$("#editStationName").find('.text-danger').remove();
 						// success out for form 
-						$("#editBrandName").closest('.form-group').addClass('has-success');	  	
+						$("#editStationName").closest('.form-group').addClass('has-success');	  	
+					}
+					
+					if(stationAddress == "") {
+						$("#editStationAddress").after('<p class="text-danger">Station Address field is required</p>');
+						$('#editStationAddress').closest('.form-group').addClass('has-error');
+					} else {
+						// remov error text field
+						$("#editStationAddress").find('.text-danger').remove();
+						// success out for form 
+						$("#editStationAddress").closest('.form-group').addClass('has-success');	  	
+					}
+					
+					if(stationTelephone == "") {
+						$("#editStationTelephone").after('<p class="text-danger">Station Telephone field is required</p>');
+						$('#editStationTelephone').closest('.form-group').addClass('has-error');
+					} else {
+						// remov error text field
+						$("#editStationTelephone").find('.text-danger').remove();
+						// success out for form 
+						$("#editStationTelephone").closest('.form-group').addClass('has-success');	  	
 					}
 
-					if(brandStatus == "") {
-						$("#editBrandStatus").after('<p class="text-danger">Brand Name field is required</p>');
+					if(stationStatus == "") {
+						$("#editStationStatus").after('<p class="text-danger">Station Status field is required</p>');
 
-						$('#editBrandStatus').closest('.form-group').addClass('has-error');
+						$('#editStationStatus').closest('.form-group').addClass('has-error');
 					} else {
 						// remove error text field
-						$("#editBrandStatus").find('.text-danger').remove();
+						$("#editStationStatus").find('.text-danger').remove();
 						// success out for form 
-						$("#editBrandStatus").closest('.form-group').addClass('has-success');	  	
+						$("#editStationStatus").closest('.form-group').addClass('has-success');	  	
 					}
 
-					if(brandName && brandStatus) {
+					if(stationName && stationAddress && stationTelephone && stationStatus) {
 						var form = $(this);
 
 						// submit btn
-						$('#editBrandBtn').button('loading');
+						$('#editStationBtn').button('loading');
 
 						$.ajax({
 							url: form.attr('action'),
@@ -194,16 +220,16 @@ function editBrands(brandId = null) {
 								if(response.success == true) {
 									console.log(response);
 									// submit btn
-									$('#editBrandBtn').button('reset');
+									$('#editStationBtn').button('reset');
 
-									// reload the manage member table 
-									manageBrandTable.ajax.reload(null, false);								  	  										
+									// reload the manage station table 
+									manageStationTable.ajax.reload(null, false);								  	  										
 									// remove the error text
 									$(".text-danger").remove();
 									// remove the form error
 									$('.form-group').removeClass('has-error').removeClass('has-success');
 			  	  			
-			  	  			$('#edit-brand-messages').html('<div class="alert alert-success">'+
+			  	  			$('#edit-station-messages').html('<div class="alert alert-success">'+
 			            '<button type="button" class="close" data-dismiss="alert">&times;</button>'+
 			            '<strong><i class="glyphicon glyphicon-ok-sign"></i></strong> '+ response.messages +
 			          '</div>');
@@ -220,7 +246,7 @@ function editBrands(brandId = null) {
 					} // /if
 
 					return false;
-				}); // /update brand form
+				}); // /update station form
 
 			} // /success
 		}); // ajax function
@@ -228,7 +254,7 @@ function editBrands(brandId = null) {
 	} else {
 		alert('error!! Refresh the page again');
 	}
-} // /edit brands function
+} // /edit stations function
 
 function removeStations(stationId = null) {
 	if(stationId) {
@@ -239,7 +265,7 @@ function removeStations(stationId = null) {
 			data: {stationId : stationId},
 			dataType: 'json',
 			success:function(response) {
-				$('.removeBrandFooter').after('<input type="hidden" name="removeBrandId" id="removeBrandId" value="'+response.sta_id+'" /> ');
+				$('.removeStationFooter').after('<input type="hidden" name="removeStationId" id="removeStationId" value="'+response.sta_id+'" /> ');
 
 				// click on remove button to remove the station
 				$("#removeStationBtn").unbind('click').bind('click', function() {
@@ -277,9 +303,9 @@ function removeStations(stationId = null) {
 
 							} // /else
 						} // /response messages
-					}); // /ajax function to remove the brand
+					}); // /ajax function to remove the station
 
-				}); // /click on remove button to remove the brand
+				}); // /click on remove button to remove the station
 
 			} // /success
 		}); // /ajax

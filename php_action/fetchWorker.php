@@ -33,6 +33,8 @@ if($result->num_rows > 0) {
 	  
 	    <li><a type="button" data-toggle="modal" data-target="#editWorkerModal" onclick="editWorkers('.$workerId.')"> <i class="glyphicon glyphicon-edit"></i> Edit</a></li>
 		
+		<li><a type="button" data-toggle="modal" data-target="#editPasswordModal" onclick="editPassword ('.$workerId.')"> <i class="glyphicon glyphicon-edit"></i> Change Password</a></li>
+		
 	    <li><a type="button" data-toggle="modal" data-target="#removeMemberModal" onclick="removeWorkers ('.$workerId.')"> <i class="glyphicon glyphicon-trash"></i> Remove</a></li>    
 	  </ul>
 	</div>';

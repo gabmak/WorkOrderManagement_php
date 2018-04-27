@@ -211,6 +211,69 @@
 </div><!-- /.modal -->
 <!-- /remove station -->
 
+<!-- edit worker password-->
+<div class="modal fade" id="editPasswordModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    	
+    	<form class="form-horizontal" id="editPasswordForm" action="php_action/editWorkerPassword.php" method="POST">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title"><i class="fa fa-edit"></i> Edit Worker Password</h4>
+	      </div>
+	      <div class="modal-body">
+
+	      	<div id="edit-password-messages"></div>
+
+	      	<div class="modal-loading div-hide" style="width:50px; margin:auto;padding-top:50px; padding-bottom:50px;">
+						<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+						<span class="sr-only">Loading...</span>
+					</div>
+
+		      <div class="edit-password-result">
+		      	<div class="form-group">
+		        	<label for="editOrgPassword" class="col-sm-3 control-label">Orginal Password </label>
+		        	<label class="col-sm-1 control-label">: </label>
+					    <div class="col-sm-8">
+					      <input type="password" class="form-control" id="editOrgPassword" placeholder="Orginal password" name="editOrgPassword" autocomplete="off">
+					    </div>
+		        </div> <!-- /form-group--> 
+				  
+				<div class="form-group">
+		        	<label for="editPassword1" class="col-sm-3 control-label">New Password </label>
+		        	<label class="col-sm-1 control-label">: </label>
+					    <div class="col-sm-8">
+					      <input type="password" class="form-control" id="editPassword1" placeholder="New Password" name="editPassword1" autocomplete="off">
+					    </div>
+		        </div> <!-- /form-group-->
+				  
+				<div class="form-group">
+		        	<label for="editPassword2" class="col-sm-3 control-label">Re-enter password </label>
+		        	<label class="col-sm-1 control-label">: </label>
+					    <div class="col-sm-8">
+					      <input type="password" class="form-control" id="editPassword2" placeholder="Re-enter password" name="editPassword2" autocomplete="off">
+					    </div>
+		        </div> <!-- /form-group-->
+		      </div>         	        
+		      <!-- /edit worker result -->
+
+	      </div> <!-- /modal-body -->
+	      
+	      <div class="modal-footer editPasswordFooter">
+	        <button type="button" class="btn btn-default" data-dismiss="modal"> <i class="glyphicon glyphicon-remove-sign"></i> Close</button>
+	        
+	        <button type="submit" class="btn btn-success" id="editPasswordBtn" data-loading-text="Loading..." autocomplete="off"> <i class="glyphicon glyphicon-ok-sign"></i> Save Changes</button>
+	      </div>
+	      <!-- /modal-footer -->
+     	</form>
+	     <!-- /.form -->
+    </div>
+    <!-- /modal-content -->
+  </div>
+  <!-- /modal-dailog -->
+</div>
+<!-- /edit worker -->
+
 <script src="custom/js/worker.js"></script>
 
 <?php require_once 'includes/footer.php'; ?>

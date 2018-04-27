@@ -350,3 +350,162 @@ function removeWorkers(workerId = null) {
 		alert('error!! Refresh the page again');
 	}
 } // /remove worker function
+
+function editPassword(workerId = null) {
+	if(workerId) {
+		// remove hidden worker id text
+		$('#workerId').remove();
+
+		// remove the error 
+		$('.text-danger').remove();
+		// remove the form-error
+		$('.form-group').removeClass('has-error').removeClass('has-success');
+
+		// modal loading
+		$('.modal-loading').removeClass('div-hide');
+		// modal result
+		$('.edit-password-result').addClass('div-hide');
+		// modal footer
+		$('.editPasswordFooter').addClass('div-hide');
+
+		$.ajax({
+			url: 'php_action/fetchSelectedWorkerPassword.php',
+			type: 'post',
+			data: {workerId : workerId},
+			dataType: 'json',
+			success:function(response) {
+				// modal loading
+				$('.modal-loading').addClass('div-hide');
+				// modal result
+				$('.edit-password-result').removeClass('div-hide');
+				// modal footer
+				$('.editPasswordFooter').removeClass('div-hide');
+				
+				var clrField = "";
+				
+				$('#editOrgPassword').val(clrField);
+				$('#editPassword1').val(clrField);
+				$('#editPassword2').val(clrField);
+				
+				// worker id 
+				$(".editPasswordFooter").after('<input type="hidden" name="workerId" id="workerId" value="'+response.worker_id+'"/>');
+
+				// update worker form 
+				$('#editPasswordForm').unbind('submit').bind('submit', function() {
+
+					// remove the error text
+					$(".text-danger").remove();
+					// remove the form error
+					$('.form-group').removeClass('has-error').removeClass('has-success');			
+
+					var orgPasswordInput = $('#editOrgPassword').val();
+					var newPassword1 = $('#editPassword1').val();
+					var newPassword2 = $('#editPassword2').val();
+					var stage1 = 0;
+					var stage2 = 0;
+					var finalstage = "";
+
+					if(orgPasswordInput == "") {
+						$("#editOrgPassword").after('<p class="text-danger">Password is required</p>');
+						$('#editOrgPassword').closest('.form-group').addClass('has-error');
+					} else {
+						// remov error text field
+						$("#editOrgPassword").find('.text-danger').remove();
+						// success out for form 
+						$("#editOrgPassword").closest('.form-group').addClass('has-success');	  	
+					}
+									
+					if(newPassword1 == "") {
+						$("#editPassword1").after('<p class="text-danger">Password is required</p>');
+						$('#editPassword1').closest('.form-group').addClass('has-error');
+					} else {
+						// remov error text field
+						$("#editPassword1").find('.text-danger').remove();
+						// success out for form 
+						$("#editPassword1").closest('.form-group').addClass('has-success');	  	
+					}
+
+					if(newPassword2 == "") {
+						$("#editPassword2").after('<p class="text-danger">Password is required</p>');
+
+						$('#editPassword2').closest('.form-group').addClass('has-error');
+					} else {
+						// remove error text field
+						$("#editPassword2").find('.text-danger').remove();
+						// success out for form 
+						$("#editPassword2").closest('.form-group').addClass('has-success');	  	
+					}
+					
+					if (response.password == orgPasswordInput){
+						stage1 = 1;
+						$("#editOrgPassword").find('.text-danger').remove();
+						$("#editOrgPassword").closest('.form-group').addClass('has-success');
+					} else {
+						stage1 = 0;
+						$("#editOrgPassword").after('<p class="text-danger">Wrong Password</p>');
+						$('#editOrgPassword').closest('.form-group').addClass('has-error');
+					}
+					
+					if (newPassword1 == newPassword2){
+						stage2 = 1;
+						$("#editPassword2").find('.text-danger').remove();
+						$("#editPassword2").closest('.form-group').addClass('has-success');
+					} else {
+						stage2 = 0;
+						$("#editPassword2").after('<p class="text-danger">Wrong Password</p>');
+						$('#editPassword2').closest('.form-group').addClass('has-error');
+					}
+					
+										
+					if(orgPasswordInput && newPassword1 && newPassword2 && stage1 == 1 && stage2 == 1) {
+						var form = $(this);
+
+						// submit btn
+						$('#editPasswordBtn').button('loading');
+
+						$.ajax({
+							url: form.attr('action'),
+							type: form.attr('method'),
+							data: form.serialize(),
+							dataType: 'json',
+							success:function(response) {
+
+								if(response.success == true) {
+									console.log(response);
+									// submit btn
+									$('#editPasswordBtn').button('reset');
+
+									// reload the manage worker table 
+									manageWorkerTable.ajax.reload(null, false);								  	  										
+									// remove the error text
+									$(".text-danger").remove();
+									// remove the form error
+									$('.form-group').removeClass('has-error').removeClass('has-success');
+			  	  			
+			  	  			$('#edit-password-messages').html('<div class="alert alert-success">'+
+			            '<button type="button" class="close" data-dismiss="alert">&times;</button>'+
+			            '<strong><i class="glyphicon glyphicon-ok-sign"></i></strong> '+ response.messages +
+			          '</div>');
+
+			  	  			$(".alert-success").delay(500).show(10, function() {
+										$(this).delay(3000).hide(10, function() {
+											$(this).remove();
+										});
+									}); // /.alert
+								} // /if
+									
+							}// /success
+						});	 // /ajax												
+					} // /if
+
+					return false;
+				}); // /update worker form
+
+			} // /success
+		}); // ajax function
+
+	} else {
+		alert('error!! Refresh the page again');
+	}
+} // /edit workers function
+

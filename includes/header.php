@@ -57,7 +57,7 @@
         
         <li id="navBrand"><a href="Station.php"><i class="glyphicon glyphicon-road"></i>  Station</a></li>        
 
-        <li id="navCategories"><a href="categories.php"> <i class="glyphicon glyphicon-th-list"></i> Category</a></li>        
+        <li id="navCategories"><a href="worker.php"> <i class="glyphicon glyphicon-th-list"></i> Worker</a></li>        
 
         <li id="navProduct"><a href="product.php"> <i class="glyphicon glyphicon-ruble"></i> Product </a></li>     
 

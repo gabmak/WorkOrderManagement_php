@@ -174,7 +174,6 @@
   </div>
   <!-- /modal-dailog -->
 </div>
-<!-- / add modal -->
 <!-- /edit station -->
 
 <!-- remove station -->

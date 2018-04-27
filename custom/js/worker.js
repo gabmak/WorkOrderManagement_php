@@ -158,7 +158,7 @@ $(document).ready(function() {
 
 function editWorkers(workerId = null) {
 	if(workerId) {
-		// remove hidden station id text
+		// remove hidden worker id text
 		$('#workerId').remove();
 
 		// remove the error 
@@ -186,17 +186,17 @@ function editWorkers(workerId = null) {
 				// modal footer
 				$('.editWorkerFooter').removeClass('div-hide');
 
-				// setting the station name value 
+				// setting the worker name value 
 				$('#editWorkerName').val(response.name);
-				// setting the station address value 
+				// setting the worker address value 
 				$('#editTelephone').val(response.telephone);
-				// setting the station telephone value 
+				// setting the worker telephone value 
 				$('#editPassport').val(response.cbre_passport);
 				
 				// worker id 
 				$(".editWorkerFooter").after('<input type="hidden" name="workerId" id="workerId" value="'+response.worker_id+'" />');
 
-				// update station form 
+				// update worker form 
 				$('#editWorkerForm').unbind('submit').bind('submit', function() {
 
 					// remove the error text
@@ -257,7 +257,7 @@ function editWorkers(workerId = null) {
 									// submit btn
 									$('#editWorkerBtn').button('reset');
 
-									// reload the manage station table 
+									// reload the manage worker table 
 									manageWorkerTable.ajax.reload(null, false);								  	  										
 									// remove the error text
 									$(".text-danger").remove();
@@ -281,7 +281,7 @@ function editWorkers(workerId = null) {
 					} // /if
 
 					return false;
-				}); // /update station form
+				}); // /update worker form
 
 			} // /success
 		}); // ajax function
@@ -289,4 +289,64 @@ function editWorkers(workerId = null) {
 	} else {
 		alert('error!! Refresh the page again');
 	}
-} // /edit stations function
+} // /edit workers function
+
+function removeWorkers(workerId = null) {
+	if(workerId) {
+		$('#removeWorkerId').remove();
+		$.ajax({
+			url: 'php_action/fetchSelectedWorker.php',
+			type: 'post',
+			data: {workerId : workerId},
+			dataType: 'json',
+			success:function(response) {
+				$('.removeWorkerFooter').after('<input type="hidden" name="removeWorkerId" id="removeWorkerId" value="'+response.worker_id+'" /> ');
+
+				// click on remove button to remove the worker
+				$("#removeWorkerBtn").unbind('click').bind('click', function() {
+					// button loading
+					$("#removeWorkerBtn").button('loading');
+
+					$.ajax({
+						url: 'php_action/removeWorker.php',
+						type: 'post',
+						data: {workerId : workerId},
+						dataType: 'json',
+						success:function(response) {
+							console.log(response);
+							// button loading
+							$("#removeWorkerBtn").button('reset');
+							if(response.success == true) {
+
+								// hide the remove modal 
+								$('#removeMemberModal').modal('hide');
+
+								// reload the worker table 
+								manageWorkerTable.ajax.reload(null, false);
+								
+								$('.remove-messages').html('<div class="alert alert-success">'+
+			            '<button type="button" class="close" data-dismiss="alert">&times;</button>'+
+			            '<strong><i class="glyphicon glyphicon-ok-sign"></i></strong> '+ response.messages +
+			          '</div>');
+
+			  	  			$(".alert-success").delay(500).show(10, function() {
+										$(this).delay(3000).hide(10, function() {
+											$(this).remove();
+										});
+									}); // /.alert
+							} else {
+
+							} // /else
+						} // /response messages
+					}); // /ajax function to remove the worker
+
+				}); // /click on remove button to remove the worker
+
+			} // /success
+		}); // /ajax
+
+		$('.removeWorkerFooter').after();
+	} else {
+		alert('error!! Refresh the page again');
+	}
+} // /remove worker function

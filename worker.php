@@ -172,7 +172,7 @@
 					    </div>
 		        </div> <!-- /form-group-->
 		      </div>         	        
-		      <!-- /edit station result -->
+		      <!-- /edit worker result -->
 
 	      </div> <!-- /modal-body -->
 	      
@@ -189,8 +189,27 @@
   </div>
   <!-- /modal-dailog -->
 </div>
-<!-- /edit station -->
+<!-- /edit worker -->
 
+<!-- remove worker -->
+<div class="modal fade" tabindex="-1" role="dialog" id="removeMemberModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title"><i class="glyphicon glyphicon-trash"></i> Remove Worker</h4>
+      </div>
+      <div class="modal-body">
+        <p>Do you really want to remove me?</p>
+      </div>
+      <div class="modal-footer removeStationFooter">
+        <button type="button" class="btn btn-default" data-dismiss="modal"> <i class="glyphicon glyphicon-remove-sign"></i> No</button>
+        <button type="button" class="btn btn-primary" id="removeWorkerBtn" data-loading-text="Loading..."> <i class="glyphicon glyphicon-ok-sign"></i> Yes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- /remove station -->
 
 <script src="custom/js/worker.js"></script>
 

@@ -4,7 +4,7 @@
 <html>
 <head>
 
-	<title>Supplier Management System</title>
+	<title>Work Order Management System</title>
 
 	<!-- bootstrap -->
 	<link rel="stylesheet" href="assests/bootstrap/css/bootstrap.min.css">
@@ -57,15 +57,13 @@
         
         <li id="navBrand"><a href="Station.php"><i class="glyphicon glyphicon-road"></i>  Station</a></li>        
 
-        <li id="navCategories"><a href="worker.php"> <i class="glyphicon glyphicon-th-list"></i> Worker</a></li>        
-
-        <li id="navProduct"><a href="product.php"> <i class="glyphicon glyphicon-ruble"></i> Product </a></li>     
+        <li id="navCategories"><a href="worker.php"> <i class="glyphicon glyphicon-th-list"></i> Worker</a></li>            
 
         <li class="dropdown" id="navOrder">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="glyphicon glyphicon-shopping-cart"></i> Orders <span class="caret"></span></a>
           <ul class="dropdown-menu">            
-            <li id="topNavAddOrder"><a href="orders.php?o=add"> <i class="glyphicon glyphicon-plus"></i> Add Orders</a></li>            
-            <li id="topNavManageOrder"><a href="orders.php?o=manord"> <i class="glyphicon glyphicon-edit"></i> Manage Orders</a></li>            
+            <li id="topNavAddOrder"><a href="workOrder.php?o=add"> <i class="glyphicon glyphicon-plus"></i> Add Orders</a></li>            
+            <li id="topNavManageOrder"><a href="workOrder.php?o=manord"> <i class="glyphicon glyphicon-edit"></i> Manage Orders</a></li>            
           </ul>
         </li> 
 

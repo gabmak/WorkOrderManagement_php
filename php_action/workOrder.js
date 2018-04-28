@@ -23,12 +23,12 @@ $(document).ready(function() {
 			$('.text-danger').remove();
 				
 			var orderDate = $("#orderDate").val();
-			var clientName = $("#clientName").val();
-			var clientContact = $("#clientContact").val();
-			var paid = $("#paid").val();
-			var discount = $("#discount").val();
-			var paymentType = $("#paymentType").val();
-			var paymentStatus = $("#paymentStatus").val();		
+			var workOrderNo = $("#workOrderNo").val();
+			var station = $("#station").val();
+			var describtion = $("#describtion").val();
+			var priority = $("#priority").val();
+			var workType = $("#workType").val();
+				
 
 			// form validation 
 			if(orderDate == "") {
@@ -38,49 +38,42 @@ $(document).ready(function() {
 				$('#orderDate').closest('.form-group').addClass('has-success');
 			} // /else
 
-			if(clientName == "") {
-				$("#clientName").after('<p class="text-danger"> The Client Name field is required </p>');
-				$('#clientName').closest('.form-group').addClass('has-error');
+			if(workOrderNo == "") {
+				$("#workOrderNo").after('<p class="text-danger"> Work order number field is required </p>');
+				$('#workOrderNo').closest('.form-group').addClass('has-error');
 			} else {
-				$('#clientName').closest('.form-group').addClass('has-success');
+				$('#workOrderNo').closest('.form-group').addClass('has-success');
 			} // /else
 
-			if(clientContact == "") {
-				$("#clientContact").after('<p class="text-danger"> The Contact field is required </p>');
-				$('#clientContact').closest('.form-group').addClass('has-error');
+			if(station == "") {
+				$("#station").after('<p class="text-danger"> Station is required </p>');
+				$('#station').closest('.form-group').addClass('has-error');
 			} else {
-				$('#clientContact').closest('.form-group').addClass('has-success');
+				$('#station').closest('.form-group').addClass('has-success');
 			} // /else
 
-			if(paid == "") {
-				$("#paid").after('<p class="text-danger"> The Paid field is required </p>');
-				$('#paid').closest('.form-group').addClass('has-error');
+			if(describtion == "") {
+				$("#describtion").after('<p class="text-danger"> Describtion required </p>');
+				$('#describtion').closest('.form-group').addClass('has-error');
 			} else {
-				$('#paid').closest('.form-group').addClass('has-success');
+				$('#describtion').closest('.form-group').addClass('has-success');
 			} // /else
 
-			if(discount == "") {
-				$("#discount").after('<p class="text-danger"> The Discount field is required </p>');
-				$('#discount').closest('.form-group').addClass('has-error');
+			if(priority == "") {
+				$("#priority").after('<p class="text-danger"> Priority is required </p>');
+				$('#priority').closest('.form-group').addClass('has-error');
 			} else {
-				$('#discount').closest('.form-group').addClass('has-success');
+				$('#priority').closest('.form-group').addClass('has-success');
 			} // /else
 
-			if(paymentType == "") {
-				$("#paymentType").after('<p class="text-danger"> The Payment Type field is required </p>');
-				$('#paymentType').closest('.form-group').addClass('has-error');
+			if(workType == "") {
+				$("#workType").after('<p class="text-danger"> Work Type field is required </p>');
+				$('#workType').closest('.form-group').addClass('has-error');
 			} else {
-				$('#paymentType').closest('.form-group').addClass('has-success');
+				$('#workType').closest('.form-group').addClass('has-success');
 			} // /else
 
-			if(paymentStatus == "") {
-				$("#paymentStatus").after('<p class="text-danger"> The Payment Status field is required </p>');
-				$('#paymentStatus').closest('.form-group').addClass('has-error');
-			} else {
-				$('#paymentStatus').closest('.form-group').addClass('has-success');
-			} // /else
-
-
+			
 			// array validation
 			var productName = document.getElementsByName('productName[]');				
 			var validateProduct;
@@ -481,21 +474,6 @@ function getProductData(row = null) {
 					$("#total"+row).val(total);
 					$("#totalValue"+row).val(total);
 					
-					// check if product name is selected
-					// var tableProductLength = $("#productTable tbody tr").length;					
-					// for(x = 0; x < tableProductLength; x++) {
-					// 	var tr = $("#productTable tbody tr")[x];
-					// 	var count = $(tr).attr('id');
-					// 	count = count.substring(3);
-
-					// 	var productValue = $("#productName"+row).val()
-
-					// 	if($("#productName"+count).val() != productValue) {
-					// 		// $("#productName"+count+" #changeProduct"+count).addClass('div-hide');	
-					// 		$("#productName"+count).find("#changeProduct"+productId).addClass('div-hide');								
-					// 		console.log("#changeProduct"+count);
-					// 	}											
-					// } // /for
 			
 					subAmount();
 				} // /success
@@ -506,116 +484,6 @@ function getProductData(row = null) {
 		alert('no row! please refresh the page');
 	}
 } // /select on product data
-
-// table total
-function getTotal(row = null) {
-	if(row) {
-		var total = Number($("#rate"+row).val()) * Number($("#quantity"+row).val());
-		total = total.toFixed(2);
-		$("#total"+row).val(total);
-		$("#totalValue"+row).val(total);
-		
-		subAmount();
-
-	} else {
-		alert('no row !! please refresh the page');
-	}
-}
-
-function subAmount() {
-	var tableProductLength = $("#productTable tbody tr").length;
-	var totalSubAmount = 0;
-	for(x = 0; x < tableProductLength; x++) {
-		var tr = $("#productTable tbody tr")[x];
-		var count = $(tr).attr('id');
-		count = count.substring(3);
-
-		totalSubAmount = Number(totalSubAmount) + Number($("#total"+count).val());
-	} // /for
-
-	totalSubAmount = totalSubAmount.toFixed(2);
-
-	// sub total
-	$("#subTotal").val(totalSubAmount);
-	$("#subTotalValue").val(totalSubAmount);
-
-	// vat
-	var vat = 0;
-	vat = vat.toFixed(2);
-	$("#vat").val(vat);
-	$("#vatValue").val(vat);
-
-	// total amount
-	var totalAmount = (Number($("#subTotal").val()) + 0 );
-	totalAmount = totalAmount.toFixed(2);
-	$("#totalAmount").val(totalAmount);
-	$("#totalAmountValue").val(totalAmount);
-
-	var discount = $("#discount").val();
-	if(discount) {
-		var grandTotal = Number($("#totalAmount").val()) - Number(discount);
-		grandTotal = grandTotal.toFixed(2);
-		$("#grandTotal").val(grandTotal);
-		$("#grandTotalValue").val(grandTotal);
-	} else {
-		$("#grandTotal").val(totalAmount);
-		$("#grandTotalValue").val(totalAmount);
-	} // /else discount	
-
-	var paidAmount = $("#paid").val();
-	if(paidAmount) {
-		paidAmount =  Number($("#grandTotal").val()) - Number(paidAmount);
-		paidAmount = paidAmount.toFixed(2);
-		$("#due").val(paidAmount);
-		$("#dueValue").val(paidAmount);
-	} else {	
-		$("#due").val($("#grandTotal").val());
-		$("#dueValue").val($("#grandTotal").val());
-	} // else
-
-} // /sub total amount
-
-function discountFunc() {
-	var discount = $("#discount").val();
- 	var totalAmount = Number($("#totalAmount").val());
- 	totalAmount = totalAmount.toFixed(2);
-
- 	var grandTotal;
- 	if(totalAmount) { 	
- 		grandTotal = Number($("#totalAmount").val()) - Number($("#discount").val());
- 		grandTotal = grandTotal.toFixed(2);
-
- 		$("#grandTotal").val(grandTotal);
- 		$("#grandTotalValue").val(grandTotal);
- 	} else {
- 	}
-
- 	var paid = $("#paid").val();
-
- 	var dueAmount; 	
- 	if(paid) {
- 		dueAmount = Number($("#grandTotal").val()) - Number($("#paid").val());
- 		dueAmount = dueAmount.toFixed(2);
-
- 		$("#due").val(dueAmount);
- 		$("#dueValue").val(dueAmount);
- 	} else {
- 		$("#due").val($("#grandTotal").val());
- 		$("#dueValue").val($("#grandTotal").val());
- 	}
-
-} // /discount function
-
-function paidAmount() {
-	var grandTotal = $("#grandTotal").val();
-
-	if(grandTotal) {
-		var dueAmount = Number($("#grandTotal").val()) - Number($("#paid").val());
-		dueAmount = dueAmount.toFixed(2);
-		$("#due").val(dueAmount);
-		$("#dueValue").val(dueAmount);
-	} // /if
-} // /paid amoutn function
 
 
 function resetOrderForm() {
@@ -860,30 +728,5 @@ function statusOrder(orderId = null) {
 		}); // fetch order data
 	} else {
 		alert('Error ! Refresh the page again');
-	}
-}
-
-function sendToLogistic(orderId = null) {
-	if(orderId) {
-		$.ajax({
-			url: 'php_action/fetchOrderDataForLogistic.php',
-			type: 'post',
-			data: {orderId: orderId},
-			dataType: 'json',
-			success:function(response) {
-				
-				let dataStr = JSON.stringify(response);
-    let dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
-    
-    let exportFileDefaultName = 'order_to_slogistic.json';
-    
-    let linkElement = document.createElement('a');
-    linkElement.setAttribute('href', dataUri);
-    linkElement.setAttribute('download', exportFileDefaultName);
-    linkElement.click();
-				}
-		});
-	} else {
-		alert('Error !');
 	}
 }

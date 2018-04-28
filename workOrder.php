@@ -66,7 +66,7 @@ if($_GET['o'] == 'add') {
 			  <div class="form-group">
 			    <label for="orderDate" class="col-sm-2 control-label">Receive Date</label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" id="orderDate" name="orderDate" autocomplete="off" />
+			      <input type="datetime-local" class="form-control" id="orderDate" name="orderDate" autocomplete="off" />
 			    </div>
 			  </div> <!--/form-group-->
 			  <div class="form-group">

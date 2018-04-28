@@ -10,10 +10,7 @@ $(document).ready(function() {
 	if(divRequest == 'add')  {
 		// add order	
 		// top nav child bar 
-		$('#topNavAddOrder').addClass('active');	
-
-		// order date picker
-		$("#orderDate").datepicker();
+		$('#topNavAddOrder').addClass('active');
 
 		// create order form function
 		$("#createOrderForm").unbind('submit').bind('submit', function() {

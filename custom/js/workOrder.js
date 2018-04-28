@@ -365,15 +365,15 @@ function printOrder(orderId = null) {
 function addRow() {
 	$("#addRowBtn").button("loading");
 
-	var tableLength = $("#productTable tbody tr").length;
+	var tableLength = $("#workerTable tbody tr").length;
 
 	var tableRow;
 	var arrayNumber;
 	var count;
 
 	if(tableLength > 0) {		
-		tableRow = $("#productTable tbody tr:last").attr('id');
-		arrayNumber = $("#productTable tbody tr:last").attr('class');
+		tableRow = $("#workerTable tbody tr:last").attr('id');
+		arrayNumber = $("#workerTable tbody tr:last").attr('class');
 		count = tableRow.substring(3);	
 		count = Number(count) + 1;
 		arrayNumber = Number(arrayNumber) + 1;					
@@ -384,7 +384,7 @@ function addRow() {
 	}
 
 	$.ajax({
-		url: 'php_action/fetchProductData.php',
+		url: 'php_action/fetchWorkerData.php',
 		type: 'post',
 		dataType: 'json',
 		success:function(response) {
@@ -394,7 +394,7 @@ function addRow() {
 				'<td>'+
 					'<div class="form-group">'+
 
-					'<select class="form-control" name="productName[]" id="productName'+count+'" onchange="getProductData('+count+')" >'+
+					'<select class="form-control" name="workerName[]" id="workerName'+count+'" onchange="getWorkerData('+count+')" >'+
 						'<option value="">~~SELECT~~</option>';
 						// console.log(response);
 						$.each(response, function(index, value) {
@@ -405,26 +405,20 @@ function addRow() {
 					'</div>'+
 				'</td>'+
 				'<td style="padding-left:20px;"">'+
-					'<input type="text" name="rate[]" id="rate'+count+'" autocomplete="off" disabled="true" class="form-control" />'+
-					'<input type="hidden" name="rateValue[]" id="rateValue'+count+'" autocomplete="off" class="form-control" />'+
+					'<input type="text" name="cbrePassport[]" id="cbrePassport'+count+'" autocomplete="off" disabled="true" class="form-control" />'+
 				'</td style="padding-left:20px;">'+
+				
 				'<td style="padding-left:20px;">'+
-					'<div class="form-group">'+
-					'<input type="number" name="quantity[]" id="quantity'+count+'" onkeyup="getTotal('+count+')" autocomplete="off" class="form-control" min="1" />'+
-					'</div>'+
-				'</td>'+
-				'<td style="padding-left:20px;">'+
-					'<input type="text" name="total[]" id="total'+count+'" autocomplete="off" class="form-control" disabled="true" />'+
-					'<input type="hidden" name="totalValue[]" id="totalValue'+count+'" autocomplete="off" class="form-control" />'+
+					'<input type="text" name="telephone[]" id="telephone'+count+'" autocomplete="off" class="form-control" disabled="true" />'+
 				'</td>'+
 				'<td>'+
-					'<button class="btn btn-default removeProductRowBtn" type="button" onclick="removeProductRow('+count+')"><i class="glyphicon glyphicon-trash"></i></button>'+
+					'<button class="btn btn-default removeWorkerRowBtn" type="button" onclick="removeWorkerRow('+count+')"><i class="glyphicon glyphicon-trash"></i></button>'+
 				'</td>'+
 			'</tr>';
 			if(tableLength > 0) {							
-				$("#productTable tbody tr:last").after(tr);
+				$("#workerTable tbody tr:last").after(tr);
 			} else {				
-				$("#productTable tbody").append(tr);
+				$("#workerTable tbody").append(tr);
 			}		
 
 		} // /success
@@ -432,50 +426,35 @@ function addRow() {
 
 } // /add row
 
-function removeProductRow(row = null) {
+function removeWorkerRow(row = null) {
 	if(row) {
 		$("#row"+row).remove();
-
-
-		subAmount();
 	} else {
 		alert('error! Refresh the page again');
 	}
 }
 
 // select on product data
-function getProductData(row = null) {
+function getWorkerData(row = null) {
 	if(row) {
-		var productId = $("#productName"+row).val();		
+		var workerId = $("#workerName"+row).val();		
 		
-		if(productId == "") {
-			$("#rate"+row).val("");
-
-			$("#quantity"+row).val("");						
-			$("#total"+row).val("");
+		if(workerId == "") {
+			$("#cbrePassport"+row).val("");
+			$("#telephone"+row).val("");
 
 			
 		} else {
 			$.ajax({
-				url: 'php_action/fetchSelectedProduct.php',
+				url: 'php_action/fetchSelectedWorker.php',
 				type: 'post',
-				data: {productId : productId},
+				data: {workerId : workerId},
 				dataType: 'json',
 				success:function(response) {
 					// setting the rate value into the rate input field
 					
-					$("#rate"+row).val(response.rate);
-					$("#rateValue"+row).val(response.rate);
-
-					$("#quantity"+row).val(1);
-
-					var total = Number(response.rate) * 1;
-					total = total.toFixed(2);
-					$("#total"+row).val(total);
-					$("#totalValue"+row).val(total);
-					
-			
-					subAmount();
+					$("#cbrePassport"+row).val(response.cbre_passport);
+					$("#telephone"+row).val(response.telephone);
 				} // /success
 			}); // /ajax function to fetch the product data	
 		}
@@ -554,109 +533,6 @@ function removeOrder(orderId = null) {
 	}
 }
 // /remove order from server
-
-// Payment ORDER
-function paymentOrder(orderId = null) {
-	if(orderId) {
-
-		$("#orderDate").datepicker();
-
-		$.ajax({
-			url: 'php_action/fetchOrderData.php',
-			type: 'post',
-			data: {orderId: orderId},
-			dataType: 'json',
-			success:function(response) {				
-
-				// due 
-				$("#due").val(response.order[10]);				
-
-				// pay amount 
-				$("#payAmount").val(response.order[10]);
-
-				var paidAmount = response.order[9] 
-				var dueAmount = response.order[10];							
-				var grandTotal = response.order[8];
-
-				// update payment
-				$("#updatePaymentOrderBtn").unbind('click').bind('click', function() {
-					var payAmount = $("#payAmount").val();
-					var paymentType = $("#paymentType").val();
-					var paymentStatus = $("#paymentStatus").val();
-
-					if(payAmount == "") {
-						$("#payAmount").after('<p class="text-danger">The Pay Amount field is required</p>');
-						$("#payAmount").closest('.form-group').addClass('has-error');
-					} else {
-						$("#payAmount").closest('.form-group').addClass('has-success');
-					}
-
-					if(paymentType == "") {
-						$("#paymentType").after('<p class="text-danger">The Pay Amount field is required</p>');
-						$("#paymentType").closest('.form-group').addClass('has-error');
-					} else {
-						$("#paymentType").closest('.form-group').addClass('has-success');
-					}
-
-					if(paymentStatus == "") {
-						$("#paymentStatus").after('<p class="text-danger">The Pay Amount field is required</p>');
-						$("#paymentStatus").closest('.form-group').addClass('has-error');
-					} else {
-						$("#paymentStatus").closest('.form-group').addClass('has-success');
-					}
-
-					if(payAmount && paymentType && paymentStatus) {
-						$("#updatePaymentOrderBtn").button('loading');
-						$.ajax({
-							url: 'php_action/editPayment.php',
-							type: 'post',
-							data: {
-								orderId: orderId,
-								payAmount: payAmount,
-								paymentType: paymentType,
-								paymentStatus: paymentStatus,
-								paidAmount: paidAmount,
-								grandTotal: grandTotal
-							},
-							dataType: 'json',
-							success:function(response) {
-								$("#updatePaymentOrderBtn").button('loading');
-
-								// remove error
-								$('.text-danger').remove();
-								$('.form-group').removeClass('has-error').removeClass('has-success');
-
-								$("#paymentOrderModal").modal('hide');
-
-								$("#success-messages").html('<div class="alert alert-success">'+
-			            '<button type="button" class="close" data-dismiss="alert">&times;</button>'+
-			            '<strong><i class="glyphicon glyphicon-ok-sign"></i></strong> '+ response.messages +
-			          '</div>');
-
-								// remove the mesages
-			          $(".alert-success").delay(500).show(10, function() {
-									$(this).delay(3000).hide(10, function() {
-										$(this).remove();
-									});
-								}); // /.alert	
-
-			          // refresh the manage order table
-								manageOrderTable.ajax.reload(null, false);
-
-							} //
-
-						});
-					} // /if
-						
-					return false;
-				}); // /update payment			
-
-			} // /success
-		}); // fetch order data
-	} else {
-		alert('Error ! Refresh the page again');
-	}
-}
 
 function statusOrder(orderId = null) {
 	if(orderId) {

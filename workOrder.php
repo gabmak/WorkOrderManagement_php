@@ -105,7 +105,8 @@ if($_GET['o'] == 'add') {
 			  		<tr>			  			
 			  			<th style="width:40%;">Worker</th>
 			  			<th>CBRE passport</th>
-			  			<th>Telephone</th>	  			
+			  			<th>Telephone</th>
+						<th style="width:10%;"></th>
 			  		</tr>
 			  	</thead>
 			  	<tbody>
@@ -135,12 +136,11 @@ if($_GET['o'] == 'add') {
 			  				</td>
 			  				
 			  				<td style="padding-left:20px;">			  					
-			  					<input type="text" name="telephone[]" id="telephone<?php echo $x; ?>" autocomplete="off" class="form-control" disabled="true" />			  					
-			  					<input type="hidden" name="totalValue[]" id="totalValue<?php echo $x; ?>" autocomplete="off" class="form-control" />			  					
+			  					<input type="text" name="telephone[]" id="telephone<?php echo $x; ?>" autocomplete="off" class="form-control" disabled="true" />		  					
 			  				</td>
 			  				<td>
 
-			  					<button class="btn btn-default removeProductRowBtn" type="button" id="removeProductRowBtn" onclick="removeProductRow(<?php echo $x; ?>)"><i class="glyphicon glyphicon-trash"></i></button>
+			  					<button class="btn btn-default removeWorkerRowBtn" type="button" id="removeWorkerRowBtn" onclick="removeWorkerRow(<?php echo $x; ?>)"><i class="glyphicon glyphicon-trash"></i></button>
 			  				</td>
 			  			</tr>
 		  			<?php

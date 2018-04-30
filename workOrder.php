@@ -99,6 +99,24 @@ if($_GET['o'] == 'add') {
 		  						</select>
 			    </div>
 			  </div> <!--/form-group-->
+			
+			  <div class="form-group">
+			    <label for="station" class="col-sm-2 control-label">Job type</label>
+			    <div class="col-sm-10">
+			      <select class="form-control" name="workType" id="workType" onchange="getWorkTypeData" >
+			  						<option value="">~~SELECT~~</option>
+			  						<?php
+			  							$typeSql = "SELECT * FROM work_type";
+			  							$workTypeData = $connect->query($typeSql);
+
+			  							while($row = $workTypeData->fetch_array()) {									 		
+			  								echo "<option value='".$row['type_id']."' id='changeWorkType".$row['type_id']."'>".$row['type']."</option>";
+										 	} // /while 
+
+			  						?>
+		  						</select>
+			    </div>
+			  </div> <!--/form-group-->
 
 			  <table class="table" id="workerTable">
 			  	<thead>

@@ -431,7 +431,7 @@ function removeWorkerRow(row = null) {
 	}
 }
 
-// select on product data
+// select on worker data
 function getWorkerData(row = null) {
 	if(row) {
 		var workerId = $("#workerName"+row).val();		

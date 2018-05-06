@@ -302,44 +302,6 @@ if($_GET['o'] == 'add') {
 			    </div>
 			</div> <!--/form-group-->
 			
-			<div class="col-md-6">
-			  	<div class="form-group">
-				    <label for="startTime" class="col-sm-3 control-label">Start time</label>
-				    <div class="col-sm-9">
-				      <input type="time" class="form-control" id="startTime" name="startTime" value="<?php echo $data[5] ?>" />
-				    </div>
-				  </div> <!--/form-group-->			  
-			</div>
-			<div class="col-md-6">
-			<div class="form-group">
-				    <label for="endTime" class="col-sm-3 control-label">End time</label>
-				    <div class="col-sm-9">
-				      <input type="time" class="form-control" id="endTime" name="endTime" value="<?php echo $data[6] ?>" />
-				    </div>
-				  </div> <!--/form-group-->
-			</div>
-			
-			<div class="form-group">
-			    <label for="completeDate" class="col-sm-2 control-label">Complete Date</label>
-			    <div class="col-sm-10">
-			      <input type="date" class="form-control" id="completeDate" name="completeDate" autocomplete="off" value="<?php echo $data[7] ?>" />
-			    </div>
-			</div> <!--/form-group-->
-			
-			<div class="form-group">
-			    <label for="reason" class="col-sm-2 control-label">Reason</label>
-			    <div class="col-sm-10">
-			      <textarea class="form-control" id="reason" name="reason" placeholder="Service Description" autocomplete="off" value="<?php echo $data[8] ?>" ></textarea>
-			    </div>
-			</div> <!--/form-group-->
-			
-			<div class="form-group">
-			    <label for="affectedNozzle" class="col-sm-2 control-label">Affected Nozzle</label>
-			    <div class="col-sm-10">
-			      <input type="text" class="form-control" id="affectedNozzle" name="affectedNozzle" placeholder="n.a. if no" autocomplete="off" value="<?php echo $data[10] ?>" />
-			    </div>
-			</div> <!--/form-group-->
-			
 			<div class="form-group">
 			    <label for="workType" class="col-sm-2 control-label">Work Type</label>
 			    <div class="col-sm-10">
@@ -429,12 +391,68 @@ if($_GET['o'] == 'add') {
 			  	</tbody>			  	
 			  </table><!--/form-group-->			  		  
 
-
+			<div class="col-md-6">
+			  	<div class="form-group">
+				    <label for="startTime" class="col-sm-3 control-label">Start time</label>
+				    <div class="col-sm-9">
+				      <input type="time" class="form-control" id="startTime" name="startTime" value="<?php echo $data[5] ?>" />
+				    </div>
+				  </div> <!--/form-group-->			  
+			</div>
+			<div class="col-md-6">
+			<div class="form-group">
+				    <label for="endTime" class="col-sm-3 control-label">End time</label>
+				    <div class="col-sm-9">
+				      <input type="time" class="form-control" id="endTime" name="endTime" value="<?php echo $data[6] ?>" />
+				    </div>
+				  </div> <!--/form-group-->
+			</div>
+			
+			<div class="form-group">
+			    <label for="completeDate" class="col-sm-2 control-label">Complete Date</label>
+			    <div class="col-sm-10">
+			      <input type="date" class="form-control" id="completeDate" name="completeDate" autocomplete="off" value="<?php echo $data[7] ?>" />
+			    </div>
+			</div> <!--/form-group-->
+			
+			<div class="form-group">
+			    <label for="reason" class="col-sm-2 control-label">Reason</label>
+			    <div class="col-sm-10">
+			      <textarea class="form-control" id="reason" name="reason" placeholder="Service Description" autocomplete="off" value="<?php echo $data[8] ?>" ></textarea>
+			    </div>
+			</div> <!--/form-group-->
+			
+			<div class="form-group">
+			    <label for="affectedNozzle" class="col-sm-2 control-label">Affected Nozzle</label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control" id="affectedNozzle" name="affectedNozzle" placeholder="n.a. if no" autocomplete="off" value="<?php echo $data[10] ?>" />
+			    </div>
+			</div> <!--/form-group-->
+			
+			<div class="form-group">
+				    <label for="status" class="col-sm-2 control-label">Status</label>
+				    <div class="col-sm-10">
+				      <select class="form-control" name="status" id="status" >
+				      	<option value="">~~SELECT~~</option>
+				      	<option value="1" <?php if($data[11] == 1) {
+				      		echo "selected";
+				      	} ?> >Pending</option>
+				      	<option value="2" <?php if($data[11] == 2) {
+				      		echo "selected";
+				      	} ?>  >On-going</option>
+				      	<option value="3" <?php if($data[11] == 3) {
+				      		echo "selected";
+				      	} ?> >Done</option>
+				      </select>
+				    </div>
+				  </div> <!--/form-group-->
+			</br></br>
+		
 			  <div class="form-group editButtonFooter">
 			    <div class="col-sm-offset-2 col-sm-10">
 			    <button type="button" class="btn btn-default" onclick="addRow()" id="addRowBtn" data-loading-text="Loading..."> <i class="glyphicon glyphicon-plus-sign"></i> Add Row </button>
 
-			    <input type="hidden" name="orderId" id="orderId" value="<?php echo $_GET['i']; ?>" />
+			    <input type="hidden" name="work_id" id="work_id" value="<?php echo $_GET['i']; ?>" />
 
 			    <button type="submit" id="editOrderBtn" data-loading-text="Loading..." class="btn btn-success"><i class="glyphicon glyphicon-ok-sign"></i> Save Changes</button>
 			      

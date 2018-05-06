@@ -201,12 +201,11 @@ $(document).ready(function() {
 			$('.text-danger').remove();
 				
 			var orderDate = $("#orderDate").val();
-			var clientName = $("#clientName").val();
-			var clientContact = $("#clientContact").val();
-			var paid = $("#paid").val();
-			var discount = $("#discount").val();
-			var paymentType = $("#paymentType").val();
-			var paymentStatus = $("#paymentStatus").val();		
+			var workOrderNo = $("#workOrderNo").val();
+			var station = $("#station").val();
+			var description = $("#description").val();
+			var priority = $("#priority").val();
+			var workType = $("#workType").val();		
 
 			// form validation 
 			if(orderDate == "") {
@@ -555,7 +554,7 @@ function statusOrder(work_id = null) {
 		
 			
 		$.ajax({
-			url: 'php_action/fetchWorkOrderData.php',
+			url: 'php_action/fetchOrderData.php',
 			type: 'post',
 			data: {work_id: work_id},
 			dataType: 'json',

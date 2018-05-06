@@ -53,14 +53,14 @@
 
       <ul class="nav navbar-nav navbar-right">        
 
-      	<li id="navDashboard"><a href="index.php"><i class="glyphicon glyphicon-list-alt"></i>  Dashboard</a></li>        
+      	<li id="navDashboard"><a href="index.php"><i class="glyphicon glyphicon glyphicon-dashboard"></i>  Dashboard</a></li>        
         
-        <li id="navBrand"><a href="Station.php"><i class="glyphicon glyphicon-road"></i>  Station</a></li>        
+        <li id="navBrand"><a href="Station.php"><i class="glyphicon glyphicon glyphicon-list-alt"></i>  Station</a></li>        
 
-        <li id="navCategories"><a href="worker.php"> <i class="glyphicon glyphicon-th-list"></i> Worker</a></li>            
+        <li id="navCategories"><a href="worker.php"> <i class="glyphicon glyphicon glyphicon-user"></i> Worker</a></li>            
 
         <li class="dropdown" id="navOrder">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="glyphicon glyphicon-shopping-cart"></i> Orders <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="glyphicon glyphicon-inbox"></i> Orders <span class="caret"></span></a>
           <ul class="dropdown-menu">            
             <li id="topNavAddOrder"><a href="workOrder.php?o=add"> <i class="glyphicon glyphicon-plus"></i> Add Orders</a></li>            
             <li id="topNavManageOrder"><a href="workOrder.php?o=manord"> <i class="glyphicon glyphicon-edit"></i> Manage Orders</a></li>            
@@ -70,7 +70,7 @@
         <li id="navReport"><a href="report.php"> <i class="glyphicon glyphicon-check"></i> Report </a></li>
 
         <li class="dropdown" id="navSetting">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="glyphicon glyphicon-user"></i> <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="glyphicon glyphicon-align-justify"></i> <span class="caret"></span></a>
           <ul class="dropdown-menu">            
             <li id="topNavSetting"><a href="setting.php"> <i class="glyphicon glyphicon-wrench"></i> Setting</a></li>            
             <li id="topNavLogout"><a href="logout.php"> <i class="glyphicon glyphicon-log-out"></i> Logout</a></li>            

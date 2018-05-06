@@ -5,20 +5,18 @@ require_once 'core.php';
 
 $valid['success'] = array('success' => false, 'messages' => array());
 
-$orderId = $_POST['orderId'];
+$work_id = $_POST['work_id'];
 
-if($orderId) { 
+if($work_id) { 
 
- $sql = "UPDATE orders SET order_status = 2 WHERE order_id = {$orderId}";
+ $sql = "UPDATE work_order SET status = 0 WHERE work_id = {$work_id}";
 
- $orderItem = "UPDATE order_item SET order_item_status = 2 WHERE  order_id = {$orderId}";
-
- if($connect->query($sql) === TRUE && $connect->query($orderItem) === TRUE) {
+ if($connect->query($sql) === TRUE) {
  	$valid['success'] = true;
 	$valid['messages'] = "Successfully Removed";		
  } else {
  	$valid['success'] = false;
- 	$valid['messages'] = "Error while remove the brand";
+ 	$valid['messages'] = "Error while remove the record";
  }
  
  $connect->close();

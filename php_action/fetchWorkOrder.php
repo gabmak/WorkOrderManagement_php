@@ -3,7 +3,7 @@
 require_once 'core.php';
 
 
-$sql = "SELECT work_order.work_id, work_order.rec_date, work_order.work_order_no, station.sta_name, work_order.work_description, work_order.priority, work_order.status FROM work_order, station WHERE work_order.sta_id = station.sta_id AND work_order.status != 0 AND station.status !=0";
+$sql = "SELECT work_order.work_id, work_order.rec_date, work_order.work_order_no, station.sta_name, work_order.work_description, work_order.priority, work_order.status FROM work_order, station WHERE work_order.sta_id = station.sta_id AND work_order.status != 0 AND station.status !=0 ORDER BY work_order.status, work_order.rec_date";
 $result = $connect->query($sql);
 
 
@@ -11,6 +11,7 @@ $result = $connect->query($sql);
 $output = array('data' => array());
 
 if($result->num_rows > 0) { 
+ 
  $orderPriority = "";
  $processStatus = "";
  $rec_date = "";
@@ -51,7 +52,7 @@ if($result->num_rows > 0) {
 	    Action <span class="caret"></span>
 	  </button>
 	  <ul class="dropdown-menu">
-	    <li><a href="orders.php?o=editOrd&i='.$work_id.'" id="editOrderModalBtn"> <i class="glyphicon glyphicon-edit"></i> Edit</a></li>
+	    <li><a href="workOrder.php?o=editOrd&i='.$work_id.'" id="editOrderModalBtn"> <i class="glyphicon glyphicon-edit"></i> Edit</a></li>
 		
 		<li><a type="button" data-toggle="modal" id="statusOrderModalBtn" data-target="#statusOrderModal" onclick="statusOrder('.$work_id.')"> <i class="glyphicon glyphicon-send"></i> Order Status</a></li>
 		

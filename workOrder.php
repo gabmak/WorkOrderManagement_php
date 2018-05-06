@@ -418,7 +418,7 @@ if($_GET['o'] == 'add') {
 			  				</td>
 			  				<td>
 
-			  					<button class="btn btn-default removeProductRowBtn" type="button" id="removeProductRowBtn" onclick="removeProductRow(<?php echo $x; ?>)"><i class="glyphicon glyphicon-trash"></i></button>
+			  					<button class="btn btn-default removeWorkerRowBtn" type="button" id="removeWorkerRowBtn" onclick="removeWorkerRow(<?php echo $x; ?>)"><i class="glyphicon glyphicon-trash"></i></button>
 			  				</td>
 			  			</tr>
 		  			<?php

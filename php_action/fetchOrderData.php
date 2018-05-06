@@ -1,19 +1,20 @@
 <?php 	
 
-require_once 'core.php';
+//require_once 'core.php';
+require_once 'db_connect.php';
 
-$orderId = $_POST['orderId'];
+$workId = $_POST['work_id'];
 
-$valid = array('order' => array(), 'order_item' => array());
 
-$sql = "SELECT orders.order_id, orders.order_date, orders.client_name, orders.client_contact, orders.sub_total, orders.vat, orders.total_amount, orders.discount, orders.grand_total, orders.paid, orders.due, orders.payment_type, orders.payment_status, orders.process_status FROM orders 	
-	WHERE orders.order_id = {$orderId}";
+
+$sql = "SELECT work_id, rec_date, work_order_no, sta_id, work_description, start_time, end_time, complete_date, reason, priority, affected_nozzle, status FROM work_order WHERE status !=0 AND work_id = {$workId}";
 
 $result = $connect->query($sql);
-$data = $result->fetch_row();
-$valid['order'] = $data;
 
+if($result->num_rows > 0) { 
+ $row = $result->fetch_array();
+} // if num_rows
 
 $connect->close();
 
-echo json_encode($valid);
+echo json_encode($row);

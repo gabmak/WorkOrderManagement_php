@@ -203,11 +203,10 @@ if($_GET['o'] == 'add') {
 			<table class="table" id="manageOrderTable">
 				<thead>
 					<tr>
-						<th>Work Order</th>
-						<th>Order Date</th>
+						<th>Record Date</th>
+						<th>#WO</th>
 						<th>Station</th>
-						<th>Describtion</th>
-						<th>Work Type</th>
+						<th>Description</th>
 						<th>Priority</th>
 						<th>Status</th>
 						<th>Option</th>
@@ -456,12 +455,12 @@ if($_GET['o'] == 'add') {
       	<div class="statusOrderMessages"></div>
 			  
 			  <div class="form-group">
-			    <label for="clientContact" class="col-sm-3 control-label">Order Status</label>
+			    <label for="orderStatus" class="col-sm-3 control-label">Order Status</label>
 			    <div class="col-sm-9">
 			      <select class="form-control" name="processStatus" id="processStatus" >
 			      	<option value="">~~SELECT~~</option>
 			      	<option value="1">Pending</option>
-			      	<option value="2">Waiting for Logistic</option>
+			      	<option value="2">On going</option>
 			      	<option value="3">Done</option>
 			      </select>
 			    </div>

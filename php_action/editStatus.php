@@ -5,11 +5,11 @@ require_once 'core.php';
 $valid['success'] = array('success' => false, 'messages' => array());
 
 if($_POST) {	
-	$orderId 		= $_POST['orderId'];
+	$work_id 		= $_POST['work_id'];
 	$processStatus 	= $_POST['processStatus']; 
  	
  
-	$sql = "UPDATE orders SET process_status = '$processStatus' WHERE order_id = {$orderId}";
+	$sql = "UPDATE work_order SET status = '$processStatus' WHERE work_id = {$work_id}";
 
 	if($connect->query($sql) === TRUE) {
 		$valid['success'] = true;

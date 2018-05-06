@@ -185,7 +185,7 @@ $(document).ready(function() {
 		$('#topNavManageOrder').addClass('active');
 
 		manageOrderTable = $("#manageOrderTable").DataTable({
-			'ajax': 'php_action/fetchOrder.php',
+			'ajax': 'php_action/fetchWorkOrder.php',
 			'order': []
 		});		
 					
@@ -492,15 +492,15 @@ function resetOrderForm() {
 
 
 // remove order from server
-function removeOrder(orderId = null) {
-	if(orderId) {
+function removeOrder(work_id = null) {
+	if(work_id) {
 		$("#removeOrderBtn").unbind('click').bind('click', function() {
 			$("#removeOrderBtn").button('loading');
 
 			$.ajax({
 				url: 'php_action/removeOrder.php',
 				type: 'post',
-				data: {orderId : orderId},
+				data: {work_id : work_id},
 				dataType: 'json',
 				success:function(response) {
 					$("#removeOrderBtn").button('reset');
@@ -550,14 +550,14 @@ function removeOrder(orderId = null) {
 }
 // /remove order from server
 
-function statusOrder(orderId = null) {
-	if(orderId) {
+function statusOrder(work_id = null) {
+	if(work_id) {
 		
 			
 		$.ajax({
-			url: 'php_action/fetchOrderData.php',
+			url: 'php_action/fetchWorkOrderData.php',
 			type: 'post',
-			data: {orderId: orderId},
+			data: {work_id: work_id},
 			dataType: 'json',
 			success:function(response) {				
 	
@@ -580,7 +580,7 @@ function statusOrder(orderId = null) {
 							url: 'php_action/editStatus.php',
 							type: 'post',
 							data: {
-								orderId: orderId,
+								work_id: work_id,
 								processStatus: processStatus,
 								
 							},

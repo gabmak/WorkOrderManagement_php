@@ -222,12 +222,11 @@ if($_GET['o'] == 'add') {
 			
 			<div class="success-messages"></div> <!--/success-messages-->
 
-  		<form class="form-horizontal" method="POST" action="php_action/editOrder.php" id="editOrderForm">
+  		<form class="form-horizontal" method="POST" action="php_action/editWorkOrder.php" id="editOrderForm">
 
-  			<?php $orderId = $_GET['i'];
+  			<?php $work_id = $_GET['i'];
 
-  			$sql = "SELECT orders.order_id, orders.order_date, orders.client_name, orders.client_contact, orders.sub_total, orders.vat, orders.total_amount, orders.discount, orders.grand_total, orders.paid, orders.due, orders.payment_type, orders.payment_status, shipping_address FROM orders 	
-					WHERE orders.order_id = {$orderId}";
+  			$sql = "SELECT work_id, rec_date, work_order_no, sta_id, work_description, start_time, end_time, complete_date, reason, priority, affected_nozzle, status FROM work_order WHERE status !=0 AND work_id = {$work_id}";
 
 				$result = $connect->query($sql);
 				$data = $result->fetch_row();				
@@ -236,70 +235,175 @@ if($_GET['o'] == 'add') {
 			  <div class="form-group">
 			    <label for="orderDate" class="col-sm-2 control-label">Order Date</label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" id="orderDate" name="orderDate" autocomplete="off" value="<?php echo $data[1] ?>" />
+			      <input type="datetime" class="form-control" id="orderDate" name="orderDate" autocomplete="off" value="<?php echo $data[1] ?>" />
 			    </div>
 			  </div> <!--/form-group-->
 			  <div class="form-group">
-			    <label for="clientName" class="col-sm-2 control-label">Client Name</label>
+			    <label for="workOrderNo" class="col-sm-2 control-label">#WO</label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" id="clientName" name="clientName" placeholder="Client Name" autocomplete="off" value="<?php echo $data[2] ?>" />
+			      <input type="text" class="form-control" id="workOrderNo" name="workOrderNo" placeholder="#WO" autocomplete="off" value="<?php echo $data[2] ?>" />
 			    </div>
 			  </div> <!--/form-group-->
+			
+			<div class="form-group">
+				    <label for="priority" class="col-sm-2 control-label">Priority</label>
+				    <div class="col-sm-10">
+				      <select class="form-control" name="priority" id="priority">
+				      	<option value="">~~SELECT~~</option>
+				      	<option value="5" <?php if($data[9] == 5) {
+				      		echo "selected";
+				      	} ?>  >5-HSSE</option>
+				      	<option value="4" <?php if($data[9] == 4) {
+				      		echo "selected";
+				      	} ?> >4-Critical</option>
+				      	<option value="3" <?php if($data[9] == 3) {
+				      		echo "selected";
+				      	} ?> >3-Serious</option>
+						<option value="2" <?php if($data[9] == 2) {
+				      		echo "selected";
+				      	} ?> >2-Significant</option>
+				      	<option value="1" <?php if($data[9] == 1) {
+				      		echo "selected";
+				      	} ?> >1-Minor</option>
+						<option value="0" <?php if($data[9] == 0) {
+				      		echo "selected";
+				      	} ?> >CEI</option>
+				      </select>
+				    </div>
+				  </div> <!--/form-group-->	
+			
 			  <div class="form-group">
-			    <label for="clientContact" class="col-sm-2 control-label">Client Contact</label>
+			    <label for="station" class="col-sm-2 control-label">Station</label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" id="clientContact" name="clientContact" placeholder="Contact Number" autocomplete="off" value="<?php echo $data[3] ?>" />
+			      <select class="form-control" name="station" id="station" onchange="getStationData()" >
+			  						<option value="">~~SELECT~~</option>
+			  						<?php
+			  							$stationSql = "SELECT * FROM station WHERE visible = 1 AND status = 1 ";
+										$stationData = $connect->query($stationSql);
+
+			  							while($row = $stationData->fetch_array()) {									 		
+			  								$selected = "";
+			  								if($row['sta_id'] == $data[3]) {
+			  									$selected = "selected";
+			  								} else {
+			  									$selected = "";
+			  								}
+			  								echo "<option value='".$row['sta_id']."' id='changeStation".$row['sta_id']."' ".$selected." >".$row['sta_name']."</option>";
+										 	} // /while 
+
+			  						?>
+		  						</select>
 			    </div>
 			  </div> <!--/form-group-->	
 			<div class="form-group">
-			    <label for="clientAddress" class="col-sm-2 control-label">Shipping Address</label>
+			    <label for="description" class="col-sm-2 control-label">Description</label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" id="clientAddress" name="clientAddress" placeholder="Shipping Address" autocomplete="off" value="<?php echo $data[13] ?>" />
+			      <input type="text" class="form-control" id="description" name="description" placeholder="Description" autocomplete="off" value="<?php echo $data[4] ?>" />
 			    </div>
-			  </div> <!--/form-group-->
+			</div> <!--/form-group-->
+			
+			<div class="col-md-6">
+			  	<div class="form-group">
+				    <label for="startTime" class="col-sm-3 control-label">Start time</label>
+				    <div class="col-sm-9">
+				      <input type="time" class="form-control" id="startTime" name="startTime" value="<?php echo $data[5] ?>" />
+				    </div>
+				  </div> <!--/form-group-->			  
+			</div>
+			<div class="col-md-6">
+			<div class="form-group">
+				    <label for="endTime" class="col-sm-3 control-label">End time</label>
+				    <div class="col-sm-9">
+				      <input type="time" class="form-control" id="endTime" name="endTime" value="<?php echo $data[6] ?>" />
+				    </div>
+				  </div> <!--/form-group-->
+			</div>
+			
+			<div class="form-group">
+			    <label for="completeDate" class="col-sm-2 control-label">Complete Date</label>
+			    <div class="col-sm-10">
+			      <input type="date" class="form-control" id="completeDate" name="completeDate" autocomplete="off" value="<?php echo $data[7] ?>" />
+			    </div>
+			</div> <!--/form-group-->
+			
+			<div class="form-group">
+			    <label for="reason" class="col-sm-2 control-label">Reason</label>
+			    <div class="col-sm-10">
+			      <textarea class="form-control" id="reason" name="reason" placeholder="Service Description" autocomplete="off" value="<?php echo $data[8] ?>" ></textarea>
+			    </div>
+			</div> <!--/form-group-->
+			
+			<div class="form-group">
+			    <label for="affectedNozzle" class="col-sm-2 control-label">Affected Nozzle</label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control" id="affectedNozzle" name="affectedNozzle" placeholder="n.a. if no" autocomplete="off" value="<?php echo $data[10] ?>" />
+			    </div>
+			</div> <!--/form-group-->
+			
+			<div class="form-group">
+			    <label for="workType" class="col-sm-2 control-label">Work Type</label>
+			    <div class="col-sm-10">
+			      <select class="form-control" name="station" id="station" onchange="getWorkTypeData()" >
+			  			<option value="">~~SELECT~~</option>
+			  				<?php
+			  					$workTypeSql = "SELECT * FROM work_type ";
+								$workTypeData = $connect->query($workTypeSql);
 
-			  <table class="table" id="productTable">
+			  					while($row = $workTypeData->fetch_array()) {									 		
+			  						$selected = "";
+			  						if($row['type_id'] == $data[11]) {
+			  							$selected = "selected";
+			  						} else {
+			  							$selected = "";
+			  						}
+			  						echo "<option value='".$row['type_id']."' id='changeWorkType".$row['type_id']."' ".$selected." >".$row['type']."</option>";
+									} // /while 
+
+			  						?>
+		  						</select>
+			    </div>
+			</div> <!--/form-group-->
+			  <table class="table" id="workerTable">
 			  	<thead>
 			  		<tr>			  			
-			  			<th style="width:40%;">Product</th>
-			  			<th style="width:20%;">Rate</th>
-			  			<th style="width:15%;">Quantity</th>			  			
-			  			<th style="width:15%;">Total</th>			  			
-			  			<th style="width:10%;"></th>
+			  			<th style="width:40%;">Worker</th>
+			  			<th>CBRE passport</th>
+			  			<th>Telephone</th>
+						<th style="width:10%;"></th>
 			  		</tr>
 			  	</thead>
 			  	<tbody>
 			  		<?php
 
-			  		$orderItemSql = "SELECT order_item.order_item_id, order_item.order_id, order_item.product_id, order_item.quantity, order_item.rate, order_item.total FROM order_item WHERE order_item.order_id = {$orderId}";
-						$orderItemResult = $connect->query($orderItemSql);
+			  		$workerJobSql = "SELECT order_for_worker.worker_order_id, order_for_worker.work_id, order_for_worker.worker_id, worker.telephone, worker.cbre_passport FROM order_for_worker, worker WHERE order_for_worker.worker_id = worker.worker_id AND order_for_worker.work_id = {$work_id}";
+						$jobWorkerResult = $connect->query($workerJobSql);
 						// $orderItemData = $orderItemResult->fetch_all();						
 						
 						// print_r($orderItemData);
 			  		$arrayNumber = 0;
 			  		// for($x = 1; $x <= count($orderItemData); $x++) {
 			  		$x = 1;
-			  		while($orderItemData = $orderItemResult->fetch_array()) { 
+			  		while($jobWorkerData = $jobWorkerResult->fetch_array()) { 
 			  			// print_r($orderItemData); ?>
 			  			<tr id="row<?php echo $x; ?>" class="<?php echo $arrayNumber; ?>">			  				
 			  				<td style="margin-left:20px;">
 			  					<div class="form-group">
 
-			  					<select class="form-control" name="productName[]" id="productName<?php echo $x; ?>" onchange="getProductData(<?php echo $x; ?>)" >
+			  					<select class="form-control" name="workerName[]" id="workerName<?php echo $x; ?>" onchange="getWorkerData(<?php echo $x; ?>)" >
 			  						<option value="">~~SELECT~~</option>
 			  						<?php
-			  							$productSql = "SELECT * FROM product WHERE active = 1 AND status = 1 AND quantity != 0";
-			  							$productData = $connect->query($productSql);
+			  							$workerSql = "SELECT * FROM worker WHERE status != 2";
+			  							$workerData = $connect->query($workerSql);
 
-			  							while($row = $productData->fetch_array()) {									 		
+			  							while($row = $workerData->fetch_array()) {									 		
 			  								$selected = "";
-			  								if($row['product_id'] == $orderItemData['product_id']) {
+			  								if($row['worker_id'] == $jobWorkerData['worker_id']) {
 			  									$selected = "selected";
 			  								} else {
 			  									$selected = "";
 			  								}
 
-			  								echo "<option value='".$row['product_id']."' id='changeProduct".$row['product_id']."' ".$selected." >".$row['product_name']."</option>";
+			  								echo "<option value='".$row['worker_id']."' id='changeWorker".$row['worker_id']."' ".$selected." >".$row['name']."</option>";
 										 	} // /while 
 
 			  						?>
@@ -307,17 +411,10 @@ if($_GET['o'] == 'add') {
 			  					</div>
 			  				</td>
 			  				<td style="padding-left:20px;">			  					
-			  					<input type="text" name="rate[]" id="rate<?php echo $x; ?>" autocomplete="off" disabled="true" class="form-control" value="<?php echo $orderItemData['rate']; ?>" />			  					
-			  					<input type="hidden" name="rateValue[]" id="rateValue<?php echo $x; ?>" autocomplete="off" class="form-control" value="<?php echo $orderItemData['rate']; ?>" />			  					
+			  					<input type="text" name="cbrePassport[]" id="cbrePassport<?php echo $x; ?>" autocomplete="off" disabled="true" class="form-control" value="<?php echo $jobWorkerData['cbre_passport']; ?>" />
 			  				</td>
-			  				<td style="padding-left:20px;">
-			  					<div class="form-group">
-			  					<input type="number" name="quantity[]" id="quantity<?php echo $x; ?>" onkeyup="getTotal(<?php echo $x ?>)" autocomplete="off" class="form-control" min="1" value="<?php echo $orderItemData['quantity']; ?>" />
-			  					</div>
-			  				</td>
-			  				<td style="padding-left:20px;">			  					
-			  					<input type="text" name="total[]" id="total<?php echo $x; ?>" autocomplete="off" class="form-control" disabled="true" value="<?php echo $orderItemData['total']; ?>"/>			  					
-			  					<input type="hidden" name="totalValue[]" id="totalValue<?php echo $x; ?>" autocomplete="off" class="form-control" value="<?php echo $orderItemData['total']; ?>"/>			  					
+							<td style="padding-left:20px;">			  					
+			  					<input type="text" name="telephone[]" id="telephone<?php echo $x; ?>" autocomplete="off" disabled="true" class="form-control" value="<?php echo $jobWorkerData['telephone']; ?>" />
 			  				</td>
 			  				<td>
 
@@ -330,94 +427,7 @@ if($_GET['o'] == 'add') {
 			  		} // /for
 			  		?>
 			  	</tbody>			  	
-			  </table>
-
-			  <div class="col-md-6">
-			  	<div class="form-group">
-				    <label for="subTotal" class="col-sm-3 control-label">Sub Amount</label>
-				    <div class="col-sm-9">
-				      <input type="text" class="form-control" id="subTotal" name="subTotal" disabled="true" value="<?php echo $data[4] ?>" />
-				      <input type="hidden" class="form-control" id="subTotalValue" name="subTotalValue" value="<?php echo $data[4] ?>" />
-				    </div>
-				  </div> <!--/form-group-->			  
-				  <div class="form-group">
-				    <label for="vat" class="col-sm-3 control-label" style="display:none">Tax2</label>
-				    <div class="col-sm-9">
-				      <input type="text" class="form-control" id="vat" name="vat" disabled="true"  style="display:none"/>
-				      <input type="hidden" class="form-control" id="vatValue" name="vatValue"  />
-				    </div>
-				  </div> <!--/form-group-->			  
-				  <div class="form-group">
-				    <label for="totalAmount" class="col-sm-3 control-label">Total Amount</label>
-				    <div class="col-sm-9">
-				      <input type="text" class="form-control" id="totalAmount" name="totalAmount" disabled="true" value="<?php echo $data[6] ?>" />
-				      <input type="hidden" class="form-control" id="totalAmountValue" name="totalAmountValue" value="<?php echo $data[6] ?>"  />
-				    </div>
-				  </div> <!--/form-group-->			  
-				  <div class="form-group">
-				    <label for="discount" class="col-sm-3 control-label">Discount</label>
-				    <div class="col-sm-9">
-				      <input type="text" class="form-control" id="discount" name="discount" onkeyup="discountFunc()" autocomplete="off" value="<?php echo $data[7] ?>" />
-				    </div>
-				  </div> <!--/form-group-->	
-				  <div class="form-group">
-				    <label for="grandTotal" class="col-sm-3 control-label">Grand Total</label>
-				    <div class="col-sm-9">
-				      <input type="text" class="form-control" id="grandTotal" name="grandTotal" disabled="true" value="<?php echo $data[8] ?>"  />
-				      <input type="hidden" class="form-control" id="grandTotalValue" name="grandTotalValue" value="<?php echo $data[8] ?>"  />
-				    </div>
-				  </div> <!--/form-group-->			  		  
-			  </div> <!--/col-md-6-->
-
-			  <div class="col-md-6">
-			  	<div class="form-group">
-				    <label for="paid" class="col-sm-3 control-label">Paid Amount</label>
-				    <div class="col-sm-9">
-				      <input type="text" class="form-control" id="paid" name="paid" autocomplete="off" onkeyup="paidAmount()" value="<?php echo $data[9] ?>"  />
-				    </div>
-				  </div> <!--/form-group-->			  
-				  <div class="form-group">
-				    <label for="due" class="col-sm-3 control-label">Due Amount</label>
-				    <div class="col-sm-9">
-				      <input type="text" class="form-control" id="due" name="due" disabled="true" value="<?php echo $data[10] ?>"  />
-				      <input type="hidden" class="form-control" id="dueValue" name="dueValue" value="<?php echo $data[10] ?>"  />
-				    </div>
-				  </div> <!--/form-group-->		
-				  <div class="form-group">
-				    <label for="clientContact" class="col-sm-3 control-label">Payment Type</label>
-				    <div class="col-sm-9">
-				      <select class="form-control" name="paymentType" id="paymentType" >
-				      	<option value="">~~SELECT~~</option>
-				      	<option value="1" <?php if($data[11] == 1) {
-				      		echo "selected";
-				      	} ?> >Cheque</option>
-				      	<option value="2" <?php if($data[11] == 2) {
-				      		echo "selected";
-				      	} ?>  >Cash</option>
-				      	<option value="3" <?php if($data[11] == 3) {
-				      		echo "selected";
-				      	} ?> >Credit Card</option>
-				      </select>
-				    </div>
-				  </div> <!--/form-group-->							  
-				  <div class="form-group">
-				    <label for="clientContact" class="col-sm-3 control-label">Payment Status</label>
-				    <div class="col-sm-9">
-				      <select class="form-control" name="paymentStatus" id="paymentStatus">
-				      	<option value="">~~SELECT~~</option>
-				      	<option value="1" <?php if($data[12] == 1) {
-				      		echo "selected";
-				      	} ?>  >Full Payment</option>
-				      	<option value="2" <?php if($data[12] == 2) {
-				      		echo "selected";
-				      	} ?> >Advance Payment</option>
-				      	<option value="3" <?php if($data[10] == 3) {
-				      		echo "selected";
-				      	} ?> >No Payment</option>
-				      </select>
-				    </div>
-				  </div> <!--/form-group-->	
-			  </div> <!--/col-md-6-->
+			  </table><!--/form-group-->			  		  
 
 
 			  <div class="form-group editButtonFooter">

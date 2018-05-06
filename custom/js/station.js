@@ -23,7 +23,7 @@ $(document).ready(function() {
 		var telephone = $("#telephone").val();
 
 		if(stationName == "") {
-			$("#stationName").after('<p class="text-danger">Station Name field is required</p>');
+			$("#stationName").after('<p class="text-danger">Station field is required</p>');
 			$('#stationName').closest('.form-group').addClass('has-error');
 		} else {
 			// remov error text field

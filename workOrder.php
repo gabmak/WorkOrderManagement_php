@@ -64,28 +64,44 @@ if($_GET['o'] == 'add') {
   		<form class="form-horizontal" method="POST" action="php_action/createWorkOrder.php" id="createOrderForm">
 
 			  <div class="form-group">
-			    <label for="orderDate" class="col-sm-2 control-label">Receive Date</label>
+			    <label for="orderDate" class="col-sm-2 control-label">Receive Date:</label>
 			    <div class="col-sm-10">
 			      <input type="datetime-local" class="form-control" id="orderDate" name="orderDate" autocomplete="off" />
 			    </div>
 			  </div> <!--/form-group-->
 			  <div class="form-group">
-			    <label for="workOrderNo" class="col-sm-2 control-label">Work Order Number</label>
+			    <label for="workOrderNo" class="col-sm-2 control-label">Work Order Number:</label>
 			    <div class="col-sm-10">
 			      <input type="text" class="form-control" id="workOrderNo" name="workOrderNo" placeholder="#WO" autocomplete="off"/>
 			    </div>
 			  </div> <!--/form-group-->
 			
+			<div class="form-group">
+	        	<label for="workOrderNo" class="col-sm-2 control-label">Priority: </label>
+				    <div class="col-sm-10">
+				      <select class="form-control" id="priority" name="priority">
+				      	<option value="">~~SELECT~~</option>
+				      	<option value="5">5- HSSE</option>
+						<option value="4">4- Critical</option>
+						<option value="3">3- Serious</option>
+						<option value="2">2- Significant</option>
+						<option value="1">1- Minor</option>
+						<option value="0">0- CEI</option>
+				      </select>
+				    </div>
+	        </div> <!-- /form-group-->
+			
 			  <div class="form-group">
-			    <label for="describtion" class="col-sm-2 control-label">Work describtion</label>
+			    <label for="description" class="col-sm-2 control-label">Work description:</label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" id="describtion" name="describtion" placeholder="Work describtion" autocomplete="off"/>
+			      <input type="text" class="form-control" id="description" name="description" placeholder="Work describtion" autocomplete="off"/>
 			    </div>
 			  </div> <!--/form-group-->
+			
 			<div class="form-group">
-			    <label for="station" class="col-sm-2 control-label">Station</label>
+			    <label for="station" class="col-sm-2 control-label">Station:</label>
 			    <div class="col-sm-10">
-			      <select class="form-control" name="stationName" id="stationName" onchange="getStationData" >
+			      <select class="form-control" name="station" id="station" onchange="getStationData" >
 			  						<option value="">~~SELECT~~</option>
 			  						<?php
 			  							$stationSql = "SELECT * FROM station WHERE visible = 1 AND status = 1 ";
@@ -101,7 +117,7 @@ if($_GET['o'] == 'add') {
 			  </div> <!--/form-group-->
 			
 			  <div class="form-group">
-			    <label for="station" class="col-sm-2 control-label">Job type</label>
+			    <label for="workType" class="col-sm-2 control-label">Job type:</label>
 			    <div class="col-sm-10">
 			      <select class="form-control" name="workType" id="workType" onchange="getWorkTypeData" >
 			  						<option value="">~~SELECT~~</option>
@@ -416,7 +432,7 @@ if($_GET['o'] == 'add') {
 			    </div>
 			  </div>
 			</form>
-
+ 
 			<?php
 		} // /get order else  ?>
 

@@ -22,7 +22,7 @@ $(document).ready(function() {
 			var orderDate = $("#orderDate").val();
 			var workOrderNo = $("#workOrderNo").val();
 			var station = $("#station").val();
-			var describtion = $("#describtion").val();
+			var description = $("#description").val();
 			var priority = $("#priority").val();
 			var workType = $("#workType").val();
 				
@@ -49,11 +49,11 @@ $(document).ready(function() {
 				$('#station').closest('.form-group').addClass('has-success');
 			} // /else
 
-			if(describtion == "") {
-				$("#describtion").after('<p class="text-danger"> Describtion required </p>');
-				$('#describtion').closest('.form-group').addClass('has-error');
+			if(description == "") {
+				$("#description").after('<p class="text-danger"> Description required </p>');
+				$('#description').closest('.form-group').addClass('has-error');
 			} else {
-				$('#describtion').closest('.form-group').addClass('has-success');
+				$('#description').closest('.form-group').addClass('has-success');
 			} // /else
 
 			if(priority == "") {
@@ -72,51 +72,70 @@ $(document).ready(function() {
 
 			
 			// array validation
-			var productName = document.getElementsByName('productName[]');				
-			var validateProduct;
-			for (var x = 0; x < productName.length; x++) {       			
-				var productNameId = productName[x].id;	    	
-		    if(productName[x].value == ''){	    		    	
-		    	$("#"+productNameId+"").after('<p class="text-danger"> Product Name Field is required!! </p>');
-		    	$("#"+productNameId+"").closest('.form-group').addClass('has-error');	    		    	    	
+			var workerName = document.getElementsByName('workerName[]');				
+			var validateWorker;
+			for (var x = 0; x < workerName.length; x++) {       			
+				var workerNameId = workerName[x].worker_id;	    	
+		    if(workerName[x].value == ''){	    		    	
+		    	$("#"+workerNameId+"").after('<p class="text-danger"> Name Field is required!! </p>');
+		    	$("#"+workerNameId+"").closest('.form-group').addClass('has-error');	    		    	    	
 	      } else {      	
-		    	$("#"+productNameId+"").closest('.form-group').addClass('has-success');	    		    		    	
+		    	$("#"+workerNameId+"").closest('.form-group').addClass('has-success');	    		    		    	
 	      }          
 	   	} // for
 
-	   	for (var x = 0; x < productName.length; x++) {       						
-		    if(productName[x].value){	    		    		    	
-		    	validateProduct = true;
+	   	for (var x = 0; x < workerName.length; x++) {       						
+		    if(workerName[x].value){	    		    		    	
+		    	validateWorker = true;
 	      } else {      	
-		    	validateProduct = false;
+		    	validateWorker = false;
 	      }          
 	   	} // for       		   	
 	   	
-	   	var quantity = document.getElementsByName('quantity[]');		   	
-	   	var validateQuantity;
-	   	for (var x = 0; x < quantity.length; x++) {       
-	 			var quantityId = quantity[x].id;
-		    if(quantity[x].value == ''){	    	
-		    	$("#"+quantityId+"").after('<p class="text-danger"> Product Name Field is required!! </p>');
-		    	$("#"+quantityId+"").closest('.form-group').addClass('has-error');	    		    		    	
+	   	var cbrePassport = document.getElementsByName('cbrePassport[]');		   	
+	   	var validateCbrePassport;
+	   	for (var x = 0; x < cbrePassport.length; x++) {       
+	 			var cbrePassportId = cbrePassport[x].worker_id;
+		    if(cbrePassport[x].value == ''){	    	
+		    	$("#"+cbrePassportId+"").after('<p class="text-danger"> Name Field is required!! </p>');
+		    	$("#"+cbrePassportId+"").closest('.form-group').addClass('has-error');	    		    		    	
 	      } else {      	
-		    	$("#"+quantityId+"").closest('.form-group').addClass('has-success');	    		    		    		    	
+		    	$("#"+cbrePassportId+"").closest('.form-group').addClass('has-success');	    		    		    		    	
 	      } 
 	   	}  // for
 
-	   	for (var x = 0; x < quantity.length; x++) {       						
-		    if(quantity[x].value){	    		    		    	
-		    	validateQuantity = true;
+	   	for (var x = 0; x < cbrePassport.length; x++) {       						
+		    if(cbrePassport[x].value){	    		    		    	
+		    	validateCbrePassport = true;
 	      } else {      	
-		    	validateQuantity = false;
+		    	validateCbrePassport = false;
 	      }          
 	   	} // for       	
 	   	
+		var telephone = document.getElementsByName('telephone[]');		   	
+	   	var validateTelephone;
+	   	for (var x = 0; x < telephone.length; x++) {       
+	 			var telephoneId = telephone[x].worker_id;
+		    if(telephone[x].value == ''){	    	
+		    	$("#"+telephoneId+"").after('<p class="text-danger"> Name Field is required!! </p>');
+		    	$("#"+telephoneId+"").closest('.form-group').addClass('has-error');	    		    		    	
+	      } else {      	
+		    	$("#"+telephoneId+"").closest('.form-group').addClass('has-success');	    		    		    		    	
+	      } 
+	   	}  // for
 
-			if(orderDate && clientName && clientContact && paid && discount && paymentType && paymentStatus) {
-				if(validateProduct == true && validateQuantity == true) {
+	   	for (var x = 0; x < telephone.length; x++) {       						
+		    if(telephone[x].value){	    		    		    	
+		    	validateTelephone = true;
+	      } else {      	
+		    	validateTelephone = false;
+	      }          
+	   	} // for    
+
+			if(orderDate && workOrderNo && station && description && priority && workType) {
+				if(validateCbrePassport == true && validateTelephone == true) {
 					// create order button
-					// $("#createOrderBtn").button('loading');
+					//$("#createOrderBtn").button('loading');
 
 					$.ajax({
 						url : form.attr('action'),
@@ -137,8 +156,8 @@ $(document).ready(function() {
 								$(".success-messages").html('<div class="alert alert-success">'+
 	            	'<button type="button" class="close" data-dismiss="alert">&times;</button>'+
 	            	'<strong><i class="glyphicon glyphicon-ok-sign"></i></strong> '+ response.messages +
-	            	' <br /> <br /> <a type="button" onclick="printOrder('+response.order_id+')" class="btn btn-primary"> <i class="glyphicon glyphicon-print"></i> Print </a>'+
-	            	'<a href="orders.php?o=add" class="btn btn-default" style="margin-left:10px;"> <i class="glyphicon glyphicon-plus-sign"></i> Add New Order </a>'+
+	            	' <br /> <br /> '+
+	            	'<a href="workOrder.php?o=add" class="btn btn-default" style="margin-left:10px;"> <i class="glyphicon glyphicon-plus-sign"></i> Add New Order </a>'+
 	            	
 	   		       '</div>');
 								
@@ -147,7 +166,7 @@ $(document).ready(function() {
 							// disabled te modal footer button
 							$(".submitButtonFooter").addClass('div-hide');
 							// remove the product row
-							$(".removeProductRowBtn").addClass('div-hide');
+							$(".removeWorkerRowBtn").addClass('div-hide');
 								
 							} else {
 								alert(response.messages);								
@@ -261,23 +280,23 @@ $(document).ready(function() {
 	      }          
 	   	} // for       		   	
 	   	
-	   	var quantity = document.getElementsByName('quantity[]');		   	
-	   	var validateQuantity;
-	   	for (var x = 0; x < quantity.length; x++) {       
-	 			var quantityId = quantity[x].id;
-		    if(quantity[x].value == ''){	    	
-		    	$("#"+quantityId+"").after('<p class="text-danger"> Product Name Field is required!! </p>');
-		    	$("#"+quantityId+"").closest('.form-group').addClass('has-error');	    		    		    	
+	   	var cbrePassport = document.getElementsByName('cbrePassport[]');		   	
+	   	var validateCbrePassport;
+	   	for (var x = 0; x < cbrePassport.length; x++) {       
+	 			var cbrePassportId = cbrePassport[x].id;
+		    if(cbrePassport[x].value == ''){	    	
+		    	$("#"+cbrePassportId+"").after('<p class="text-danger"> Name Field is required!! </p>');
+		    	$("#"+cbrePassportId+"").closest('.form-group').addClass('has-error');	    		    		    	
 	      } else {      	
-		    	$("#"+quantityId+"").closest('.form-group').addClass('has-success');	    		    		    		    	
+		    	$("#"+cbrePassportId+"").closest('.form-group').addClass('has-success');	    		    		    		    	
 	      } 
 	   	}  // for
 
-	   	for (var x = 0; x < quantity.length; x++) {       						
-		    if(quantity[x].value){	    		    		    	
-		    	validateQuantity = true;
+	   	for (var x = 0; x < cbrePassport.length; x++) {       						
+		    if(cbrePassport[x].value){	    		    		    	
+		    	validateCbrePassport = true;
 	      } else {      	
-		    	validateQuantity = false;
+		    	validateCbrePassport = false;
 	      }          
 	   	} // for       	
 	   	

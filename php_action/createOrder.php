@@ -6,7 +6,7 @@ $valid['success'] = array('success' => false, 'messages' => array(), 'order_id' 
 // print_r($valid);
 if($_POST) {	
 
-	$orderDate 						= date('Y-m-d', strtotime($_POST['orderDate']));	
+	$orderDate 					= date('Y-m-d', strtotime($_POST['orderDate']));	
   $clientName 					= $_POST['clientName'];
   $clientContact 				= $_POST['clientContact'];
   $subTotalValue 				= $_POST['subTotalValue'];

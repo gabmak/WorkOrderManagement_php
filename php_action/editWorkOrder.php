@@ -23,7 +23,7 @@ if($_POST) {
 	$affectedNozzle     		= $_POST['affectedNozzle'];
 	$status						= $_POST['status'];
 
-	$sql = "UPDATE work_order SET order_date = '$orderDate', workOrderNo = '$workOrderNo', sta_id = '$station', description = '$description', priority = '$priority', startTime = '$startTime', endTime = '$endTime', completeDate = '$completeDate', reason = '$reason', affectedNozzle = '$affectedNozzle',  status = '$status' WHERE work_id = {$workId}";
+	$sql = "UPDATE work_order SET rec_date = '$orderDate', work_order_no = '$workOrderNo', sta_id = '$station', work_description = '$description', priority = '$priority', start_time = '$startTime', end_time = '$endTime', complete_date = '$completeDate', reason = '$reason', affected_nozzle = '$affectedNozzle', type_id = '$workType', status = '$status' WHERE work_id = {$workId}";
 	
 	$connect->query($sql);
 

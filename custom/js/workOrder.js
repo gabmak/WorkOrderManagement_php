@@ -267,9 +267,9 @@ $(document).ready(function() {
 			var workerName = document.getElementsByName('workerName[]');				
 			var validateWorker;
 			for (var x = 0; x < workerName.length; x++) {       			
-				var workerNameId = workerName[x].id;	    	
+				var workerNameId = workerName[x].worker_id;	    	
 		    if(workerName[x].value == ''){	    		    	
-		    	$("#"+workerNameId+"").after('<p class="text-danger"> Worker Field is required!! </p>');
+		    	$("#"+workerNameId+"").after('<p class="text-danger"> Name Field is required!! </p>');
 		    	$("#"+workerNameId+"").closest('.form-group').addClass('has-error');	    		    	    	
 	      } else {      	
 		    	$("#"+workerNameId+"").closest('.form-group').addClass('has-success');	    		    		    	
@@ -282,11 +282,49 @@ $(document).ready(function() {
 	      } else {      	
 		    	validateWorker = false;
 	      }          
-	   	} // for   	
+	   	} // for       		   	
 	   	
+	   	var cbrePassport = document.getElementsByName('cbrePassport[]');		   	
+	   	var validateCbrePassport;
+	   	for (var x = 0; x < cbrePassport.length; x++) {       
+	 			var cbrePassportId = cbrePassport[x].worker_id;
+		    if(cbrePassport[x].value == ''){	    	
+		    	$("#"+cbrePassportId+"").after('<p class="text-danger"> Name Field is required!! </p>');
+		    	$("#"+cbrePassportId+"").closest('.form-group').addClass('has-error');	    		    		    	
+	      } else {      	
+		    	$("#"+cbrePassportId+"").closest('.form-group').addClass('has-success');	    		    		    		    	
+	      } 
+	   	}  // for
 
-			if(orderDate && workOrderNo && priority && description && station && workType && status) {
-				if(validateWorker == true) {
+	   	for (var x = 0; x < cbrePassport.length; x++) {       						
+		    if(cbrePassport[x].value){	    		    		    	
+		    	validateCbrePassport = true;
+	      } else {      	
+		    	validateCbrePassport = false;
+	      }          
+	   	} // for       	
+	   	
+		var telephone = document.getElementsByName('telephone[]');		   	
+	   	var validateTelephone;
+	   	for (var x = 0; x < telephone.length; x++) {       
+	 			var telephoneId = telephone[x].worker_id;
+		    if(telephone[x].value == ''){	    	
+		    	$("#"+telephoneId+"").after('<p class="text-danger"> Name Field is required!! </p>');
+		    	$("#"+telephoneId+"").closest('.form-group').addClass('has-error');	    		    		    	
+	      } else {      	
+		    	$("#"+telephoneId+"").closest('.form-group').addClass('has-success');	    		    		    		    	
+	      } 
+	   	}  // for
+
+	   	for (var x = 0; x < telephone.length; x++) {       						
+		    if(telephone[x].value){	    		    		    	
+		    	validateTelephone = true;
+	      } else {      	
+		    	validateTelephone = false;
+	      }          
+	   	} // for  
+			if(orderDate && workOrderNo && station && description && priority && workType) {
+				if(validateCbrePassport == true && validateTelephone == true) {
 					// create order button
 					// $("#createOrderBtn").button('loading');
 

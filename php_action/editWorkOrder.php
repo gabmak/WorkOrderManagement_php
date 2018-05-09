@@ -19,7 +19,7 @@ if($_POST) {
 	$startTime     				= $_POST['startTime'];
 	$endTime     				= $_POST['endTime'];
 	$completeDate   			= $_POST['completeDate'];
-	$reason     				= $_POST['workType'];
+	$reason     				= $_POST['reason'];
 	$affectedNozzle     		= $_POST['affectedNozzle'];
 	$status						= $_POST['status'];
 

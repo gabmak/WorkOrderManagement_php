@@ -305,7 +305,7 @@ if($_GET['o'] == 'add') {
 			<div class="form-group">
 			    <label for="workType" class="col-sm-2 control-label">Work Type</label>
 			    <div class="col-sm-10">
-			      <select class="form-control" name="station" id="station" onchange="getWorkTypeData()" >
+			      <select class="form-control" name="workType" id="workType" onchange="getWorkTypeData()" >
 			  			<option value="">~~SELECT~~</option>
 			  				<?php
 			  					$workTypeSql = "SELECT * FROM work_type ";

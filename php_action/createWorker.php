@@ -1,15 +1,8 @@
 <?php 	
 
-//require_once 'core.php';
-$localhost = "localhost";
-$username = "root";
-$password = "password";
-$dbname = "floatplane";
+require_once 'core.php';
 
-// db connection
-$connect = new mysqli($localhost, $username, $password, $dbname);
 
-mysqli_query($connect,"SET NAMES 'utf8'");
 
 $valid['success'] = array('success' => false, 'messages' => array());
 

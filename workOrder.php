@@ -77,7 +77,7 @@ if($_GET['o'] == 'add') {
 			  </div> <!--/form-group-->
 			
 			<div class="form-group">
-	        	<label for="workOrderNo" class="col-sm-2 control-label">Priority: </label>
+	        	<label for="priority" class="col-sm-2 control-label">Priority: </label>
 				    <div class="col-sm-10">
 				      <select class="form-control" id="priority" name="priority">
 				      	<option value="">~~SELECT~~</option>

@@ -1,6 +1,7 @@
 <?php 
 require_once 'php_action/db_connect.php'; 
-require_once 'includes/header.php'; 
+require_once 'includes/header.php';
+
 
 if($_GET['o'] == 'add') { 
 // add order
@@ -61,7 +62,7 @@ if($_GET['o'] == 'add') {
 
 			<div class="success-messages"></div> <!--/success-messages-->
 
-  		<form class="form-horizontal" method="POST" action="php_action/createWorkOrder.php" id="createOrderForm">
+  		<form class="form-horizontal" method="POST" novalidate action="php_action/createWorkOrder.php" id="createOrderForm">
 
 			  <div class="form-group">
 			    <label for="orderDate" class="col-sm-2 control-label">Receive Date:</label>
@@ -222,7 +223,7 @@ if($_GET['o'] == 'add') {
 			
 			<div class="success-messages"></div> <!--/success-messages-->
 
-  		<form class="form-horizontal" method="POST" action="php_action/editWorkOrder.php" id="editOrderForm">
+  		<form class="form-horizontal" method="POST" novalidate action="php_action/editWorkOrder.php" id="editOrderForm">
 
   			<?php $work_id = $_GET['i'];
 

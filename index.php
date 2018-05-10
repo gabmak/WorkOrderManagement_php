@@ -4,7 +4,11 @@ require_once 'php_action/db_connect.php';
 session_start();
 
 if(isset($_SESSION['userId'])) {
-	header('location: http://localhost/FYP/dashboard.php');	
+	if ($_SESSION['isAdmin'] == 1){
+		header('location: http://localhost/FYP/dashboard.php');
+	} else
+		header('location: http://localhost/FYP/dashboard1.php');		
+	
 }
 
 $errors = array();
@@ -33,13 +37,20 @@ if($_POST) {
 			$mainResult = $connect->query($mainSql);
 
 			if($mainResult->num_rows == 1) {
-				$value = $mainResult->fetch_assoc();
-				$user_id = $value['login_id'];
-
+				$row = $result->fetch_array();
+				$user_id = $row['login_id'];
+				$accessLevel = $row['access_level'];
+				
 				// set session
 				$_SESSION['userId'] = $user_id;
+				$_SESSION['isAdmin'] = $accessLevel;
+				
+				
+				if ($accessLevel == 1){
+					header('location: http://localhost/FYP/dashboard.php');
+				} else 
+					header('location: http://localhost/FYP/dashboard1.php');
 
-				header('location: http://localhost/FYP/dashboard.php');	
 			} else{
 				
 				$errors[] = "Incorrect username/password combination";
@@ -81,7 +92,7 @@ if($_POST) {
 		<div class="row vertical">
 			<div class="col-md-5 col-md-offset-4">
 				<div class="panel panel-info">
-					<div>Welome to the Work Order Management System<br>Version: Alpha.1</div>
+					<div class="panel-body"><center><h3>Work Order Management System</h3>Version: Alpha.1</center></div>
 					<div class="panel-heading">
 						<h3 class="panel-title">Please Sign in</h3>
 					</div>

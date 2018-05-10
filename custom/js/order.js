@@ -181,6 +181,7 @@ $(document).ready(function() {
 		});		
 					
 	} else if(divRequest == 'editOrd') {
+		$("#orderDate").datepicker();
 
 		// edit order form function
 		$("#editOrderForm").unbind('submit').bind('submit', function() {
@@ -191,18 +192,12 @@ $(document).ready(function() {
 			$('.text-danger').remove();
 				
 			var orderDate = $("#orderDate").val();
-			var workOrderNo = $("#workOrderNo").val();
-			var priority = $("#priority").val();
-			var description = $("#description").val();
-			var station = $("#station").val();
-			var workType = $("#workType").val();
-			var startTime = $("#startTime").val();
-			var endTime = $("#endTime").val();
-			var completeDate = $("#completeDate").val();
-			var reason = $("#reason").val();
-			var affectedNozzle = $("#affectedNozzle").val();
-			var status = $("#status").val();
-			
+			var clientName = $("#clientName").val();
+			var clientContact = $("#clientContact").val();
+			var paid = $("#paid").val();
+			var discount = $("#discount").val();
+			var paymentType = $("#paymentType").val();
+			var paymentStatus = $("#paymentStatus").val();		
 
 			// form validation 
 			if(orderDate == "") {
@@ -212,72 +207,93 @@ $(document).ready(function() {
 				$('#orderDate').closest('.form-group').addClass('has-success');
 			} // /else
 
-			if(workOrderNo == "") {
-				$("#workOrderNo").after('<p class="text-danger"> #WO field is required </p>');
-				$('#workOrderNo').closest('.form-group').addClass('has-error');
+			if(clientName == "") {
+				$("#clientName").after('<p class="text-danger"> The Client Name field is required </p>');
+				$('#clientName').closest('.form-group').addClass('has-error');
 			} else {
-				$('#workOrderNo').closest('.form-group').addClass('has-success');
+				$('#clientName').closest('.form-group').addClass('has-success');
 			} // /else
 
-			if(priority == "") {
-				$("#priority").after('<p class="text-danger"> Priority is required </p>');
-				$('#priority').closest('.form-group').addClass('has-error');
+			if(clientContact == "") {
+				$("#clientContact").after('<p class="text-danger"> The Contact field is required </p>');
+				$('#clientContact').closest('.form-group').addClass('has-error');
 			} else {
-				$('#priority').closest('.form-group').addClass('has-success');
+				$('#clientContact').closest('.form-group').addClass('has-success');
 			} // /else
 
-			if(description == "") {
-				$("#description").after('<p class="text-danger"> Description is required </p>');
-				$('#description').closest('.form-group').addClass('has-error');
+			if(paid == "") {
+				$("#paid").after('<p class="text-danger"> The Paid field is required </p>');
+				$('#paid').closest('.form-group').addClass('has-error');
 			} else {
-				$('#description').closest('.form-group').addClass('has-success');
+				$('#paid').closest('.form-group').addClass('has-success');
 			} // /else
 
-			if(station == "") {
-				$("#station").after('<p class="text-danger"> Station is required </p>');
-				$('#station').closest('.form-group').addClass('has-error');
+			if(discount == "") {
+				$("#discount").after('<p class="text-danger"> The Discount field is required </p>');
+				$('#discount').closest('.form-group').addClass('has-error');
 			} else {
-				$('#station').closest('.form-group').addClass('has-success');
+				$('#discount').closest('.form-group').addClass('has-success');
 			} // /else
 
-			if(workType == "") {
-				$("#workType").after('<p class="text-danger"> Work type is required </p>');
-				$('#workType').closest('.form-group').addClass('has-error');
+			if(paymentType == "") {
+				$("#paymentType").after('<p class="text-danger"> The Payment Type field is required </p>');
+				$('#paymentType').closest('.form-group').addClass('has-error');
 			} else {
-				$('#workType').closest('.form-group').addClass('has-success');
+				$('#paymentType').closest('.form-group').addClass('has-success');
 			} // /else
-			
-			if(status == "") {
-				$("#status").after('<p class="text-danger"> Status is required </p>');
-				$('#status').closest('.form-group').addClass('has-error');
+
+			if(paymentStatus == "") {
+				$("#paymentStatus").after('<p class="text-danger"> The Payment Status field is required </p>');
+				$('#paymentStatus').closest('.form-group').addClass('has-error');
 			} else {
-				$('#status').closest('.form-group').addClass('has-success');
+				$('#paymentStatus').closest('.form-group').addClass('has-success');
 			} // /else
+
 
 			// array validation
-			var workerName = document.getElementsByName('workerName[]');				
-			var validateWorker;
-			for (var x = 0; x < workerName.length; x++) {       			
-				var workerNameId = workerName[x].id;	    	
-		    if(workerName[x].value == ''){	    		    	
-		    	$("#"+workerNameId+"").after('<p class="text-danger"> Worker Field is required!! </p>');
-		    	$("#"+workerNameId+"").closest('.form-group').addClass('has-error');	    		    	    	
+			var productName = document.getElementsByName('productName[]');				
+			var validateProduct;
+			for (var x = 0; x < productName.length; x++) {       			
+				var productNameId = productName[x].id;	    	
+		    if(productName[x].value == ''){	    		    	
+		    	$("#"+productNameId+"").after('<p class="text-danger"> Product Name Field is required!! </p>');
+		    	$("#"+productNameId+"").closest('.form-group').addClass('has-error');	    		    	    	
 	      } else {      	
-		    	$("#"+workerNameId+"").closest('.form-group').addClass('has-success');	    		    		    	
+		    	$("#"+productNameId+"").closest('.form-group').addClass('has-success');	    		    		    	
 	      }          
 	   	} // for
 
-	   	for (var x = 0; x < workerName.length; x++) {       						
-		    if(workerName[x].value){	    		    		    	
-		    	validateWorker = true;
+	   	for (var x = 0; x < productName.length; x++) {       						
+		    if(productName[x].value){	    		    		    	
+		    	validateProduct = true;
 	      } else {      	
-		    	validateWorker = false;
+		    	validateProduct = false;
 	      }          
-	   	} // for   	
+	   	} // for       		   	
+	   	
+	   	var quantity = document.getElementsByName('quantity[]');		   	
+	   	var validateQuantity;
+	   	for (var x = 0; x < quantity.length; x++) {       
+	 			var quantityId = quantity[x].id;
+		    if(quantity[x].value == ''){	    	
+		    	$("#"+quantityId+"").after('<p class="text-danger"> Product Name Field is required!! </p>');
+		    	$("#"+quantityId+"").closest('.form-group').addClass('has-error');	    		    		    	
+	      } else {      	
+		    	$("#"+quantityId+"").closest('.form-group').addClass('has-success');	    		    		    		    	
+	      } 
+	   	}  // for
+
+	   	for (var x = 0; x < quantity.length; x++) {       						
+		    if(quantity[x].value){	    		    		    	
+		    	validateQuantity = true;
+	      } else {      	
+		    	validateQuantity = false;
+	      }          
+	   	} // for       	
 	   	
 
-			if(orderDate && workOrderNo && priority && description && station && workType && status) {
-				if(validateWorker == true) {
+			if(orderDate && clientName && clientContact && paid && discount && paymentType && paymentStatus) {
+				if(validateProduct == true && validateQuantity == true) {
 					// create order button
 					// $("#createOrderBtn").button('loading');
 
@@ -445,7 +461,21 @@ function getProductData(row = null) {
 			$("#quantity"+row).val("");						
 			$("#total"+row).val("");
 
-			
+			// remove check if product name is selected
+			// var tableProductLength = $("#productTable tbody tr").length;			
+			// for(x = 0; x < tableProductLength; x++) {
+			// 	var tr = $("#productTable tbody tr")[x];
+			// 	var count = $(tr).attr('id');
+			// 	count = count.substring(3);
+
+			// 	var productValue = $("#productName"+row).val()
+
+			// 	if($("#productName"+count).val() == "") {					
+			// 		$("#productName"+count).find("#changeProduct"+productId).removeClass('div-hide');	
+			// 		console.log("#changeProduct"+count);
+			// 	}											
+			// } // /for
+
 		} else {
 			$.ajax({
 				url: 'php_action/fetchSelectedProduct.php',

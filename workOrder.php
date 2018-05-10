@@ -226,7 +226,7 @@ if($_GET['o'] == 'add') {
 
   			<?php $work_id = $_GET['i'];
 
-  			$sql = "SELECT work_id, rec_date, work_order_no, sta_id, work_description, start_time, end_time, complete_date, reason, priority, affected_nozzle, status FROM work_order WHERE status !=0 AND work_id = {$work_id}";
+  			$sql = "SELECT work_id, rec_date, work_order_no, sta_id, work_description, start_time, end_time, complete_date, reason, priority, affected_nozzle, type_id, status FROM work_order WHERE status !=0 AND work_id = {$work_id}";
 
 				$result = $connect->query($sql);
 				$data = $result->fetch_row();				
@@ -434,13 +434,13 @@ if($_GET['o'] == 'add') {
 				    <div class="col-sm-10">
 				      <select class="form-control" name="status" id="status" >
 				      	<option value="">~~SELECT~~</option>
-				      	<option value="1" <?php if($data[11] == 1) {
+				      	<option value="1" <?php if($data[12] == 1) {
 				      		echo "selected";
 				      	} ?> >Pending</option>
-				      	<option value="2" <?php if($data[11] == 2) {
+				      	<option value="2" <?php if($data[12] == 2) {
 				      		echo "selected";
 				      	} ?>  >On-going</option>
-				      	<option value="3" <?php if($data[11] == 3) {
+				      	<option value="3" <?php if($data[12] == 3) {
 				      		echo "selected";
 				      	} ?> >Done</option>
 				      </select>

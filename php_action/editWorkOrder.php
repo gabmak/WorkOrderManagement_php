@@ -9,8 +9,8 @@ $valid['success'] = array('success' => false, 'messages' => array());
 // print_r($valid);
 if($_POST) {
 	
-	$workId 					= $_POST['workId'];
-	$orderDate 					= date('Y-m-d H:i:s', strtotime($_POST['orderDate']));	
+	$workId 					= $_POST['work_id'];
+	$orderDate 					= date('Y-m-d H:i:s', strtotime($_POST['orderDate']));
 	$workOrderNo 				= $_POST['workOrderNo'];
 	$station 					= $_POST['station'];
 	$description 				= $_POST['description'];
@@ -22,11 +22,22 @@ if($_POST) {
 	$reason     				= $_POST['reason'];
 	$affectedNozzle     		= $_POST['affectedNozzle'];
 	$status						= $_POST['status'];
+	
 
-	$sql = "UPDATE work_order SET rec_date = '$orderDate', work_order_no = '$workOrderNo', sta_id = '$station', work_description = '$description', priority = '$priority', start_time = '$startTime', end_time = '$endTime', complete_date = '$completeDate', reason = '$reason', affected_nozzle = '$affectedNozzle', type_id = '$workType', status = '$status' WHERE work_id = {$workId}";
+	
+
+	$sql = "UPDATE work_order SET rec_date = '$orderDate', work_order_no = '$workOrderNo', sta_id = '$station', work_description = '$description', priority = '$priority', type_id = '$workType', status = '$status' WHERE work_id = {$workId}";
 	
 	$connect->query($sql);
-
+	
+	if ($startTime && $endTime){
+		$workDoneSql = "UPDATE work_order SET start_time = '$startTime', end_time = '$endTime', complete_date = '$completeDate', reason = '$reason', affected_nozzle = '$affectedNozzle' WHERE work_id = {$workId}";
+		$connect->query($workDoneSql);
+		
+	} else if ($startTime){
+		$startSql = "UPDATE work_order SET start_time = '$startTime'WHERE work_id = {$workId}";
+		$connect->query($startSql);
+	}	
 
 	// remove the order item data from order item table
 	for($x = 0; $x < count($_POST['workerName']); $x++) {			

@@ -55,9 +55,9 @@
 
       	<li id="navDashboard"><a href="index.php"><i class="glyphicon glyphicon glyphicon-dashboard"></i> Worker Dashboard</a></li>        
         
-        <li id="navBrand"><a href="Station.php"><i class="glyphicon glyphicon glyphicon-list-alt"></i>  Station</a></li>        
+        <li id="navStation"><a href="Station.php"><i class="glyphicon glyphicon glyphicon-list-alt"></i>  Station</a></li>        
 
-        <li id="navCategories"><a href="worker.php"> <i class="glyphicon glyphicon glyphicon-user"></i> Worker</a></li>            
+        <li id="navWorker"><a href="worker.php"> <i class="glyphicon glyphicon glyphicon-user"></i> Worker</a></li>            
 
         <li class="dropdown" id="navOrder">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="glyphicon glyphicon-inbox"></i> Orders <span class="caret"></span></a>

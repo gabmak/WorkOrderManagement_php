@@ -4,7 +4,7 @@ require_once 'php_action/db_connect.php';
 session_start();
 
 if(isset($_SESSION['userId'])) {
-	if ($_SESSION['isAdmin'] == 1){
+	if ($_SESSION['accessLevel'] == 1){
 		header('location: http://localhost/FYP/dashboard.php');
 	} else
 		header('location: http://localhost/FYP/dashboard1.php');		
@@ -38,12 +38,12 @@ if($_POST) {
 
 			if($mainResult->num_rows == 1) {
 				$row = $result->fetch_array();
-				$user_id = $row['login_id'];
+				$user_id = $row['user_id'];
 				$accessLevel = $row['access_level'];
 				
 				// set session
 				$_SESSION['userId'] = $user_id;
-				$_SESSION['isAdmin'] = $accessLevel;
+				$_SESSION['accessLevel'] = $accessLevel;
 				
 				
 				if ($accessLevel == 1){

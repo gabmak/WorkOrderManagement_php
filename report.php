@@ -1,4 +1,12 @@
-<?php require_once 'includes/header.php'; ?>
+<?php require_once 'php_action/core.php'; ?>
+<?php 
+	$accessLevel = $_SESSION['accessLevel'];
+	if ($accessLevel == 1){
+		require_once 'includes/header.php';
+	} else if ($accessLevel == 0){
+		require_once 'includes/header1.php';
+	}
+?>
 
 <div class="row">
 	<div class="col-md-12">

@@ -1,5 +1,12 @@
-<?php require_once 'includes/header1.php'; ?>
-
+<?php require_once 'php_action/core.php'; ?>
+<?php 
+	$accessLevel = $_SESSION['accessLevel'];
+	if ($accessLevel == 1){
+		require_once 'includes/header.php';
+	} else if ($accessLevel == 0){
+		require_once 'includes/header1.php';
+	}
+?>
 <?php 
 
 $sql = "SELECT * FROM work_order";

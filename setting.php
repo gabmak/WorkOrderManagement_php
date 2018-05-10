@@ -1,10 +1,18 @@
-<?php require_once 'includes/header.php'; ?>
+<?php require_once 'php_action/core.php'; ?>
+<?php 
+	$accessLevel = $_SESSION['accessLevel'];
+	if ($accessLevel == 1){
+		require_once 'includes/header.php';
+	} else if ($accessLevel == 0){
+		require_once 'includes/header1.php';
+	}
+?>
 
 <?php 
 $user_id = $_SESSION['userId'];
-$sql = "SELECT * FROM users WHERE user_id = {$user_id}";
+$sql = "SELECT * FROM login WHERE user_id = {$user_id}";
 $query = $connect->query($sql);
-$result = $query->fetch_assoc();
+$result = $query->fetch_array();
 
 $connect->close();
 ?>

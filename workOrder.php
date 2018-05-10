@@ -1,6 +1,12 @@
 <?php 
-require_once 'php_action/db_connect.php'; 
-require_once 'includes/header.php';
+
+	require_once 'php_action/core.php';
+	$accessLevel = $_SESSION['accessLevel'];
+	if ($accessLevel == 1){
+		require_once 'includes/header.php';
+	} else if ($accessLevel == 0){
+		require_once 'includes/header1.php';
+	}
 
 
 if($_GET['o'] == 'add') { 

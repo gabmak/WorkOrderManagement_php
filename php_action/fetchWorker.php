@@ -1,6 +1,7 @@
 <?php 	
 
 require_once 'core.php';
+$sectionAccessLevel = $_SESSION['accessLevel'];
 
 $sql = "SELECT worker.worker_id, login.login_id, worker.name, worker.telephone, worker.cbre_passport, login.access_level FROM worker, login WHERE worker.worker_id = login.worker_id AND worker.status = 1 AND login.active = 1";
 $result = $connect->query($sql);
@@ -38,16 +39,33 @@ if($result->num_rows > 0) {
 	    <li><a type="button" data-toggle="modal" data-target="#removeMemberModal" onclick="removeWorkers ('.$workerId.')"> <i class="glyphicon glyphicon-trash"></i> Remove</a></li>    
 	  </ul>
 	</div>';
-
- 	$output['data'][] = array( 		
+	
+	$disabledButton= '<!-- Single button -->
+	<div class="btn-group">
+	  <button type="button" class="btn btn-default" disabled >
+	    Action <span class="caret"></span>
+	  </button>';
+	
+	if ($sectionAccessLevel == 1){
+	 $output['data'][] = array( 		
 		$row[2],
 		$row[1],
 		$row[3],
 		$row[4],
  		$activeWorker,
  		$button
- 		); 	
- } // /while 
+ 		); 
+	} else {
+	 $output['data'][] = array( 		
+		$row[2],
+		$row[1],
+		$row[3],
+		$row[4],
+ 		$activeWorker,
+ 		$disabledButton
+		 );
+	}	
+ 	} // /while 
 
 } // if num_rows
 

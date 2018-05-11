@@ -44,12 +44,18 @@ $connect->close();
 
 
 <div class="row">
-	
+	<div>
+		<div class="panel-default">
+		  <div class="panel-body">
+		    <p><h4><center>Welcome back, <?php echo $_SESSION['name']; ?></center></h4></p><br>
+		  </div>
+		</div>
+	</div>
 	<div class="col-md-4">
 		<div class="panel panel-success">
 			<div class="panel-heading">
 				
-				<a href="product.php" style="text-decoration:none;color:black;">
+				<a href="workOrder.php?o=manord" style="text-decoration:none;color:black;">
 					Total Job
 					<span class="badge pull pull-right"><?php echo $countOrders; ?></span>	
 				</a>
@@ -61,8 +67,8 @@ $connect->close();
 		<div class="col-md-4">
 			<div class="panel panel-info">
 			<div class="panel-heading">
-				<a href="orders.php?o=manord" style="text-decoration:none;color:black;">
-					On going jobs
+				<a href="workOrder.php?o=manord" style="text-decoration:none;color:black;">
+					Pending jobs
 					<span class="badge pull pull-right"><?php echo $countOrder; ?></span>
 				</a>
 					
@@ -73,7 +79,7 @@ $connect->close();
 	<div class="col-md-4">
 		<div class="panel panel-danger">
 			<div class="panel-heading">
-				<a href="product.php" style="text-decoration:none;color:black;">
+				<a href="workOrder.php?o=manord" style="text-decoration:none;color:black;">
 					On going E-call
 					<span class="badge pull pull-right"><?php echo $countECall; ?></span>	
 				</a>

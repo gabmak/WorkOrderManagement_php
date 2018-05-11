@@ -26,7 +26,7 @@
 				<div class="remove-messages"></div>
 
 				<div class="div-action pull pull-right" style="padding-bottom:20px;">
-					<button class="btn btn-default button1" data-toggle="modal" data-target="#addStationModel"> <i class="glyphicon glyphicon-plus-sign"></i> Add Station </button>
+					<button class="btn btn-default button1" data-toggle="modal" data-target="#addStationModel" <?php if ($accessLevel == 0 ){ ?> disabled <?php }  ?> > <i class="glyphicon glyphicon-plus-sign"></i> Add Station </button>
 				</div> <!-- /div-action -->				
 				
 				<table class="table" id="manageStationTable">

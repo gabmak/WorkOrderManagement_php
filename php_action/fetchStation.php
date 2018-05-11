@@ -1,6 +1,7 @@
 <?php 	
 
 require_once 'core.php';
+$sectionAccessLevel = $_SESSION['accessLevel'];
 
 $sql = "SELECT sta_id, sta_name, address, telephone, status FROM station WHERE visible = 1";
 $result = $connect->query($sql);
@@ -26,7 +27,7 @@ if($result->num_rows > 0) {
 
  	$button = '<!-- Single button -->
 	<div class="btn-group">
-	  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
 	    Action <span class="caret"></span>
 	  </button>
 	  <ul class="dropdown-menu">
@@ -34,14 +35,30 @@ if($result->num_rows > 0) {
 	    <li><a type="button" data-toggle="modal" data-target="#removeMemberModal" onclick="removeStations ('.$stationId.')"> <i class="glyphicon glyphicon-trash"></i> Remove</a></li>    
 	  </ul>
 	</div>';
-
- 	$output['data'][] = array( 		
+	$disabledButton= '<!-- Single button -->
+	<div class="btn-group">
+	  <button type="button" class="btn btn-default" disabled >
+	    Action <span class="caret"></span>
+	  </button>';
+	 
+	if ($sectionAccessLevel == 1){
+		$output['data'][] = array( 		
 		$row[1],
 		$row[2],
 		$row[3],
  		$activeStation,
  		$button
- 		); 	
+ 		); 
+	} else{
+		$output['data'][] = array( 		
+		$row[1],
+		$row[2],
+		$row[3],
+ 		$activeStation,
+ 		$disabledButton
+ 		); 
+	}
+ 		
  } // /while 
 
 } // if num_rows

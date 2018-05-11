@@ -7,6 +7,7 @@
 		require_once 'includes/header1.php';
 	}
 ?>
+
 <?php 
 
 $sql = "SELECT * FROM work_order";
@@ -16,10 +17,10 @@ $countOrders = $query->num_rows;
 $orderSql = "SELECT * FROM work_order WHERE status = 1";
 $orderQuery = $connect->query($orderSql);
 $countOrder = $orderQuery->num_rows;
-
-$totalWorkerSql = "SELECT * FROM login WHERE active = 1";
-$workerQuery = $connect->query($totalWorkerSql);
-$totalWorker = $workerQuery->num_rows;
+$workerId = $_SESSION['workerId'];
+$totalWorksSql = "SELECT * FROM order_for_worker WHERE worker_id = {$workerId}";
+$workQuery = $connect->query($totalWorksSql);
+$totalWorks = $workQuery->num_rows;
 
 
 $lowStockSql = "SELECT * FROM work_order WHERE priority=5 AND status = 1";
@@ -43,12 +44,18 @@ $connect->close();
 
 
 <div class="row">
-	
+	<div>
+		<div class="panel-default">
+		  <div class="panel-body">
+		    <p><h4><center>Welcome back, <?php echo $_SESSION['name']; ?></center></h4></p><br>
+		  </div>
+		</div>
+	</div>
 	<div class="col-md-4">
 		<div class="panel panel-success">
 			<div class="panel-heading">
 				
-				<a href="product.php" style="text-decoration:none;color:black;">
+				<a href="workOrder.php?o=manord" style="text-decoration:none;color:black;">
 					Total Job
 					<span class="badge pull pull-right"><?php echo $countOrders; ?></span>	
 				</a>
@@ -60,8 +67,8 @@ $connect->close();
 		<div class="col-md-4">
 			<div class="panel panel-info">
 			<div class="panel-heading">
-				<a href="orders.php?o=manord" style="text-decoration:none;color:black;">
-					On going jobs
+				<a href="workOrder.php?o=manord" style="text-decoration:none;color:black;">
+					Pending jobs
 					<span class="badge pull pull-right"><?php echo $countOrder; ?></span>
 				</a>
 					
@@ -72,7 +79,7 @@ $connect->close();
 	<div class="col-md-4">
 		<div class="panel panel-danger">
 			<div class="panel-heading">
-				<a href="product.php" style="text-decoration:none;color:black;">
+				<a href="workOrder.php?o=manord" style="text-decoration:none;color:black;">
 					On going E-call
 					<span class="badge pull pull-right"><?php echo $countECall; ?></span>	
 				</a>
@@ -95,15 +102,15 @@ $connect->close();
 
 		<div class="card">
 		  <div class="cardHeader" style="background-color:#245580;">
-		    <h1><?php if($totalWorker) {
-		    	echo $totalWorker;
+		    <h1><?php if($totalWorks) {
+		    	echo $totalWorks;
 		    	} else {
 		    		echo '0';
 		    		} ?></h1>
 		  </div>
 
 		  <div class="cardContainer">
-		    <p>Total active users</p>
+		    <p>Total jobs Contributed</p>
 		  </div>
 		</div> 
 

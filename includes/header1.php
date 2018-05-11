@@ -57,14 +57,8 @@
         
         <li id="navStation"><a href="Station.php"><i class="glyphicon glyphicon glyphicon-list-alt"></i>  Station</a></li>        
 
-        <li id="navWorker"><a href="worker.php"> <i class="glyphicon glyphicon glyphicon-user"></i> Worker</a></li>            
-
-        <li class="dropdown" id="navOrder">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="glyphicon glyphicon-inbox"></i> Orders <span class="caret"></span></a>
-          <ul class="dropdown-menu">            
-            <li id="topNavAddOrder"><a href="workOrder.php?o=add"> <i class="glyphicon glyphicon-plus"></i> Add Orders</a></li>            
-            <li id="topNavManageOrder"><a href="workOrder.php?o=manord"> <i class="glyphicon glyphicon-edit"></i> Manage Orders</a></li>            
-          </ul>
+        <li id="navOrder">
+          <a href="workOrder.php?o=manord"> <i class="glyphicon glyphicon-inbox"></i> Orders</a>
         </li> 
 
         <li id="navReport"><a href="report.php"> <i class="glyphicon glyphicon-check"></i> Report </a></li>

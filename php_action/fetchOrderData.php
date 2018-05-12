@@ -6,7 +6,6 @@ require_once 'db_connect.php';
 $workId = $_POST['work_id'];
 
 
-
 $sql = "SELECT work_id, rec_date, work_order_no, sta_id, work_description, start_time, end_time, complete_date, reason, priority, affected_nozzle, status FROM work_order WHERE status !=0 AND work_id = {$workId}";
 
 $result = $connect->query($sql);

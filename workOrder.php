@@ -161,7 +161,7 @@ if($_GET['o'] == 'add') {
 			  					<select class="form-control" name="workerName[]" id="workerName<?php echo $x; ?>" onchange="getWorkerData(<?php echo $x; ?>)" >
 			  						<option value="">~~SELECT~~</option>
 			  						<?php
-			  							$workerSql = "SELECT * FROM worker WHERE status = 1 ";
+			  							$workerSql = "SELECT * FROM worker WHERE status = 1 AND worker_type = 1";
 			  							$workerData = $connect->query($workerSql);
 
 			  							while($row = $workerData->fetch_array()) {									 		
@@ -361,7 +361,7 @@ if($_GET['o'] == 'add') {
 			  					<select class="form-control" name="workerName[]" id="workerName<?php echo $x; ?>" onchange="getWorkerData(<?php echo $x; ?>)" >
 			  						<option value="">~~SELECT~~</option>
 			  						<?php
-			  							$workerSql = "SELECT * FROM worker WHERE status != 2";
+			  							$workerSql = "SELECT * FROM worker WHERE status != 2 AND worker_type = 1";
 			  							$workerData = $connect->query($workerSql);
 
 			  							while($row = $workerData->fetch_array()) {									 		

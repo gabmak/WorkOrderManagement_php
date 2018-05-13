@@ -37,17 +37,7 @@ $connect->close();
 		display: none;
 	}
 	
-	@supports (zoom:1.5) {
-		input[type="radio"],  input[type=checkbox]{
-		zoom: 1.5;
-		}
-	}
-	@supports not (zoom:1.5) {
-		input[type="radio"],  input[type=checkbox]{
-			transform: scale(1.5);
-			margin: 15px;
-		}
-	}
+
 	body {
     	font-size: 15px;
 	}
@@ -105,6 +95,7 @@ $connect->close();
 		</div> <!--/panel-->
 	</div> <!--/col-md-4-->
 	<div class="col-md-12">
+		
 		<div class="panel-body">
 			<div id="success-messages"></div>
 			
@@ -181,13 +172,13 @@ $connect->close();
 		 	<div class="form-group">
 				<label class="col-md-12"><p>Please make sure you are wearing the follwing protecting tools</p></label>
 				<div class="col-xs-6 col-sm-4">
-					<center><label class="container alert alert-warning"><img src="assests/images/helmet.png" width="100" alt=""/>&emsp;<input type="checkbox" id="helmet" name="helmet" value="1"></label></center>
+					<center><label class="container" id="helmetDiv"><img src="assests/images/helmet.png" width="100" alt=""/>&emsp;<input type="checkbox" class="form-control" id="helmet" name="helmet" value="helmet"></label></center>
 				</div>
 				<div class="col-xs-6 col-sm-4">
-					<center><label class="container alert alert-warning"><img src="assests/images/boots.png" width="100" alt=""/>&emsp;<input type="checkbox" id="shose" name="shose" value="1"></label></center>
+					<center><label class="container" id="shoseDiv"><img src="assests/images/boots.png" width="100" alt=""/>&emsp;<input type="checkbox" class="form-control" id="shose" name="shose" value="shose"></label></center>
 				</div>
 				<div class="col-xs-6 col-sm-4">
-					<center><label class="container alert alert-warning"><img src="assests/images/vest.png" width="100" alt=""/>&emsp;<input type="checkbox" id="jecket" name="jecket" value="1"></label></center>
+					<center><label class="container" id="jacketDiv"><img src="assests/images/vest.png" width="100" alt=""/>&emsp;<input type="checkbox" class="form-control" id="jacket" name="jacket" value="jacket"></label></center>
 				</div>
 			 </div> <!--/form-group-->	
 		 	
@@ -208,6 +199,8 @@ $connect->close();
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 <!-- /edit order-->
+
+
 
 
 

@@ -36,6 +36,20 @@ $connect->close();
 	.ui-datepicker-calendar {
 		display: none;
 	}
+	@supports (zoom:1.5) {
+		input[type="radio"],  input[type=checkbox]{
+		zoom: 1.5;
+		}
+	}
+	@supports not (zoom:1.5) {
+		input[type="radio"],  input[type=checkbox]{
+			transform: scale(1.5);
+			margin: 15px;
+		}
+	}
+	body {
+    	font-size: 15px;
+	}
 </style>
 
 <!-- fullCalendar 2.2.5-->
@@ -87,6 +101,26 @@ $connect->close();
 			</div> <!--/panel-hdeaing-->
 		</div> <!--/panel-->
 	</div> <!--/col-md-4-->
+	
+	<div class="col-md-12">
+		<div class="panel-body">
+			<div id="success-messages"></div>
+			
+			<table class="table" id="managePersonOrderTable">
+				<thead>
+					<tr>
+						<th>Record Date</th>
+						<th>#WO</th>
+						<th>Station</th>
+						<th>Description</th>
+						<th>Priority</th>
+						<th>Status</th>
+						<th>Option</th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+	</div>
 
 	<div class="col-md-4">
 		<div class="card">
@@ -129,6 +163,53 @@ $connect->close();
 	
 </div> <!--/row-->
 
+<!-- edit start form -->
+<div class="modal fade" tabindex="-1" role="dialog" id="startOrderModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title"><i class="glyphicon glyphicon-edit"></i> Start Work</h4>
+      </div>      
+
+      <div class="modal-body form-horizontal" style="max-height:500px; overflow:auto;" >
+
+      	<div class="startOrderMessages"></div>	
+		  
+		 	<div class="form-group">
+				<label class="col-md-12"><p>Please make sure you are wearing the follwing protecting tools</p></label>
+				<div class="col-xs-6 col-sm-4">
+					<center><label class="container" id="helmetDiv"><img src="assests/images/helmet.png" width="100" alt=""/>&emsp;<input type="checkbox" id="helmet" name="helmet" value="1"></label></center>
+				</div>
+				<div class="col-xs-6 col-sm-4">
+					<center><label class="container" id="shoseDiv"><img src="assests/images/boots.png" width="100" alt=""/>&emsp;<input type="checkbox" id="shose" name="shose" value="1"></label></center>
+				</div>
+				<div class="col-xs-6 col-sm-4">
+					<center><label class="container" id="jacketDiv"><img src="assests/images/vest.png" width="100" alt=""/>&emsp;<input type="checkbox" id="jacket" name="jacket" value="1"></label></center>
+				</div>
+			 </div> <!--/form-group-->	
+		 	
+			 <div class="form-group">
+				 
+			   <label for="startTime" class="col-sm-3 control-label">Start Time</label>
+			   <div class="col-sm-3">
+			     <input type="time" class="form-control" id="startTime" name="startTime"/>					
+			   </div>
+			 </div> <!--/form-group-->					  				  
+      	        
+      </div> <!--/modal-body-->
+      <div class="modal-footer">
+      	<button type="button" class="btn btn-default" data-dismiss="modal"> <i class="glyphicon glyphicon-remove-sign"></i> Close</button>
+        <button type="button" class="btn btn-primary" id="updateStartOrderBtn" data-loading-text="Loading..."> <i class="glyphicon glyphicon-ok-sign"></i> Save changes</button>	
+      </div>           
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- /edit order-->
+
+
+
+
 <!-- fullCalendar 2.2.5 -->
 <script src="assests/plugins/moment/moment.min.js"></script>
 <script src="assests/plugins/fullcalendar/fullcalendar.min.js"></script>
@@ -159,5 +240,5 @@ $connect->close();
 
     });
 </script>
-
+<script src="custom/js/dashboard1.js"></script>
 <?php require_once 'includes/footer.php'; ?>

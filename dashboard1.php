@@ -66,7 +66,7 @@ $connect->close();
 	<div>
 		<div class="panel-default">
 		  <div class="panel-body">
-		    <p><h4><center>Welcome back, <?php echo $_SESSION['name']; ?></center></h4></p><br>
+		    <h4><center>Welcome back, <?php echo $_SESSION['name']; ?></center></h4>
 		  </div>
 		</div>
 	</div>
@@ -108,7 +108,8 @@ $connect->close();
 		</div> <!--/panel-->
 	</div> <!--/col-md-4-->
 	<div class="col-md-12">
-		
+		<div class="panel panel-default">
+		<div class="panel-heading">On going work orders</div>
 		<div class="panel-body">
 			<div id="success-messages"></div>
 			
@@ -125,6 +126,7 @@ $connect->close();
 					</tr>
 				</thead>
 			</table>
+		</div>
 		</div>
 	</div>
 	<div class="col-md-4">

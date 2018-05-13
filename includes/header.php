@@ -30,7 +30,9 @@
 
   <!-- bootstrap js -->
 	<script src="assests/bootstrap/js/bootstrap.min.js"></script>
-
+  <!-- chart.js -->
+	<script src="assests/chart/chart.min.js"></script>
+	
 </head>
 <body>
 

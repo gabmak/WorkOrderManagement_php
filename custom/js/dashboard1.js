@@ -6,8 +6,200 @@ $(document).ready(function() {
 			'ajax': 'php_action/fetchWorkerOrder.php',
 			'order': []
 		});
-});
+	
+	$.ajax({
+		url: 'php_action/chartCountJobByStation.php',
+			type: 'get',
+			dataType: 'json',
+			success:function(data) {
+				console.log(data);
+				var sta_name = [];
+				var counter = [];
+				
+				for(var i in data) {
+					sta_name.push(data[i].sta_name);
+					counter.push(data[i].counter);
+				}
+				
+				var chartdata = {
+					labels: sta_name,
+					datasets : [
+						{
+							label : 'jobs',
+							backgroundColor: 'rgba(54, 162, 235, 0.2)',
+							borderColor:  'rgba(54, 162, 235, 0.2)',
+							borderWidth: 1,
+							data: counter
+						}]
+					
+					
+				};
+			var ctx = $("#chartForCountStation");
+			var orverRideOption = {
+					scales : {
+						yAxes: [{ticks: {beginAtZero: true}}]
+					}
+				}
+				
+			var barGraph = new Chart(ctx, {
+				type: 'bar',
+				data: chartdata,
+				options: orverRideOption
+			});
+		},
+		error: function(data) {
+			console.log(data);
+		}
+	});
+	
+	$.ajax({
+		url: 'php_action/chartCountJobByWorkType.php',
+			type: 'get',
+			dataType: 'json',
+			success:function(data) {
+				console.log(data);
+				var type = [];
+				var counter = [];
+				
+				for(var i in data) {
+					type.push(data[i].type);
+					counter.push(data[i].counter);
+				}
+				
+				var chartdata = {
+					labels: type,
+					datasets : [
+						{
+							label : 'work type',
+							backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360"],
+                			hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870", "#A8B3C5", "#616774"],
+							data: counter
+						}]
+					
+					
+				};
+			var ctx = $("#chartForCountWorkTypeMonth");
+			var orverRideOption = {
+					responsive: true
+				};
+				
+			var pieChart = new Chart(ctx, {
+				type: 'doughnut',
+				data: chartdata,
+				options: orverRideOption
+			});
+		},
+		error: function(data) {
+			console.log(data);
+		}
+	});
+	
 
+
+$.ajax({
+		url: 'php_action/chartCountJobByMonth.php',
+			type: 'get',
+			dataType: 'json',
+			success:function(data) {
+				console.log(data);
+				var each_month = [];
+				var counter = [];
+				
+				for (var i in data) {
+					
+						each_month.push(data[i].each_month);
+						counter.push(data[i].counter);
+					
+					
+					
+				}
+				var setMonth = 0;
+				
+//				for (var i =0; i<12; i++){
+//					setMonth = data[i].each_month;
+//					if (setMonth+1 == i){
+//						each_month.push(data[i].each_month);
+//						counter.push(data[i].counter);
+//					} else {
+//						each_month.push(i+1);
+//						counter.push(0);
+//					}
+//				}
+				
+				var chartdata = {
+					labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+					datasets : [
+						{
+							label : 'jobs',
+							backgroundColor: 'rgba(54, 162, 235, 0.2)',
+							borderColor:  'rgba(54, 162, 235, 0.2)',
+							borderWidth: 1,
+							data: counter
+						}]
+					
+					
+				};
+			var ctx = $("#chartForCountMonth");
+			var orverRideOption = {
+					scales : {
+						yAxes: [{ticks: {beginAtZero: true}}]
+					}
+				}
+				
+			var barGraph = new Chart(ctx, {
+				type: 'bar',
+				data: chartdata,
+				options: orverRideOption
+			});
+		},
+		error: function(data) {
+			console.log(data);
+		}
+	});
+
+	$.ajax({
+		url: 'php_action/chartCountJobByWorkTypeMonth.php',
+			type: 'get',
+			dataType: 'json',
+			success:function(data) {
+				console.log(data);
+				var type = [];
+				var counter = [];
+				
+				for(var i in data) {
+					type.push(data[i].type);
+					counter.push(data[i].counter);
+				}
+				
+				var chartdata = {
+					labels: type,
+					datasets : [
+						{
+							label : 'work type',
+							backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360"],
+                			hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870", "#A8B3C5", "#616774"],
+							data: counter
+						}]
+					
+					
+				};
+			var ctx = $("#chartForCountWorkType");
+			var orverRideOption = {
+					responsive: true
+				};
+				
+			var pieChart = new Chart(ctx, {
+				type: 'doughnut',
+				data: chartdata,
+				options: orverRideOption
+			});
+		},
+		error: function(data) {
+			console.log(data);
+		}
+	});
+	
+});
 
 function startOrder(work_id = null) {
 	

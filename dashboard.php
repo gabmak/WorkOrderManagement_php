@@ -6,6 +6,8 @@
 	} else if ($accessLevel == 0){
 		require_once 'includes/header1.php';
 	}
+	$workerType = $_SESSION['workerType']; 
+	
 ?>
 
 <?php 
@@ -61,7 +63,7 @@ $connect->close();
 	<div>
 		<div class="panel-default">
 		  <div class="panel-body">
-		    <p><h4><center>Welcome back, <?php echo $_SESSION['name']; ?></center></h4></p><br>
+		    <h4><center>Welcome back, <?php echo $_SESSION['name']; ?></center></h4>
 		  </div>
 		</div>
 	</div>
@@ -102,7 +104,9 @@ $connect->close();
 		</div> <!--/panel-->
 	</div> <!--/col-md-4-->
 	
-	<div class="col-md-12">
+	<div class="col-lg-13" <?php if ($workerType == 2){ ?>style="display: none"<?php } ?> >
+		<div class="panel panel-default">
+		<div class="panel-heading">On going work orders</div>
 		<div class="panel-body">
 			<div id="success-messages"></div>
 			
@@ -120,6 +124,50 @@ $connect->close();
 				</thead>
 			</table>
 		</div>
+		</div>
+	</div>
+	<h1></h1>
+	
+	<div class="col-lg-13" <?php if ($workerType == 1){ ?>style="display: none"<?php } ?>>
+		<div class="col-md-6">
+		<div class="panel panel-default">
+		<div class="panel-heading">Total jobs per month</div>
+			<div class="panel-body">
+				<canvas id="chartForCountMonth"></canvas>
+			</div>
+			</div>
+		</div>
+		
+		<div class="col-md-6">
+		<div class="panel panel-default">
+		<div class="panel-heading">Total jobs of this month by work type</div>
+			<div class="panel-body">
+				<canvas id="chartForCountWorkTypeMonth"></canvas>
+			</div>
+			</div>
+		</div>
+		<!-- 1. total jobs per month
+			 2. total jobs of the month by work type
+			 -->
+		<div class="col-md-6">
+		<div class="panel panel-default">
+		<div class="panel-heading">Total jobs by stations</div>
+			<div class="panel-body">
+				<canvas id="chartForCountStation"></canvas>
+			</div>
+			</div>
+		</div>
+		
+		<div class="col-md-6">
+		<div class="panel panel-default">
+		<div class="panel-heading">Total jobs by work type</div>
+			<div class="panel-body">
+				<canvas id="chartForCountWorkType"></canvas>
+			</div>
+			</div>
+		</div>
+			 
+		
 	</div>
 
 	<div class="col-md-4">
@@ -179,13 +227,13 @@ $connect->close();
 		 	<div class="form-group">
 				<label class="col-md-12"><p>Please make sure you are wearing the follwing protecting tools</p></label>
 				<div class="col-xs-6 col-sm-4">
-					<center><label class="container" id="helmetDiv"><img src="assests/images/helmet.png" width="100" alt=""/>&emsp;<input type="checkbox" id="helmet" name="helmet" value="1"></label></center>
+					<center><label class="container" id="helmetDiv"><img src="assests/images/helmet.png" width="100" alt=""/>&emsp;<input type="checkbox" id="helmet" name="helmet"></label></center>
 				</div>
 				<div class="col-xs-6 col-sm-4">
-					<center><label class="container" id="shoseDiv"><img src="assests/images/boots.png" width="100" alt=""/>&emsp;<input type="checkbox" id="shose" name="shose" value="1"></label></center>
+					<center><label class="container" id="shoseDiv"><img src="assests/images/boots.png" width="100" alt=""/>&emsp;<input type="checkbox" id="shose" name="shose"></label></center>
 				</div>
 				<div class="col-xs-6 col-sm-4">
-					<center><label class="container" id="jacketDiv"><img src="assests/images/vest.png" width="100" alt=""/>&emsp;<input type="checkbox" id="jacket" name="jacket" value="1"></label></center>
+					<center><label class="container" id="jacketDiv"><img src="assests/images/vest.png" width="100" alt=""/>&emsp;<input type="checkbox" id="jacket" name="jacket"></label></center>
 				</div>
 			 </div> <!--/form-group-->	
 		 	
@@ -236,7 +284,6 @@ $connect->close();
           month: 'month'          
         }        
       });
-
 
     });
 </script>

@@ -42,17 +42,20 @@ if($_POST) {
 				$accessLevel = $row['access_level'];
 				$worker_id = $row['worker_id'];
 				$workerName = "";
-				$nameSql = "SELECT name FROM WORKER WHERE worker_id = {$worker_id}";
+				$workerType = "";
+				$nameSql = "SELECT * FROM WORKER WHERE worker_id = {$worker_id}";
 				$nameResult = $connect->query($nameSql);
 				if ($nameResult->num_rows > 0){
 					$nameRow = $nameResult->fetch_array();
 					$workerName = $nameRow['name'];
+					$workerType = $nameRow['worker_type'];
 				}
 				// set session
 				$_SESSION['userId'] = $user_id;
 				$_SESSION['accessLevel'] = $accessLevel;
 				$_SESSION['workerId'] = $worker_id;
 				$_SESSION['name'] = $workerName;
+				$_SESSION['workerType'] = $workerType;
 				
 				if ($accessLevel == 1){
 					header('location: http://localhost/FYP/dashboard.php');

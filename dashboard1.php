@@ -37,11 +37,24 @@ $connect->close();
 		display: none;
 	}
 	
-
+	<style type="text/css">
+	.ui-datepicker-calendar {
+		display: none;
+	}
+	@supports (zoom:1.5) {
+		input[type="radio"],  input[type=checkbox]{
+		zoom: 1.5;
+		}
+	}
+	@supports not (zoom:1.5) {
+		input[type="radio"],  input[type=checkbox]{
+			transform: scale(1.5);
+			margin: 15px;
+		}
+	}
 	body {
     	font-size: 15px;
 	}
-</style>
 </style>
 
 <!-- fullCalendar 2.2.5-->
@@ -172,13 +185,13 @@ $connect->close();
 		 	<div class="form-group">
 				<label class="col-md-12"><p>Please make sure you are wearing the follwing protecting tools</p></label>
 				<div class="col-xs-6 col-sm-4">
-					<center><label class="container" id="helmetDiv"><img src="assests/images/helmet.png" width="100" alt=""/>&emsp;<input type="checkbox" class="form-control" id="helmet" name="helmet" value="helmet"></label></center>
+					<center><label class="container" id="helmetDiv"><img src="assests/images/helmet.png" width="100" alt=""/>&emsp;<input type="checkbox" id="helmet" name="helmet"></label></center>
 				</div>
 				<div class="col-xs-6 col-sm-4">
-					<center><label class="container" id="shoseDiv"><img src="assests/images/boots.png" width="100" alt=""/>&emsp;<input type="checkbox" class="form-control" id="shose" name="shose" value="shose"></label></center>
+					<center><label class="container" id="shoseDiv"><img src="assests/images/boots.png" width="100" alt=""/>&emsp;<input type="checkbox" id="shose" name="shose"></label></center>
 				</div>
 				<div class="col-xs-6 col-sm-4">
-					<center><label class="container" id="jacketDiv"><img src="assests/images/vest.png" width="100" alt=""/>&emsp;<input type="checkbox" class="form-control" id="jacket" name="jacket" value="jacket"></label></center>
+					<center><label class="container" id="jacketDiv"><img src="assests/images/vest.png" width="100" alt=""/>&emsp;<input type="checkbox" id="jacket" name="jacket"></label></center>
 				</div>
 			 </div> <!--/form-group-->	
 		 	
@@ -199,6 +212,7 @@ $connect->close();
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 <!-- /edit order-->
+
 
 
 

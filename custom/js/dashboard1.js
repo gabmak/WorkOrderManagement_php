@@ -40,10 +40,10 @@ function startOrder(work_id = null) {
 					$('.form-group').removeClass('has-error').removeClass('has-success');
 					
 					var startTime = $("#startTime").val();
-					var helmet = $("#helmet").val();
-					var shose = $("#shose").val();
-					var jacket = $("#jacket").val();
-					var allGreen = 0;
+					var helmet = document.getElementById("helmet");
+					var shose = document.getElementById("shose");
+					var jacket = document.getElementById("jacket");
+					var allGreen = false;
 					
 					if(startTime == "") {
 						$("#startTime").after('<p class="text-danger">Time is required</p>');
@@ -52,19 +52,20 @@ function startOrder(work_id = null) {
 						$("#startTime").closest('.form-group').addClass('has-success');
 					}
 					
-					if (helmet=="helmet" && shose=="shose" && jacket=="jacket"){
-						allGreen =1 ;
+					if (helmet.checked==true && shose.checked==true && jacket.checked==true){
+						allGreen = true ;
 						$(".warningIfStarted").remove();
 					} else {
+						allGreen = false;
 						$(".startOrderMessages").html('<div class="alert alert-danger warningIfStarted">'+
 		            '<button type="button" class="close" data-dismiss="alert">&times;</button>'+
 			            '<strong><i class="glyphicon glyphicon-warning-sign"></i> Make sure you have wear the protection tools!</strong></div>');
-						allGreen = 0;
+						
 					}
 					
 
 					
-					if(startTime && allGreen == 1) {
+					if(startTime && allGreen==true) {
 						$("#updateStartOrderBtn").button('loading');
 						$.ajax({
 							url: 'php_action/startJob.php',

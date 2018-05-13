@@ -100,28 +100,26 @@ $.ajax({
 		url: 'php_action/chartCountJobByMonth.php',
 			type: 'get',
 			dataType: 'json',
-			success:function(data) {
-				console.log(data);
-				var each_month = [];
+			success:function(result) {
+				console.log(result);
+				var eachmonth = [];
 				var counter = [];
 				
-				for (var i in data) {
+				for (var i in result) {
 					
-						each_month.push(data[i].each_month);
-						counter.push(data[i].counter);
-					
-					
-					
+						eachmonth.push(result[i].each_month);
+						counter.push(result[i].counter);
+	
 				}
-				var setMonth = 0;
+
 				
 //				for (var i =0; i<12; i++){
-//					setMonth = data[i].each_month;
-//					if (setMonth+1 == i){
-//						each_month.push(data[i].each_month);
-//						counter.push(data[i].counter);
+//
+//					if (result[i].each_month+1 == i){
+//						eachmonth.push(result[i].each_month);
+//						counter.push(result[i].counter);
 //					} else {
-//						each_month.push(i+1);
+//						eachmonth.push(i+1);
 //						counter.push(0);
 //					}
 //				}

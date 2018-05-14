@@ -100,29 +100,39 @@ $.ajax({
 		url: 'php_action/chartCountJobByMonth.php',
 			type: 'get',
 			dataType: 'json',
-			success:function(result) {
-				console.log(result);
+			success:function(response) {
+				console.log(response);
 				var eachmonth = [];
 				var counter = [];
+				var finalMonth = [];
+				var finalCounter = [];
 				
-				for (var i in result) {
-					
-						eachmonth.push(result[i].each_month);
-						counter.push(result[i].counter);
+				for (var i in response) {	
+					eachmonth[i] = response[i].monthE;
+					counter[i] = response[i].counter;
 	
 				}
+				console.log(eachmonth);
+				console.log(counter);
+				
+				for (i = 0; i<12; i ++){
+						finalCounter[i] = 0;
+					}			
+
+				for (i=0; i<12;i++){
+					for (var j = 1; j<=12; j++){
+						if (j == eachmonth[i]){
+							finalCounter[j-1] = counter[i];
+							break;
+						}		
+					}
+				}
+				
+				console.log(finalMonth);
+				console.log(finalCounter);
 
 				
-//				for (var i =0; i<12; i++){
-//
-//					if (result[i].each_month+1 == i){
-//						eachmonth.push(result[i].each_month);
-//						counter.push(result[i].counter);
-//					} else {
-//						eachmonth.push(i+1);
-//						counter.push(0);
-//					}
-//				}
+
 				
 				var chartdata = {
 					labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
@@ -132,7 +142,7 @@ $.ajax({
 							backgroundColor: 'rgba(54, 162, 235, 0.2)',
 							borderColor:  'rgba(54, 162, 235, 0.2)',
 							borderWidth: 1,
-							data: counter
+							data: finalCounter
 						}]
 					
 					

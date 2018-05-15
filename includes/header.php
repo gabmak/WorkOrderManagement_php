@@ -5,7 +5,7 @@
 <head>
 
 	<title>Work Order Management System</title>
-
+	<link rel="icon" type="image/png" sizes="128x128"  href="http://localhost/FYP/assests/images/smart-icon.png"/>
 	<!-- bootstrap -->
 	<link rel="stylesheet" href="assests/bootstrap/css/bootstrap.min.css">
 	<!-- bootstrap theme-->

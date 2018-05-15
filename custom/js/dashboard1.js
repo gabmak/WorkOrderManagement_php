@@ -39,7 +39,10 @@ $(document).ready(function() {
 					scales : {
 						yAxes: [{ticks: {beginAtZero: true}}],
 						xAxes: [{ticks: {autoSkip: false}}]
-					}
+					},
+					legend: {
+						display: false,
+						},
 					
 				};
 				
@@ -73,16 +76,19 @@ $(document).ready(function() {
 					datasets : [
 						{
 							label : 'work type',
-							backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360"],
-                			hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870", "#A8B3C5", "#616774"],
+							backgroundColor: ["#f9cdac", "#f3aca2", "#ee8b97", "#e96a8d", "#db5087","#b8428c", "#973490","#742796", "#5e1f88","#4d1a70", "#3d1459","#2d0f41"],
 							data: counter
 						}]
 					
 					
 				};
-			var ctx = $("#chartForCountWorkTypeMonth");
+			var ctx = $("#chartForCountWorkType");
 			var orverRideOption = {
-					responsive: true
+					responsive: true,
+					legend: {
+						display: false,
+						},
+						
 				};
 				
 			var pieChart = new Chart(ctx, {
@@ -153,7 +159,10 @@ $.ajax({
 			var orverRideOption = {
 					scales : {
 						yAxes: [{ticks: {beginAtZero: true}}]
-					}
+					},
+					legend: {
+						display: false,
+					},
 				}
 				
 			var barGraph = new Chart(ctx, {
@@ -195,7 +204,10 @@ $.ajax({
 				};
 			var ctx = $("#chartForCountWorkTypeMonth");
 			var orverRideOption = {
-					responsive: true
+					responsive: true,
+					legend: {
+						display: false,
+						},
 				};
 				
 			var pieChart = new Chart(ctx, {

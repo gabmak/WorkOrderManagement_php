@@ -1,4 +1,3 @@
-<link rel="apple-touch-icon" sizes="128x128" href="assests/images/smart-icon.png">
 <?php 
 require_once 'php_action/db_connect.php';
 
@@ -98,51 +97,18 @@ if($_POST) {
 
   <!-- bootstrap js -->
 	<script src="assests/bootstrap/js/bootstrap.min.js"></script>
-	
-	<style>
-		.center-screen {
-				  display: flex;
-				  flex-direction: column;
-				  justify-content: center;
-				  align-items: center;
-				  text-align: center;
-				  min-height: 100vh;
-
-
-		}
-		.button-login{
-			background-color: white; /* Green */
-			border: 2px solid #e9345d;
-			color: back;
-			padding: 16px 32px;
-			text-align: center;
-			text-decoration: none;
-			display: inline-block;
-			font-size: 16px;
-			margin: 4px 2px;
-			-webkit-transition-duration: 0.4s; /* Safari */
-			transition-duration: 0.4s;
-			cursor: pointer;
-		}
-		.button-login:hover {
-			background-color: #e9345d;
-			color: white;
-    		
-		}
-	</style>
-	
 </head>
-<body style="background-image:url(http://localhost/FYP/assests/images/bg-01.jpg);background-size: 100% 100%;">
+<body>
 	<div class="container">
-		<div class="row align-items-center" >
-			<div class="col-md-5 col-md-offset-4 center-screen" >
-				<div style="color: #212527;background-color: #ffffff; border-radius: 2%; padding: 35px; font-family:Poppins-Regular, sans-serif;">
-					<div class="panel-body" >
-				  <br><br><center><img src="assests/images/smart-icon.png"  style="border-radius: 10%"  width="200"  alt=""/></br><h3><br>Work Order Management System</h3>
-				    Version: Alpha.5
-				  </center></div>
-
+		<div class="row vertical">
+			<div class="col-md-5 col-md-offset-4">
+				<div class="panel panel-info">
+					<div class="panel-body"><center><h3>Work Order Management System</h3>Version: Alpha.1</center></div>
+					<div class="panel-heading">
+						<h3 class="panel-title">Please Sign in</h3>
+					</div>
 					<div class="panel-body">
+
 						<div class="messages">
 							<?php if($errors) {
 								foreach ($errors as $key => $value) {
@@ -152,23 +118,24 @@ if($_POST) {
 									}
 								} ?>
 						</div>
+
 						<form class="form-horizontal" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post" id="loginForm">
 							<fieldset>
 							  <div class="form-group">
-								  <div style="display: block"><label for="username" class="control-label"></label></div>
-									<div>
-									  <input type="text" class="form-control glyphicon input-lg" id="username" name="username" placeholder="&#xe008; Username" autocomplete="off" />
+									<label for="username" class="col-sm-2 control-label">Username</label>
+									<div class="col-sm-10">
+									  <input type="text" class="form-control" id="username" name="username" placeholder="Username" autocomplete="off" />
 									</div>
 								</div>
 								<div class="form-group">
-									<div style="display: block"><label for="password" class="control-label"></label></div>
-									<div>
-									  <input type="password" class="form-control glyphicon input-lg" id="password" name="password" placeholder="&#xe033; Password" autocomplete="off" />
+									<label for="password" class="col-sm-2 control-label">Password</label>
+									<div class="col-sm-10">
+									  <input type="password" class="form-control" id="password" name="password" placeholder="Password" autocomplete="off" />
 									</div>
 								</div>								
 								<div class="form-group">
-									<div style="display: block">
-									  <button type="submit" class="button-login btn-lg btn-block"><center></center>Login</button>
+									<div class="col-sm-offset-2 col-sm-10">
+									  <button type="submit" class="btn btn-default"> <i class="glyphicon glyphicon-log-in"></i> Sign in</button>
 									</div>
 								</div>
 							</fieldset>
@@ -176,6 +143,7 @@ if($_POST) {
 					</div>
 					<!-- panel-body -->
 				</div>
+				<!-- /panel -->
 			</div>
 			<!-- /col-md-4 -->
 		</div>

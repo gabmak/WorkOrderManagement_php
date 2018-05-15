@@ -3,7 +3,7 @@
 require_once 'core.php';
 $worker_id = $_SESSION['workerId'];
 
-$sql = "SELECT work_order.work_id, work_order.rec_date, work_order.work_order_no, station.sta_name, work_order.work_description, work_order.priority, work_order.status, order_for_worker.worker_id FROM work_order, station, order_for_worker WHERE work_order.sta_id = station.sta_id AND work_order.status != 0 AND work_order.status != 3 AND station.status !=0 AND work_order.work_id = order_for_worker.work_id AND order_for_worker.worker_id = {$worker_id} ORDER BY work_order.status, work_order.rec_date";
+$sql = "SELECT work_order.work_id, work_order.rec_date, work_order.work_order_no, station.sta_name, work_order.work_description, work_order.priority, work_order.status, order_for_worker.worker_id FROM work_order, station, order_for_worker WHERE work_order.sta_id = station.sta_id AND work_order.status != 0 AND work_order.status != 3 AND station.status !=0 AND work_order.work_id = order_for_worker.work_id AND order_for_worker.worker_id = {$worker_id} ORDER BY work_order.status, work_order.rec_date DESC";
 $result = $connect->query($sql);
 
 

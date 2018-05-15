@@ -101,7 +101,7 @@ if($_GET['o'] == 'add') {
 			  <div class="form-group">
 			    <label for="description" class="col-sm-2 control-label">Work description:</label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" id="description" name="description" placeholder="Work describtion" autocomplete="off"/>
+			      <input type="text" class="form-control" id="description" name="description" placeholder="Work description" autocomplete="off"/>
 			    </div>
 			  </div> <!--/form-group-->
 			
@@ -161,7 +161,7 @@ if($_GET['o'] == 'add') {
 			  					<select class="form-control" name="workerName[]" id="workerName<?php echo $x; ?>" onchange="getWorkerData(<?php echo $x; ?>)" >
 			  						<option value="">~~SELECT~~</option>
 			  						<?php
-			  							$workerSql = "SELECT * FROM worker WHERE status = 1 AND worker_type = 1";
+			  							$workerSql = "SELECT * FROM worker WHERE status = 1 AND worker_type = 1 order by name";
 			  							$workerData = $connect->query($workerSql);
 
 			  							while($row = $workerData->fetch_array()) {									 		
@@ -344,7 +344,7 @@ if($_GET['o'] == 'add') {
 			  	<tbody>
 			  		<?php
 
-			  		$workerJobSql = "SELECT order_for_worker.worker_order_id, order_for_worker.work_id, order_for_worker.worker_id, worker.telephone, worker.cbre_passport FROM order_for_worker, worker WHERE order_for_worker.worker_id = worker.worker_id AND order_for_worker.work_id = {$work_id}";
+			  		$workerJobSql = "SELECT order_for_worker.worker_order_id, order_for_worker.work_id, order_for_worker.worker_id, worker.telephone, worker.cbre_passport FROM order_for_worker, worker WHERE order_for_worker.worker_id = worker.worker_id AND order_for_worker.work_id = {$work_id} order by worker.name";
 						$jobWorkerResult = $connect->query($workerJobSql);
 						// $orderItemData = $orderItemResult->fetch_all();						
 						
@@ -425,7 +425,7 @@ if($_GET['o'] == 'add') {
 			<div class="form-group">
 			    <label for="reason" class="col-sm-2 control-label">Reason</label>
 			    <div class="col-sm-10">
-			      <textarea class="form-control" id="reason" name="reason" placeholder="Service Description" autocomplete="off" value="<?php echo $data[8] ?>" ></textarea>
+			      <textarea class="form-control" id="reason" name="reason" placeholder="Service Description" rows="8" autocomplete="off"><?php echo $data[8] ?></textarea>
 			    </div>
 			</div> <!--/form-group-->
 			

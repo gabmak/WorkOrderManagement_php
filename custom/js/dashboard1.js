@@ -37,9 +37,11 @@ $(document).ready(function() {
 			var ctx = $("#chartForCountStation");
 			var orverRideOption = {
 					scales : {
-						yAxes: [{ticks: {beginAtZero: true}}]
+						yAxes: [{ticks: {beginAtZero: true}}],
+						xAxes: [{ticks: {autoSkip: false}}]
 					}
-				}
+					
+				};
 				
 			var barGraph = new Chart(ctx, {
 				type: 'bar',
@@ -191,7 +193,7 @@ $.ajax({
 					
 					
 				};
-			var ctx = $("#chartForCountWorkType");
+			var ctx = $("#chartForCountWorkTypeMonth");
 			var orverRideOption = {
 					responsive: true
 				};

@@ -8,6 +8,6 @@ session_unset();
 // destroy the session 
 session_destroy(); 
 
-header('location: http://localhost/FYP/index.php');
+header('location: https://localhost/FYP/index.php');
 
 ?>

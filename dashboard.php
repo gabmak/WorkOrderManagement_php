@@ -60,13 +60,11 @@ $connect->close();
 
 
 <div class="row">
-	<div>
-		<div class="panel-default">
+
 		  <div class="panel-body">
 		    <h4><center>Welcome back, <?php echo $_SESSION['name']; ?></center></h4>
 		  </div>
-		</div>
-	</div>
+
 	<div class="col-md-4">
 		<div class="panel panel-success">
 			<div class="panel-heading">
@@ -104,7 +102,7 @@ $connect->close();
 		</div> <!--/panel-->
 	</div> <!--/col-md-4-->
 	
-	<div class="col-lg-13" <?php if ($workerType == 2){ ?>style="display: none"<?php } ?> >
+	<div class="col-lg-13" <?php if ($workerType == 2){ ?>style="display: none"><?php }?>
 		<div class="panel panel-default">
 		<div class="panel-heading">On going work orders</div>
 		<div class="panel-body">
@@ -126,7 +124,7 @@ $connect->close();
 		</div>
 		</div>
 	</div>
-	<h1></h1>
+	
 	
 	<div class="col-lg-13" <?php if ($workerType == 1){ ?>style="display: none"<?php } ?>>
 		<div class="col-md-6">

@@ -7,7 +7,7 @@ require_once 'db_connect.php';
 // echo $_SESSION['userId'];
 
 if(!$_SESSION['userId']) {
-	header('location: http://localhost/FYP/index.php');
+	header('location: https://localhost/FYP/index.php');
 	
 } 
 

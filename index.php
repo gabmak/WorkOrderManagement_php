@@ -6,9 +6,9 @@ session_start();
 
 if(isset($_SESSION['userId'])) {
 	if ($_SESSION['accessLevel'] == 1){
-		header('location: http://localhost/FYP/dashboard.php');
+		header('location: https://localhost/FYP/dashboard.php');
 	} else
-		header('location: http://localhost/FYP/dashboard1.php');		
+		header('location: https://localhost/FYP/dashboard1.php');		
 	
 }
 
@@ -59,9 +59,9 @@ if($_POST) {
 				$_SESSION['workerType'] = $workerType;
 				
 				if ($accessLevel == 1){
-					header('location: http://localhost/FYP/dashboard.php');
+					header('location: https://localhost/FYP/dashboard.php');
 				} else 
-					header('location: http://localhost/FYP/dashboard1.php');
+					header('location: https://localhost/FYP/dashboard1.php');
 
 			} else{
 				
@@ -132,7 +132,7 @@ if($_POST) {
 	</style>
 	
 </head>
-<body style="background-image:url(http://localhost/FYP/assests/images/bg-01.jpg);background-size: 100% 100%;">
+<body style="background-image:url(https://localhost/FYP/assests/images/bg-01.jpg);background-size: 100% 100%;">
 	<div class="container">
 		<div class="row align-items-center" >
 			<div class="col-md-5 col-md-offset-4 center-screen" >

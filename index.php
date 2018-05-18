@@ -1,4 +1,5 @@
-<link rel="apple-touch-icon" sizes="128x128" href="assests/images/smart-icon.png">
+<link rel="apple-touch-icon" sizes="167x167" href="http://i.imgur.com/ONSrjLm.png">
+<link rel="icon" type="image/png" sizes="128x128"  href="https://i.imgur.com/ONSrjLm.png"/>
 <?php 
 require_once 'php_action/db_connect.php';
 

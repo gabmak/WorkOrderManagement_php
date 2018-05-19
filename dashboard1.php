@@ -203,7 +203,19 @@ $connect->close();
 			   <div class="col-sm-3">
 			     <input type="time" class="form-control" id="startTime" name="startTime"/>					
 			   </div>
-			 </div> <!--/form-group-->					  				  
+			 </div> <!--/form-group-->
+		  	<div class="form-group">
+			    <label for="work_description" class="col-sm-2 control-label">Work description:</label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control" id="work_description" name="work_description" placeholder="Work description" disabled=true autocomplete="off"/>
+			    </div>
+			  </div> <!--/form-group-->
+		    <div class="form-group">
+			    <label for="reason" class="col-sm-2 control-label">Reason:</label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control" id="reason" name="reason" placeholder="reason" disabled=true autocomplete="off"/>
+			    </div>
+			  </div> <!--/form-group-->
       	        
       </div> <!--/modal-body-->
       <div class="modal-footer">

@@ -102,9 +102,7 @@ $(document).ready(function() {
 		}
 	});
 	
-
-
-$.ajax({
+	$.ajax({
 		url: 'php_action/chartCountJobByMonth.php',
 			type: 'get',
 			dataType: 'json',
@@ -244,6 +242,12 @@ function startOrder(work_id = null) {
 					$(".warningIfStarted").remove();
 					document.getElementById("updateStartOrderBtn").disabled = false;
 				}
+				var reason = response.reason;
+				console.log(reason);
+				document.getElementById("reason").value = reason;
+				var work_description = response.work_description;
+				console.log(work_description);
+				document.getElementById("work_description").value = work_description;
 				
 				// update status
 				$("#updateStartOrderBtn").unbind('click').bind('click', function() {

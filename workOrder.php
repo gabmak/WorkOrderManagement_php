@@ -140,6 +140,13 @@ if($_GET['o'] == 'add') {
 		  						</select>
 			    </div>
 			  </div> <!--/form-group-->
+			
+			  <div class="form-group">
+			    <label for="reason" class="col-sm-2 control-label">Work description:</label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control" id="reason" name="reason" placeholder="reason" value="站報" autocomplete="off"/>
+			    </div>
+			  </div> <!--/form-group-->
 
 			  <table class="table" id="workerTable">
 			  	<thead>

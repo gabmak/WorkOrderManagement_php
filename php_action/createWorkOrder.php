@@ -14,8 +14,9 @@ if($_POST) {
 	$description 				= $_POST['description'];
 	$priority 					= $_POST['priority'];
 	$workType					= $_POST['workType'];
+	$reason						= $_POST['reason'];
 	
-	$sql = "INSERT INTO work_order (rec_date, work_order_no, sta_id, work_description, priority, type_id, status) VALUES ('$orderDate', '$workOrderNo', '$station', '$description', '$priority', '$workType', 1)";
+	$sql = "INSERT INTO work_order (rec_date, work_order_no, sta_id, work_description, priority, type_id, reason, status) VALUES ('$orderDate', '$workOrderNo', '$station', '$description', '$priority', '$workType', '$reason', 1)";
 	
 	
 	$work_id;

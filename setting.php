@@ -42,7 +42,7 @@ $connect->close();
 						<div class="form-group">
 					    <label for="username" class="col-sm-2 control-label">Username</label>
 					    <div class="col-sm-10">
-					      <input type="text" class="form-control" id="username" name="username" placeholder="Usename" value="<?php echo $result['username']; ?>"/>
+					      <input type="text" class="form-control" id="username" name="username" placeholder="Usename" value="<?php echo $result['login_id']; ?>"/>
 					    </div>
 					  </div>
 

@@ -26,12 +26,12 @@ if($_POST) {
 
 	
 
-	$sql = "UPDATE work_order SET rec_date = '$orderDate', work_order_no = '$workOrderNo', sta_id = '$station', work_description = '$description', priority = '$priority', type_id = '$workType', status = '$status' WHERE work_id = {$workId}";
+	$sql = "UPDATE work_order SET rec_date = '$orderDate', work_order_no = '$workOrderNo', sta_id = '$station', work_description = '$description', priority = '$priority', type_id = '$workType', reason = '$reason', status = '$status' WHERE work_id = {$workId}";
 	
 	$connect->query($sql);
 	
 	if ($startTime && $endTime){
-		$workDoneSql = "UPDATE work_order SET start_time = '$startTime', end_time = '$endTime', complete_date = '$completeDate', reason = '$reason', affected_nozzle = '$affectedNozzle' WHERE work_id = {$workId}";
+		$workDoneSql = "UPDATE work_order SET start_time = '$startTime', end_time = '$endTime', complete_date = '$completeDate', affected_nozzle = '$affectedNozzle' WHERE work_id = {$workId}";
 		$connect->query($workDoneSql);
 		
 	} else if ($startTime){

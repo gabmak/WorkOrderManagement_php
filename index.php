@@ -7,9 +7,9 @@ session_start();
 
 if(isset($_SESSION['userId'])) {
 	if ($_SESSION['accessLevel'] == 1){
-		header('location: https://localhost/FYP/dashboard.php');
+		header('location: https://fyp.gabrielmak.tk/dashboard.php');
 	} else
-		header('location: https://localhost/FYP/dashboard1.php');		
+		header('location: https://fyp.gabrielmak.tk/dashboard1.php');		
 	
 }
 
@@ -60,9 +60,9 @@ if($_POST) {
 				$_SESSION['workerType'] = $workerType;
 				
 				if ($accessLevel == 1){
-					header('location: https://localhost/FYP/dashboard.php');
+					header('location: https://fyp.gabrielmak.tk/dashboard.php');
 				} else 
-					header('location: https://localhost/FYP/dashboard1.php');
+					header('location: https://fyp.gabrielmak.tk/dashboard1.php');
 
 			} else{
 				
@@ -133,14 +133,14 @@ if($_POST) {
 	</style>
 	
 </head>
-<body style="background-image:url(https://localhost/FYP/assests/images/bg-01.jpg);background-size: 100% 100%;">
+<body style="background-image:url(https://fyp.gabrielmak.tk/assests/images/bg-01.jpg);background-size: 100% 100%;">
 	<div class="container">
 		<div class="row align-items-center" >
 			<div class="col-md-5 col-md-offset-4 center-screen" >
 				<div style="color: #212527;background-color: #ffffff; border-radius: 2%; padding: 35px; font-family:Poppins-Regular, sans-serif;">
 					<div class="panel-body" >
 				  <br><br><center><img src="assests/images/smart-icon.png"  style="border-radius: 10%"  width="200"  alt=""/></br><h3><br>Work Order Management System</h3>
-				    Version: 1.3 release
+				    Version: 2.0 release
 				  </center></div>
 
 					<div class="panel-body">

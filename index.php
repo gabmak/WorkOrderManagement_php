@@ -149,7 +149,7 @@ if($_POST) {
 				<div style="color: #212527;background-color: #ffffff; border-radius: 2%; padding: 35px; font-family:sans-serif;">
 					<div class="panel-body" >
 				  <br><br><center><img src="assests/images/smart-icon.png"  style="border-radius: 10%"  width="200"  alt=""/></br><h3><br>Work Order Management System</h3>
-				    Version: 2.0 release
+				    Version: 2.1-1 release
 				  </center></div>
 
 					<div class="panel-body">

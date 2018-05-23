@@ -80,17 +80,18 @@ function ConvertJsonToTable(parsedJson, tableId, tableClassName, linkText)
 
         // Create table headers from JSON data
         // If JSON data is a simple string array we create a single table header
-        if(isStringArray)
+        if(isStringArray){
             thCon += thRow.format('value');
+		}
         else
         {
             // If JSON data is an object array, headers are automatically computed
-            if(typeof(parsedJson[0]) == 'object')
-            {
+            if(typeof(parsedJson[0]) == 'object'){
                 headers = array_keys(parsedJson[0]);
 
-                for (var i = 0; i < headers.length; i++)
+                for (var i = 0; i < headers.length; i++){
                     thCon += thRow.format(headers[i]);
+				}
             }
         }
         th = th.format(tr.format(thCon));
@@ -119,8 +120,9 @@ function ConvertJsonToTable(parsedJson, tableId, tableClassName, linkText)
                         var value = parsedJson[i][headers[j]];
                         var isUrl = urlRegExp.test(value) || javascriptRegExp.test(value);
 
-                        if(isUrl)   // If value is URL we auto-create a link
+                        if(isUrl){   // If value is URL we auto-create a link
                             tbCon += tdRow.format(link.format(value));
+						}
                         else
                         {
                             if(value){
@@ -179,13 +181,16 @@ function array_keys(input, search_value, argStrict)
             include = true;
             if (search)
             {
-                if (strict && input[key] !== search_value)
+                if (strict && input[key] !== search_value){
                     include = false;
-                else if (input[key] != search_value)
+				}
+                else if (input[key] != search_value){
                     include = false;
+				}
             } 
-            if (include)
+            if (include){
                 tmp_arr[tmp_arr.length] = key;
+			}
         }
     }
     return tmp_arr;

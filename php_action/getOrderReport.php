@@ -1,6 +1,6 @@
 <?php 
 
-require_once 'core.php';
+require_once 'db_connect.php';
 
 if($_POST) {
 
@@ -13,41 +13,15 @@ if($_POST) {
 	$format = DateTime::createFromFormat('m/d/Y',$endDate);
 	$end_date = $format->format("Y-m-d");
 
-	$sql = "SELECT * FROM orders WHERE order_date >= '$start_date' AND order_date <= '$end_date' and order_status = 1";
+	$sql = "SELECT * FROM work_order WHERE rec_date >= '$start_date' AND rec_date <= '$end_date' and status != 0";
 	$query = $connect->query($sql);
 
-	$table = '
-	<table border="1" cellspacing="0" cellpadding="0" style="width:100%;">
-		<tr>
-			<th>Order Date</th>
-			<th>Client Name</th>
-			<th>Contact</th>
-			<th>Grand Total</th>
-		</tr>
-
-		<tr>';
-		$totalAmount = 0;
-		while ($result = $query->fetch_assoc()) {
-			$table .= '<tr>
-				<td><center>'.$result['order_date'].'</center></td>
-				<td><center>'.$result['client_name'].'</center></td>
-				<td><center>'.$result['client_contact'].'</center></td>
-				<td><center>'.$result['grand_total'].'</center></td>
-			</tr>';	
-			$totalAmount += $result['grand_total'];
-		}
-		$table .= '
-		</tr>
-
-		<tr>
-			<td colspan="3"><center>Total Amount</center></td>
-			<td><center>'.$totalAmount.'</center></td>
-		</tr>
-	</table>
-	';	
-
-	echo $table;
-
+	foreach ($result as $row){
+	$data[] = $row;
 }
 
+	$connect->close();
+
+	echo json_encode($data,JSON_UNESCAPED_UNICODE);
+}
 ?>

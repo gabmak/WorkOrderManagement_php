@@ -6,6 +6,7 @@
 	} else if ($accessLevel == 0){
 		require_once 'includes/header1.php';
 	}
+	 echo "<script>console.log( 'Access Level: " . $accessLevel . "' );</script>";
 ?>
 
 <?php 

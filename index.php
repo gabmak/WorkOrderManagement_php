@@ -45,9 +45,9 @@ if($_POST) {
 				$worker_id = $row['worker_id'];
 				$workerName = "";
 				$workerType = "";
-				$nameSql = "SELECT * FROM WORKER WHERE worker_id = {$worker_id}";
+				$nameSql = "SELECT * FROM worker WHERE worker_id = {$worker_id}";
 				$nameResult = $connect->query($nameSql);
-				if ($nameResult->num_rows > 0){
+				if ($nameResult->num_rows == 1){
 					$nameRow = $nameResult->fetch_array();
 					$workerName = $nameRow['name'];
 					$workerType = $nameRow['worker_type'];
@@ -59,6 +59,11 @@ if($_POST) {
 				$_SESSION['name'] = $workerName;
 				$_SESSION['workerType'] = $workerType;
 				
+				echo "<script>console.log( 'userId: " . $user_id . "' );</script>";
+				echo "<script>console.log( 'accessLevel: " . $accessLevel . "' );</script>";
+				echo "<script>console.log( 'worker_id: " . $worker_id . "' );</script>";
+				echo "<script>console.log( ' workerName: " . $workerName . "' );</script>";
+				echo "<script>console.log( 'workerType: " . $workerType . "' );</script>";
 				if ($accessLevel == 1){
 					header('location: https://fyp.gabrielmak.tk/dashboard.php');
 				} else 
@@ -87,6 +92,10 @@ if($_POST) {
 	<link rel="stylesheet" href="assests/bootstrap/css/bootstrap-theme.min.css">
 	<!-- font awesome -->
 	<link rel="stylesheet" href="assests/font-awesome/css/font-awesome.min.css">
+	<!-- Google fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=PT Serif' rel='stylesheet'>
+
 
   <!-- custom css -->
   <link rel="stylesheet" href="custom/css/custom.css">
@@ -137,7 +146,7 @@ if($_POST) {
 	<div class="container">
 		<div class="row align-items-center" >
 			<div class="col-md-5 col-md-offset-4 center-screen" >
-				<div style="color: #212527;background-color: #ffffff; border-radius: 2%; padding: 35px; font-family:Poppins-Regular, sans-serif;">
+				<div style="color: #212527;background-color: #ffffff; border-radius: 2%; padding: 35px; font-family:sans-serif;">
 					<div class="panel-body" >
 				  <br><br><center><img src="assests/images/smart-icon.png"  style="border-radius: 10%"  width="200"  alt=""/></br><h3><br>Work Order Management System</h3>
 				    Version: 2.0 release

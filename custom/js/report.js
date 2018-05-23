@@ -37,16 +37,19 @@ $(document).ready(function() {
 				data: form.serialize(),
 				dataType: 'text',
 				success:function(response) {
-					var mywindow = window.open('', 'Stock Management System', 'height=400,width=600');
-	        mywindow.document.write('<html><head><title>Order Report Slip</title>');        
-	        mywindow.document.write('</head><body><h1 align="center">Order Report</h1><br>');
-	        mywindow.document.write(response);
-	        mywindow.document.write('</body></html>');
+					
+					var jsonHtmlTable = ConvertJsonToTable(response, 'jsonTable', null, null);
+					
+					var mywindow = window.open('', 'Work Order Mangaement System', 'height=400,width=600');
+	        		mywindow.document.write('<html><head><title>Order Report Slip</title>');        
+					mywindow.document.write('</head><body><h1 align="center">Order Report</h1><br>');
+					mywindow.document.write('<table id="jsonTable">');
+					mywindow.document.write('</table>></body></html>');
 
-	        mywindow.document.close(); // necessary for IE >= 10
-	        mywindow.focus(); // necessary for IE >= 10
+					mywindow.document.close(); // necessary for IE >= 10
+					mywindow.focus(); // necessary for IE >= 10
 
-	        mywindow.print();
+					mywindow.print();
 	        
 				} // /success
 			});	// /ajax

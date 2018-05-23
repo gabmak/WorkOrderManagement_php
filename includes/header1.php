@@ -5,7 +5,7 @@
 <head>
 
 	<title>Work Order Management System</title>
-	<link rel="icon" type="image/png" sizes="128x128"  href="http://fyp.gabrielmak.tk/assests/images/smart-icon.png"/>
+	<link rel="icon" type="image/png" sizes="128x128"  href="https://fyp.gabrielmak.tk/assests/images/smart-icon.png"/>
 	
 	<!-- bootstrap -->
 	<link rel="stylesheet" href="assests/bootstrap/css/bootstrap.min.css">
@@ -19,9 +19,6 @@
 
 	<!-- DataTables -->
   <link rel="stylesheet" href="assests/plugins/datatables/jquery.dataTables.min.css">
-
-  <!-- file input -->
-  <link rel="stylesheet" href="assests/plugins/fileinput/css/fileinput.min.css">
 
   <!-- jquery -->
 	<script src="assests/jquery/jquery.min.js"></script>

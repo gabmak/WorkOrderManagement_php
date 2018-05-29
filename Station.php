@@ -79,7 +79,7 @@
 	        	<label for="telephone" class="col-sm-3 control-label">Telephone: </label>
 	        	<label class="col-sm-1 control-label">: </label>
 				    <div class="col-sm-8">
-				      <input type="text" class="form-control" id="telephone" placeholder="Telephone" name="telephone" autocomplete="off">
+				      <input type="number" class="form-control" id="telephone" placeholder="Telephone" name="telephone" autocomplete="off">
 				    </div>
 	        </div> <!-- /form-group-->
 			  
@@ -150,7 +150,7 @@
 		        	<label for="editStationTelephone" class="col-sm-3 control-label">Telephone: </label>
 		        	<label class="col-sm-1 control-label">: </label>
 					    <div class="col-sm-8">
-					      <input type="text" class="form-control" id="editStationTelephone" placeholder="Station Name" name="editStationTelephone" autocomplete="off">
+					      <input type="number" class="form-control" id="editStationTelephone" placeholder="Station Name" name="editStationTelephone" autocomplete="off">
 					    </div>
 		        </div> <!-- /form-group-->
 		        <div class="form-group">

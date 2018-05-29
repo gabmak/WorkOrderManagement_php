@@ -38,7 +38,8 @@ $(document).ready(function() {
 			var orverRideOption = {
 					scales : {
 						yAxes: [{ticks: {beginAtZero: true}}],
-						xAxes: [{ticks: {autoSkip: false}}]
+						xAxes: [{ticks: {autoSkip: false}}],
+						pointLabels: {fontSize: 20}
 					},
 					legend: {
 						display: false,

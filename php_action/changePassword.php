@@ -11,7 +11,7 @@ if($_POST) {
 	$conformPassword = $_POST['cpassword'];
 	$userId = $_POST['user_id'];
 
-	$sql ="SELECT * FROM users WHERE user_id = {$userId}";
+	$sql ="SELECT * FROM login WHERE user_id = {$userId}";
 	$query = $connect->query($sql);
 	$result = $query->fetch_assoc();
 
@@ -19,7 +19,7 @@ if($_POST) {
 
 		if($newPassword == $conformPassword) {
 
-			$updateSql = "UPDATE users SET password = '$newPassword' WHERE user_id = {$userId}";
+			$updateSql = "UPDATE login SET password = '$newPassword' WHERE user_id = {$userId}";
 			if($connect->query($updateSql) === TRUE) {
 				$valid['success'] = true;
 				$valid['messages'] = "Successfully Updated";		

@@ -17,7 +17,7 @@
 		  <li class="active">Worker </li>
 		</ol>
 
-		<div class="panel panel-default">
+		<div class="panel panel-default" <?php if ($accessLevel == 0 ){ ?> style="visibility:hidden" <?php }  ?>  >
 			<div class="panel-heading">
 				<div class="page-heading"> <i class="glyphicon glyphicon-edit"></i> Manage Worker</div>
 			</div> <!-- /panel-heading -->
@@ -72,7 +72,7 @@
 	        	<label for="telephone" class="col-sm-3 control-label">Telephone </label>
 	        	<label class="col-sm-1 control-label">: </label>
 				    <div class="col-sm-8">
-				      <input type="text" class="form-control" id="telephone" placeholder="Telephone" name="telephone" autocomplete="off">
+				      <input type="number" class="form-control" id="telephone" placeholder="Telephone" name="telephone" autocomplete="off">
 				    </div>
 	        </div> <!-- /form-group-->
 					  
@@ -168,7 +168,7 @@
 		        	<label for="editTelephone" class="col-sm-3 control-label">Telephone </label>
 		        	<label class="col-sm-1 control-label">: </label>
 					    <div class="col-sm-8">
-					      <input type="text" class="form-control" id="editTelephone" placeholder="Telephone" name="editTelephone" autocomplete="off">
+					      <input type="number" class="form-control" id="editTelephone" placeholder="Telephone" name="editTelephone" autocomplete="off">
 					    </div>
 		        </div> <!-- /form-group-->
 				  

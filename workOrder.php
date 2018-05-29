@@ -68,7 +68,7 @@ if($_GET['o'] == 'add') {
 
 			<div class="success-messages"></div> <!--/success-messages-->
 
-  		<form class="form-horizontal" method="POST" novalidate action="php_action/createWorkOrder.php" id="createOrderForm">
+  		<form class="form-horizontal" method="POST" novalidate action="php_action/createWorkOrder.php" id="createOrderForm" <?php if ($accessLevel == 0 ){ ?> style="visibility:hidden" <?php }  ?>>
 
 			  <div class="form-group">
 			    <label for="orderDate" class="col-sm-2 control-label">Receive Date:</label>
@@ -142,7 +142,7 @@ if($_GET['o'] == 'add') {
 			  </div> <!--/form-group-->
 			
 			  <div class="form-group">
-			    <label for="reason" class="col-sm-2 control-label">Work description:</label>
+			    <label for="reason" class="col-sm-2 control-label">Reminder:</label>
 			    <div class="col-sm-10">
 			      <input type="text" class="form-control" id="reason" name="reason" placeholder="reason" value="站報" autocomplete="off"/>
 			    </div>

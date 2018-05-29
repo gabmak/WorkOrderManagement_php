@@ -12,7 +12,7 @@ if($_POST) {
 	$stationStatus = $_POST['stationStatus'];
 
 	$sql = "INSERT INTO station (sta_name, address, telephone, status, visible) 
-	VALUES ('$stationName', '$address', '$telephone', '$stationStatus', 1)";
+	VALUES ('$stationName', '$address', $telephone, '$stationStatus', 1)";
 
 	if($connect->query($sql) === TRUE) {
 	 	$valid['success'] = true;

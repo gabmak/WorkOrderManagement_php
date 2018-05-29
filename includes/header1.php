@@ -59,9 +59,6 @@
         <li id="navOrder">
           <a href="workOrder.php?o=manord"> <i class="glyphicon glyphicon-inbox"></i> Orders</a>
         </li> 
-
-        <li id="navReport"><a href="report.php"> <i class="glyphicon glyphicon-check"></i> Report </a></li>
-
         <li class="dropdown" id="navSetting">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="glyphicon glyphicon-align-justify"></i> <span class="caret"></span></a>
           <ul class="dropdown-menu">            

@@ -261,6 +261,7 @@ $connect->close();
 <script src="assests/plugins/fullcalendar/fullcalendar.min.js"></script>
 
 
+
 <script type="text/javascript">
 	$(function () {
 			// top bar active
@@ -271,7 +272,11 @@ $connect->close();
       var d = date.getDate(),
       m = date.getMonth(),
       y = date.getFullYear();
-
+	  var php_accessLevel = <?php echo $accessLevel; ?>;
+	  var php_worker_id = "<?php echo $workerId ?>";
+	  console.log(php_worker_id);
+		
+		
       $('#calendar').fullCalendar({
         header: {
           left: '',
@@ -280,8 +285,26 @@ $connect->close();
         buttonText: {
           today: 'today',
           month: 'month'          
-        }        
+        },
+		eventSources: [
+
+		// your event source
+		{
+		  url: 'php_action/fetchCalendarOrderAll.php',
+		  type: 'POST',
+		  error: function() {
+			alert('there was an error while fetching events!');
+		  },
+		  color: 'LightSkyBlue',   // a non-ajax option
+		  textColor: 'black' // a non-ajax option
+		}
+
+		// any other sources...
+
+	  ]
+
       });
+
 
     });
 </script>

@@ -248,7 +248,11 @@ $connect->close();
       var d = date.getDate(),
       m = date.getMonth(),
       y = date.getFullYear();
-
+	  var php_accessLevel = <?php echo $accessLevel; ?>;
+	  var php_worker_id = "<?php echo $workerId ?>";
+	  console.log(php_worker_id);
+		
+		
       $('#calendar').fullCalendar({
         header: {
           left: '',
@@ -257,7 +261,28 @@ $connect->close();
         buttonText: {
           today: 'today',
           month: 'month'          
-        }        
+        },
+		eventSources: [
+
+		// your event source
+		{
+		  url: 'php_action/fetchCalendarOrder.php',
+		  type: 'POST',
+		  data: {
+			worker_id: php_worker_id
+			
+		  },
+		  error: function() {
+			alert('there was an error while fetching events!');
+		  },
+		  color: 'LightSkyBlue',   // a non-ajax option
+		  textColor: 'black' // a non-ajax option
+		}
+
+		// any other sources...
+
+	  ]
+
       });
 
 

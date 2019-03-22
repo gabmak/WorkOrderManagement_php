@@ -1,7 +1,7 @@
 #   Work Order Management System
 This is a project inspired by a stock management open source project. A work order management system is developed for better maintenance of orders.    
 
-##  Technologies##
+##  Technologies
 -   PHP 7: http://php.net/downloads.php
 -   JQuery: http://jquery.hohli.com/
 -   Ajax

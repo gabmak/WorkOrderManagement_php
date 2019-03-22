@@ -10,10 +10,10 @@ This is a project inspired by a stock management open source project. A work ord
     - https://www.mamp.info/en/downloads/
 
 ##  Launch
-    When launching the web application, put the project folder in the Web source folder of MAMP/XAMPP, turn on MAMP/XAMPP and access to localhost for the application. 
+When launching the web application, put the project folder in the Web source folder of MAMP/XAMPP, turn on MAMP/XAMPP and access to localhost for the application. 
 
 ##  General info
-    This application is a management system of maintenance record. There are two types of user in the system, the management team can issue maintenance projects and have full access to all functionalites, the workers can check on-going/previous projects and file a maintenance report after each project.  
+This application is a management system of maintenance record. There are two types of user in the system, the management team can issue maintenance projects and have full access to all functionalites, the workers can check on-going/previous projects and file a maintenance report after each project.  
 
 ##  Features
 1.  Data analytics
